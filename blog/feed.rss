@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
-<channel><title>Om's Blog</title><link>https://omraheja.us.to/blog/index.html</link>
+<channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Fri, 20 Dec 2024 15:01:31 -0500</lastBuildDate>
-<pubDate>Fri, 20 Dec 2024 15:01:31 -0500</pubDate>
-<atom:link href="https://omraheja.us.to/blog/feed.rss" rel="self" type="application/rss+xml" />
+<lastBuildDate>Fri, 20 Dec 2024 18:11:22 -0500</lastBuildDate>
+<pubDate>Fri, 20 Dec 2024 18:11:22 -0500</pubDate>
+<atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
 <item><title>
 Starting to post again
 </title><description><![CDATA[
@@ -36,9 +36,10 @@ Starting to post again
 <p>I also want to say that now I will repurpose this blog. I don't expect anyone to find any useful information on here now, instead it will just consist of a random bunch of my thoughts. I am curious as to who's gonna look at this blog, so I might put Google Analytics on here in the future. If you truly love FOSS like I do, you'll have an adblocker and probably be reading through <code>w3m</code>.</p>
 
 <p>Tags: <a href='tag_reflection.html'>reflection</a></p>
+
 <!-- text end -->
-]]></description><link>https://omraheja.us.to/blog/starting-to-post-again.html</link>
-<guid>https://omraheja.us.to/blog/./starting-to-post-again.html</guid>
+]]></description><link>https://omraheja.me/blog/starting-to-post-again.html</link>
+<guid>https://omraheja.me/blog/./starting-to-post-again.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Fri, 20 Dec 2024 15:01:29 -0500</pubDate></item>
 <item><title>
@@ -48,8 +49,8 @@ What makes a good Pull Request?
 <p>Recently my first pull request to the <a href="https://github.com/agiresearch/AIOS">AIOS Project</a> was approved. Having never contributed to such a large project before, I had to navigate the complex realms of teamwork on GitHub.</p>
 
 <hr />
-]]></description><link>https://omraheja.us.to/blog/what-makes-a-good-pull-request.html</link>
-<guid>https://omraheja.us.to/blog/./what-makes-a-good-pull-request.html</guid>
+]]></description><link>https://omraheja.me/blog/what-makes-a-good-pull-request.html</link>
+<guid>https://omraheja.me/blog/./what-makes-a-good-pull-request.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Fri, 14 Jun 2024 14:31:12 -0400</pubDate></item>
 <item><title>
@@ -59,8 +60,8 @@ May Update
 <p>It's been more than a month since my last blog post. In this month, the changes I've made would make me completely unrecognizable to myself from April.</p>
 
 <hr />
-]]></description><link>https://omraheja.us.to/blog/may-update.html</link>
-<guid>https://omraheja.us.to/blog/./may-update.html</guid>
+]]></description><link>https://omraheja.me/blog/may-update.html</link>
+<guid>https://omraheja.me/blog/./may-update.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Fri, 31 May 2024 17:57:40 -0400</pubDate></item>
 <item><title>
@@ -70,66 +71,36 @@ Vote Against Premier Financial Corporation Board!
 <p>As we approach the annual meeting of Premier Financial Corporation, which is just around the corner, some stakeholders are hastily questioning the value provided by the company's board in relation to their compensation. After extensive analysis, it appears that a different outcome may be warranted.</p>
 
 <hr />
-]]></description><link>https://omraheja.us.to/blog/vote-against-premier-financial-corporation-board.html</link>
-<guid>https://omraheja.us.to/blog/./vote-against-premier-financial-corporation-board.html</guid>
+]]></description><link>https://omraheja.me/blog/vote-against-premier-financial-corporation-board.html</link>
+<guid>https://omraheja.me/blog/./vote-against-premier-financial-corporation-board.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 24 May 2024 17:13:57 -0400</pubDate></item>
+<pubDate>Sat, 27 Apr 2024 18:53:08 -0400</pubDate></item>
 <item><title>
-
-
-
-
-
-
-New Curriculum!
+Back to Linux Sanity
 </title><description><![CDATA[
 
+<p>It took me two months and eight days to realize how important convenience is to me. In mid-February, I received an SSD to replace the outdated spinning disk in my laptop. Having used <a href="https://voidlinux.org">Void Linux</a> on my laptop since I first installed Linux, I thought it would be a good idea to try out <a href="https://alpinelinux.org">Alpine Linux</a>. Initially, the setup was a bit tedious, but once I got started, the user experience was fantastic: packages installed almost instantly, the computer was quick and nimble in its computations, and the software I needed was readily available.</p>
 
+<p>However, it didn't take long to realize that <a href="https://alpinelinux.org">Alpine Linux</a> wasn't well-suited for all situations. The operating system struggled with a higher number of packages and computationally intensive operations. For example, setting up a cryptodisk increased my boot time to about two minutes, and after installing LibreOffice, it took much longer to install additional packages. I eventually had to create a chroot just to work with <a href="https://pytorch.org">PyTorch</a>, <a href="https://mojolang.org">Mojo</a>, and <a href="https://checkra.in">checkra1n</a> on my iPhone.</p>
 
+<p><a href="https://alpinelinux.org">Alpine Linux</a> is only ideal for specific use cases. The decision to remove GNU C extensions reinforces the importance of application portability and offers users a choice, but it also sacrifices usability when working with advanced applications. For instance, kdenlive crashed during an assignment for my class and would segfault every time I tried to load it again. After discussing the issue with the developers, I realized that I had a bad build, which might not even be the developers' fault – this incident made me appreciate the simplicity of using a more common Linux distribution.</p>
 
+<p>One aspect of <a href="https://alpinelinux.org">Alpine Linux</a> that I did appreciate was the manual pages. They were far better than any other distro I've used, providing detailed descriptions of how to use the software installed on my computer. This made it easy to find what I needed without having to consult the ArchWiki all the time. If it weren't for the need to work with applications linked to the GNU C library, I might have stuck with <a href="https://alpinelinux.org">Alpine Linux</a> just for the manual pages.</p>
 
+<p>I didn't want to go back to my previous lightweight and easy-to-use Linux distribution. Instead, I opted for <a href="https://devuan.org">Devuan</a>, a Debian distribution without systemd that is a bit lighter. The installer didn't take long, and my system was ready to use without any significant issues. My laptop now boots faster, although I did have to resolve some annoyances with the initramfs due to unclear instructions in the refractainstaller. <a href="https://devuan.org">Devuan</a> seems to work well, and I was able to set up my minimal bspwm environment and transfer my old files relatively quickly. However, I do miss the 160 MB of RAM usage my laptop had on idle with <a href="https://alpinelinux.org">Alpine Linux</a>. <a href="https://devuan.org">Devuan</a>'s caching increased my idle usage by almost 100 MB.</p>
 
+<p>In conclusion, neither <a href="https://devuan.org">Devuan</a> nor <a href="https://alpinelinux.org">Alpine Linux</a> is a perfect solution, but the need for practicality outweighs my desire to be minimal. While I enjoyed the minimalism of <a href="https://alpinelinux.org">Alpine</a>, the convenience and faster boot times of <a href="https://devuan.org">Devuan</a> ultimately won me over.</p>
 
-
-
-
-
-
-<p>After days of work, I have finally released a sample version of my curriculum that are taught in my classes. It can be accessed <a href="/SampleCurriculum.pdf">here</a>. My reasons for creating this curriculum are as follows:
-- For parents to get a general idea of what is being taught
-- To improve my own organization
-- To establish a set of guidelines for any instructors I hire/volunteer for me. </p>
-
-<h4>My ambitions</h4>
-
-<p>I really want to take this far; I want other high school students like myself who are passionate about education and computer science in some way or the other to aid our future generation in experience. Not only will it help the students, it will likely help the instructors more, as they will improve their knowledge and will become better at explaining. I believe anyone can work with me on this project in any way, even if they don't know anything about programming or circuitry, because a lot of this involves developing intution of both the student and their instructor and improving problem solving. </p>
-
-<p>I also want to expand this into other areas like math, finance, and economics, as those are among my favorite subjects. However, this may be more of a long term goal due to my constraints and amount of customers. The potential amount of customers is much higher because there is a lot of push by parents for these topics and we have a higher chance of appealing to the parents because of our specific tailoring. That being said, the market is also highly competitive and it is very easy for other businesses to be established. As competition is unavoidable, a good solution may include acquisition or developing better intangible assets. However, this is out of the scope of my business for now.</p>
-
-<h4>Join!</h4>
-
-<p>I want to establish as wide a network of teachers and students as possible because I really believe in tailor-based education. If you are interested in learning or teaching, whether virtually or in person, please <a href="mailto:rahejaom@outlook.com">mail me</a>. </p>
-
-<h4>Other projects</h4>
-
-<p>The most important project that comes to mind is my petiton for improved privacy laws, which needs a formal signing process. I will code a server based CGI script to hold form responses in a CSV soon, but I need my school administrators to allow me to advertise in school so I can gain traction. Me and my team are very excited for the potential of this project and are hoping we can get this to pass in the New Jersey senate.</p>
-
-<p>I have additionally started learning latin due to its various applications in English and Spanish and so that I can better understand latin root words on the SAT. While that was my reason to start learning latin, now I am genuinely interested in the language and want to improve my language learning as well. I am using Hans H. Ørberg's Lingua Latina I textbook so that I can best improve my knowledge and learning ability by using the natural method. It's quite interesting, because I'm picking up the language the same way I picked up my native language, and that really affects my ability to speak, read, and write in it. I suggest all language learners start with the natural method if possible, because it is the most effective, as per my understanding. </p>
-
-<p>Tags: <a href='tag_development.html'>development</a>, <a href='tag_business.html'>business</a>, <a href='tag_education.html'>education</a></p>
-
-
-
-
+<p>Tags: <a href='tag_reflection.html'>reflection</a>, <a href='tag_waste-of-time.html'>waste-of-time</a>, <a href='tag_development.html'>development</a></p>
 
 
 
 
 <!-- text end -->
-]]></description><link>https://omraheja.us.to/blog/new-curriculum.html</link>
-<guid>https://omraheja.us.to/blog/./new-curriculum.html</guid>
+]]></description><link>https://omraheja.me/blog/back-to-linux-sanity.html</link>
+<guid>https://omraheja.me/blog/./back-to-linux-sanity.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 24 May 2024 17:13:57 -0400</pubDate></item>
+<pubDate>Sat, 27 Apr 2024 17:43:39 -0400</pubDate></item>
 <item><title>
 On Turks &amp; Caicos
 </title><description><![CDATA[
@@ -176,159 +147,12 @@ On Turks &amp; Caicos
 
 
 
-<!-- text end -->
-]]></description><link>https://omraheja.us.to/blog/on-turks-amp-caicos.html</link>
-<guid>https://omraheja.us.to/blog/./on-turks-amp-caicos.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 24 May 2024 17:13:57 -0400</pubDate></item>
-<item><title>
-
-
-
-
-
-
-First Post
-</title><description><![CDATA[
-
-
-
-
-
-
-
-
-
-
-
-
-<h1>My First Post</h1>
-
-<p>I thought I would setup <a href="https://github.com/cfenollosa/bashblog">BashBlog</a> because it provides a nice alternative to social media. Not that I use any of that, I have no accounts on any major platforms. I might include a list of all the pages I've deleted my accounts from later.</p>
-
-<p>I'm not going to waste your time here. I'll divide it up into sections of what I've done and why.</p>
-
-<h2>BashBlog</h2>
-
-<p>I attempted to make my own blogger in bash. After a few minutes, I realized its a lot more effort than it's worth, so I began looking for "blog generators". I found <a href="https://www.makeuseof.com/create-static-blog-linux-terminal-with-bashblog/">this article</a> after a little searching, downloaded it and started writing this post in markdown.</p>
-
-<p>Once I got onto the GitHub page, it didn't take me more than a few seconds to recognize the author, cfenollosa! He was the one who made the famous <a href="https://github.com/cfenollosa/os-tutorial">os-tutorial</a> to make your own operating system from scratch a while ago. For those of you who understand the value of his tutorial, there need be no explanation as to why this was included in my blog post.</p>
-
-<h2>Ice Skating!</h2>
-
-<p>This weekend I tried ice skating. Can't say it was easy, I hurt my knee and fell at least 20 times... I learned a lot, though. I was very eager to leave the railing and try to skate on my own, which is the likely cause of me falling so much, but if I didn't let go I don't think I would have learned otherwise.</p>
-
-<p>Firstly, I have injuries all over my legs, mostly from the skates. I readjusted my skate multiple times in the short timespan I was at the rink, and even after readjustment I was unable to bend my knees to accelerate properly. It's likely this is more my fault than the skates, so I'll experiment a little before I decide rental skates are bad in general. It might just be worth it to spend $200 and get a nice pair if anyone is actually serious about it, which I am not.</p>
-
-<p>Generally speaking, I dislike individual sports. There's no reason why, but it just seems to get boring after some time. I suppose I am a swimmer, but there is definitely a significant amount of teamwork involved in swimming, as we are organized as a team and we make sacrifices to help others achieve their dreams and we cheer each other on during their swims. I don't believe I can make any judgement of ice skating yet, but from my experience, casual ice skating is really fun to do with your friends, maybe not a team sport but especially in the early stages a lot of teamwork. That being said, I may further my interest in it.</p>
-
-<h2>SEC parser</h2>
-
-<p>I started working on a parser that obtains data right from the <a href="https://www.sec.gov/edgar/sec-api-documentation">EDGAR API</a> because I'm done with <a href="https://finance.yahoo.com">Yahoo Finance</a> and other ripoffs. I want a high quality, valuation based investment software without the fancy graphs and EPS before <a href="https://www.investopedia.com/articles/01/103101.asp">pro forma earnings</a>. Not only that, the forward ratios and the TTM's throw me off all the time. It also requires a premium subscription to pay for financials past 1 year. Of course, it makes them money so its justified, but that software is not meant for me.</p>
-
-<p>You could say I could resort to Nasdaq or some other official source. I intend to parse those sources for their dividend history and other information not available easily on EDGAR, but I want as accurate data as possible, even if that means I sacrifice a little precision with the number of outstanding shares and whatnot.</p>
-
-<p>There are no ETAs or pull requests or anything, as with my other projects. I will get my git hosted soon and then it will be up, but I'm working on this solely out of my leisure, with my friend. </p>
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- text end -->
-]]></description><link>https://omraheja.us.to/blog/first-post.html</link>
-<guid>https://omraheja.us.to/blog/./first-post.html</guid>
+]]></description><link>https://omraheja.me/blog/on-turks-amp-caicos.html</link>
+<guid>https://omraheja.me/blog/./on-turks-amp-caicos.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 24 May 2024 17:13:57 -0400</pubDate></item>
-<item><title>
-
-
-
-
-
-
-General Reflection
-</title><description><![CDATA[
-
-
-
-
-
-
-
-
-
-
-
-
-<p>It is currently late at night, and instead of sleeping, I am up writing this blog post. I'm likely to wake up the next morning in utter confusion of what I have wrote here tonight.</p>
-
-<h4>BashBlog (continued)</h4>
-
-<p>I tried to configure bashblog to work better, by perhaps intregrating the blog and the frontpage together, but such a project is not for me. I don't want to poke around with the internals of this 1,000 line script any more than I've done already. If I feel like pursuing this later, you'll see the site look a lot more unified and improved.</p>
-
-<p>There also seems to be this weird glitch with an unnamed post in my blog, which caused the timestamp "January 08, 2024" to randomly appear at the top. I don't know how to fix it yet, but I will because I don't like it. That being said, once the front page hits its post limit, it may also disappear.</p>
-
-<p>That being said, I probably will unify the CSS in some way later, and will definitely work on SEO (Search Engine Optimization) first. </p>
-
-<h4>FBLA Summit</h4>
-
-<p>I went to a <a href="https://fbla.org">Future Business Leaders of America</a> regional summit on Friday, and I learned quite a bit. Let me sum it up for you: 
-- I improved my confidence a lot more, because of the networking and law session that I chose. I can't say I liked one more than the other, as I met people from vastly different environments who had a keen interest in the business world and who also would like to make new friends. The law one was my favorite, because it enforced some of the concepts I was taught in my <a href="https://jsa.org">JSA</a> experience, and how statistics along with theoretical makes your argument more convincing.
-- I gained a lot of useful knowledge and contacts. More than business related knowledge, I think I gained a new outlook on life. I came up with a better process to present myself in the professional world involving a set of rigid core values, which I followed already but going to summit helped me enforce those values. I met people who could help me accomplish my hopes and dreams and saved their contact information.
-- I had fun. It's not everyday I get to take time off from school, much less I get to meet new people. I don't dislike school, but a break is appreciated from time to time. Alongside of being a professional summit, it was generally a place for me to be social and for me and my friends to enjoy ourselves.</p>
-
-<h4>Personality Change</h4>
-
-<p>Think it's kind of strange, but I'm picking up on developments in my own personality over time. I don't know how common this is or anyone else who notices changes like these, but I thought I would write about it anyways, since it seems interesting.</p>
-
-<p>A quick google search of personality change doesn't yield much, except for the bipolar disorder, and the like. I am highly doubtful that there is any correlation between my experience and mental disorders, but instead a response to my environment.</p>
-
-<p>As time goes on, it seems as if I idolize things or people much less. I recall at the start of this school year, I was very disappointed to find out that I would not be able to spend as much time with a friend from a neighboring district. At the time, she meant the entire world to me, and I'm glad that I was able to express that even though it took me a few days to get all my thoughts and emotions out.</p>
-
-<p>Eventually, it came to a time where we would not be able to meet each other for almost a month at a time, which at the beginning was pretty degrading on my emotional health, but as time passed, those emotions started to disappear. In fact, the first time around, it seemed as if the inverse had occured, that I hadn't met her in so long, that I didn't want to meet her at all. I didn't want those powerful emotions to be invoked again.</p>
-
-<p>And when I met her after that, it was as if I was a different person. I became completely distant and she wasn't sure what to do with me, which is funny in retrospect. The pattern continued, and by the end of this arbitrary cycle my interactions with her became completely distorted, but in a more positive manner.</p>
-
-<p>These interactions, in fact, are what helped me to realize this change. A few months ago, maybe in the start of September, I was more reserved, very honest and didn't really say much other than deep talk. Now, I wouldn't say I'm the complete opposite, but I'm much more outgoing and a burst of energy. It's easier for me to form interactions this way, now that my confidence has improved, which came from a lot of public speaking in JSA. My interaction type in September wasn't bad, it was just less like myself. I'm a lot more goofy than most people are.</p>
-
-<p>That brings me to another point. It was commonly accepted in my area that being goofy was a simple way to protect yourself from real emotions. In retrospect, that is partially true if you are concealing your real emotions, but my heart desires me to do stupid things and make stupid jokes, so that itself is part of my personality. Whether it protects myself from "real emotions", or is negative in general and lowers my reputation or whatever, it doesn't matter in the end because this new interaction type has made me a lot happier and has definitely improved my confidence.</p>
-
-<p>As another example, I had this other close friend who I wasn't able to understand, and was under the severe misconception that she disliked me because she wanted to get work done during free study. Now, I spent the majority of my school day with her, knowing her only for 2 months but we had already gotten so close together, irrespective of our differences. The next day, I went to school without talking to her, and felt like garbage. I decided to tell another friend how I was feeling, even though we weren't that close. It eased the pain a little. The next day came, and it hurt a lot, but this time a little less. I quickly moved to make new friends because I realized that if I continued to get hurt through my lack of interaction with her I wouldn't last very long.</p>
-
-<p>A few days later, I wasn't able to take it anymore, because she was sitting right in front of me and doing her work during free study. On a completely divided basis, I decided to go sit next to her and finish my work, not knowing what else to do. And so I made up a stupid excuse to sit next to her, and she saw right through it... but I sat there anyways and didn't say anything and just finished my work.</p>
-
-<p>She looked at me a couple of times, confused, and scrolled through some reels on her phone. I glanced at her from time to time but I was bent on finishing my work, and that's what I did for the most part. Eventually she saw a funny reel and showed me and we both started laughing, and it reduced the intensity of the mood a lot. By the end of it, I asked her if she was mad at me, and after hearing her response I felt significantly relieved.</p>
-
-<p>I did not sit with her with the intention that the conflict would be resolved. It was a risky decision and could have hurt me potentially, but I was confident that I could take the risk, knowing very little about her emotions, I did.</p>
-
-<p>To simplify, it seems as if my personality development has stemed from a confidence change. I can project much better, make jokes in front of a whole group of people, laugh at my own mistakes, and feel good too. At the beginning, I mentioned that I stopped idolizing people and things. For people, it came to me that I can form deep connections with any kind of people, I just have to stay confident throughout the process. </p>
-
-<p>I'm also experiencing personality change in other parts, of my life, not just my connections. I stopped worrying about my grades and whether my GPA would permit me to go into any college, and started focusing more on enjoying the work I did at school. It wasn't necessarily easy nor is it anything I want to do, but I took an interest in it and the process of learning and my grades have reached much higher than they have before. </p>
-
-<p>In swimming, I'm not always sure about whether I can beat the competition or my own personal records at all, but I've been working harder in practice since November, to increase my confidence as a swimmer. This can also be extended to other parts of my life, as my willingness to purchase stocks with my own hard-earned money (after <strong>thorough</strong> research), asking for letters of recommendation for various summer programs, and so forth. My personality change seems to be constructed out of a push for confidence, which definitely has created a lot of upsides and has also made me unrecognizable to my friend listed above, as well as my other friends, family, past teachers, and colleagues. I would infer then, that a confidence boost has a significant amount of indirect upsides through the modifications of my own physcology. However, I still have a lot of improvements to make, so I will continue to work on my confidence.</p>
-
-<p>Tags: <a href='tag_waste-of-time.html'>waste-of-time</a>, <a href='tag_growth.html'>growth</a>, <a href='tag_development.html'>development</a></p>
-
-
-
-
-
-
-
-
-
-<!-- text end -->
-]]></description><link>https://omraheja.us.to/blog/general-reflection.html</link>
-<guid>https://omraheja.us.to/blog/./general-reflection.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 24 May 2024 17:13:57 -0400</pubDate></item>
+<pubDate>Sun, 31 Mar 2024 13:56:14 -0400</pubDate></item>
 <item><title>
 
 
@@ -550,11 +374,12 @@ rc-update add swap boot
 
 
 
+
 <!-- text end -->
-]]></description><link>https://omraheja.us.to/blog/luks-alpine-setup.html</link>
-<guid>https://omraheja.us.to/blog/./luks-alpine-setup.html</guid>
+]]></description><link>https://omraheja.me/blog/luks-alpine-setup.html</link>
+<guid>https://omraheja.me/blog/./luks-alpine-setup.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 24 May 2024 17:13:57 -0400</pubDate></item>
+<pubDate>Wed, 28 Feb 2024 21:52:42 -0500</pubDate></item>
 <item><title>
 
 
@@ -562,7 +387,7 @@ rc-update add swap boot
 
 
 
-Petition Signing Finally Setup!
+On HackTCNJ 2024
 </title><description><![CDATA[
 
 
@@ -576,76 +401,32 @@ Petition Signing Finally Setup!
 
 
 
-<p>Before, you had to send me an email, or be lucky enough to be at my in person signing events to sign my petition... but no longer! You can now sign the petition on the homepage or <a href="/petition.html">here</a>. It only took me 2 days to reprogram the site, it being static initially...</p>
+<p>The past weekend was a whirlwind of coding, learning, and teamwork at HackTCNJ 2024. It was my first hackathon experience, and I'm still processing the rollercoaster of emotions and insights that came with it.</p>
 
-<h4>How did you do it?</h4>
+<p>Firstly, I quickly understood how different in person hackathons were from the virtual competitions I had taken part in prior to this. After trying both USACO and PClassic it occured to me that I had no inherent interest in solving algorithmic problems; it feels too far removed from the actual importance of programming and innovation; rather feels like a math test. Even though these competitions are highly prestigious, hackathons are far more applicable to the business world and my interest in programming as there is significantly more room for innovation.</p>
 
-<p>The petition signing uses a raw HTML form. I wanted the frontend to be as minimalist as possible and for most of the work to be handled by the backend, which did pose some pretty big difficulties.</p>
+<p>The hackathon felt very immersive and was very motivating. I am very enthusiastic about Major League Hacking in general and appreciated the environment they provided with free food, conducive workspace, and no costs to participants even though the event was held in person. </p>
 
-<p>The config for the server currently looks something like this:</p>
+<p>The chief benefit of hackathons is the networking, in my opinion. I met the <a href="https://ruslug.org">Rutgers Student Linux User Group</a> president at the hackathon and we discussed Linux, FOSS, and the like. I met groups who built various sorts of projects: a radar, an AI webcam-based mouse, a 2d game with physics, a truth table generator... A huge variety of people from different backgrounds making a variety of different projects. </p>
 
-<pre><code>server "omraheja.us.to" {
-    listen on * port 80
-    root "/htdocs/omraheja.us.to"
+<p>Prior to the event, my team and I decided to tackle a seemingly insurmountable challenge: building an operating system from scratch. In hindsight, it was an overly ambitious project for a hackathon, but we managed to make some progress, including creating a VGA driver, porting parts of libc, and delving into memory management.</p>
 
-    location "/pub/*" {
-        directory auto index
-    }
-}
-</code></pre>
+<p>Throughout this project, I was reminded once again of the importance of perseverance and embracing the slow, incremental improvements that come with tackling complex problems which was a theme that resonated from my 3d renderer project, as well. It's easy to feel discouraged when progress seems slow, but each small step forward is a testament to our growing understanding and skill.</p>
 
-<p>OpenBSD httpd is pretty straightforward, so all I did was change it to this: </p>
+<p>As we worked on our OS, I couldn't help but notice that the winning teams had taken a different approach. They focused on solving specific, real-world problems rather than attempting to build something as complex as an operating system. For instance, the winning high school team created an innovative solution called "Expand-A-Conda," which used the pre-existing NVIDIA MIT-B5 model to detect earthquake survivors and deploy a simple, expanding plastic bag to help locate them.</p>
 
-<pre><code>server "omraheja.us.to" {
-    listen on * port 80
-    root "/htdocs/omraheja.us.to"
+<p>It's worth noting that the Expand-A-Conda team didn't develop their own AI model; instead, they leveraged an existing one and combined it with a relatively straightforward hardware component. This illustrates the power of focusing on practical problem-solving rather than striving for technical complexity for its own sake.</p>
 
-        location "/pub/*" {
-            directory auto index
-        }
+<p>This experience taught me the value of focusing on problem-solving and applying existing skills to create practical solutions. While our OS project was impressive in its technical complexity, it lacked the immediate impact and relevance that the winning projects demonstrated.</p>
 
-        location "/vote.cgi" {
-            fastcgi socket "/run/slowcgi.sock"
-            root "/cgi-bin"
-        }
-}
-</code></pre>
+<p>Looking back, I realize that this lesson is applicable not only to hackathons but also to the broader world of entrepreneurship and innovation. Teams that identify and address pressing problems are more likely to gain traction and succeed than those that focus solely on pushing the boundaries of technology for its own sake.</p>
 
-<p>...and then in /cgi-bin I wrote about 200 lines of vulnerable C. It's really been a while, I had almost forgotten how to use stdio's file API.</p>
+<p>As I prepare for my next hackathon, CJCP Hacks, I'm eager to apply these insights and work on a project that balances technical complexity with real-world relevance. My team and I have already started planning our strategy, and I'm excited to see what we can create in just 12 hours. </p>
 
-<h4>Hardest parts</h4>
+<p>In the meantime, I'll be working on improving my website and addressing some technical issues, such as the date formatting problem I've encountered with BashBlog on Alpine Linux. Despite these challenges, I remain optimistic and excited about the opportunities that lie ahead.</p>
 
-<p>This project is not complicated at all, it was just frustrating; it managed to prove how rough my C programming had became.</p>
+<p>Tags: <a href='tag_growth.html'>growth</a>, <a href='tag_coding.html'>coding</a>, <a href='tag_waste-of-time.html'>waste-of-time</a>, <a href='tag_reflection.html'>reflection</a></p>
 
-<p>You may ask why I chose C for such a project. Typically for CGI scripts, perl is used for its simplicity and support. The thing is, perl is an interpretive language, and this tiny vm I'm using has very limited resources. Having to run an actual executable instead of reading files is already a lot slower, so why not just put it in a native, compiled, language?</p>
-
-<p>Besides, I've been using C as my main language for 2 years. On the rare occasion that I decide to code, C is almost always my language of choice.</p>
-
-<p>That being said, the hardest part was supporting application/x-www-url-formencoded. Parsing it myself actually wasn't that difficult once I realized that anything thats not alphanumerical or a period will be encoded as a hex with a % sign before. </p>
-
-<p>strtol(3) is pretty garbage for this job, so I decided to parse it myself. For something like <code>%2a</code> in </p>
-
-<pre><code>name=om%2a
-</code></pre>
-
-<p>The respective C code was as simple as:</p>
-
-<pre><code>real = (hex_to_char(first) &lt;&lt; 4) | hex_to_char(second);
-</code></pre>
-
-<p>In simple words, it converts the '2' to a 2 and stores it in the upper 4 bits and 'a' to 10 and stores it in the lower 4 bits. It's pretty efficient.</p>
-
-<p>Once I relearned the file API and figured out how to make it append to a csv file, I had to mess around with permissions for the chroot directory until I realized a simple <code>chmod a+w signatures.csv</code> would do the job.</p>
-
-<p>The biggest problem right now is ratelimiting, because I don't want bot based spam. I don't want to IP rate limit, because then I will have a lot of trouble at public signing events.</p>
-
-<p>The final solution to this would be to implement something like <a href="https://simplecaptcha.sourceforge.net/">SimpleCaptcha</a>. It could be implemented easily server side and would require little to no JavaScript. It's not so annoying that it would prevent public signing events, but would allow only the more advanced bots to spam my form.</p>
-
-<h4>Source code?</h4>
-
-<p>I love making my projects open source, and this is no exception. I'm going to get a git hosted locally soon for my organization. </p>
-
-<p>Tags: <a href='tag_coding.html'>coding</a>, <a href='tag_waste-of-time.html'>waste-of-time</a></p>
 
 
 
@@ -655,8 +436,221 @@ Petition Signing Finally Setup!
 
 
 <!-- text end -->
-]]></description><link>https://omraheja.us.to/blog/petition-signing-finally-setup.html</link>
-<guid>https://omraheja.us.to/blog/./petition-signing-finally-setup.html</guid>
+]]></description><link>https://omraheja.me/blog/on-hacktcnj-2024.html</link>
+<guid>https://omraheja.me/blog/./on-hacktcnj-2024.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 24 May 2024 17:13:57 -0400</pubDate></item>
+<pubDate>Fri, 23 Feb 2024 19:29:54 -0500</pubDate></item>
+<item><title>
+
+
+
+
+
+
+Repair broken luks GRUB config
+</title><description><![CDATA[
+
+
+
+
+
+
+
+
+
+
+
+
+<p>I was messing with my computer's grub configuration because I didn't like entering my password multiple times. After clicking on a random StackExchange link and doing exactly as it said, I quickly ran into some kernel panics on the next boot.</p>
+
+<p>If you are stuck in a similar situation, not to worry! Your computer will be in prime condition in no time... or at the minimum you will be able to get your files back.</p>
+
+<p>The process:</p>
+
+<ol>
+<li><p>Obtain a USB &amp; burn Alpine</p></li>
+<li><p>Install cryptsetup and lvm2 on Alpine</p></li>
+<li><p>Mount your system to /mnt and chroot</p></li>
+<li><p>Edit your grub config and reboot</p></li>
+</ol>
+
+<h4>Alpine USB</h4>
+
+<p>If you have a bootable USB lying around, go ahead and use it. Alpine is used for this guide due to its usability. Note that the instructions may differ.</p>
+
+<p>Otherwise, for the purpose of this guide <a href="https://alpinelinux.org/downloads/">burn a 200 MB disk image</a> to the Alpine USB. Should be finished rather quick.</p>
+
+<p>Boot using the USB and enter <code>root</code> when prompted for login. There is no password.</p>
+
+<h4>Prepare the tools</h4>
+
+<p>The quickest way to get everything setup is to run <code>setup-alpine</code>. Once the script prompts you to add a new user or create partitions on the disk, <strong>do not proceed.</strong> Exit the script with <code>CTRL+C</code>.</p>
+
+<p>I did have a few issues getting wlan0 to start properly. If you have those, please exit the installer and run <code>setup-interfaces</code>. If this does not work, do the following:</p>
+
+<pre><code>ip link set wlan0 up
+ip link set eth0 down
+</code></pre>
+
+<p>Run <code>wpa_supplicant</code> manually to connect to the network. Try running <code>udhcpc</code> if you cannot ping any IP addresses.</p>
+
+<p>Once the network is working, run the following:</p>
+
+<pre><code>apk add cryptsetup lvm2 lsblk
+</code></pre>
+
+<p>Now, all we need to do is mount the system. First, let's decrypt the disk.</p>
+
+<pre><code>lsblk
+</code></pre>
+
+<p>Once you find the disk name (/dev/sda most likely), find the partition you want to mount (probably /dev/sda1) and decrypt it.</p>
+
+<pre><code>cryptsetup luksOpen /dev/sda1 vault
+</code></pre>
+
+<p>Enter your password. Now you want to activate the volume group so you can mount partitions as necessary.</p>
+
+<p>Obtain the volume name from the following command:</p>
+
+<pre><code>vgscan
+</code></pre>
+
+<p>Activate the volume:</p>
+
+<pre><code>vgchange -ay [name]
+</code></pre>
+
+<p>Read your logical volume table:</p>
+
+<pre><code>lvscan
+lvs
+</code></pre>
+
+<p>And now you are equipped with which volumes need to be mounted, and hopefully you remember where they were mounted on your system.</p>
+
+<h4>Chroot</h4>
+
+<p>This depends on your exact volume table, but for simplicity mount all the volumes. If you aren't sure, just mount the ones that can give you access to the grub configurations at <code>/etc/default/grub</code> and <code>/boot/grub/grub.cfg</code> as well as any other needed files by grub.</p>
+
+<p>Mount your volumes to /mnt. My table included the following:</p>
+
+<ol>
+<li>vg0-root</li>
+<li>vg0-home</li>
+<li>vg0-swap</li>
+</ol>
+
+<p>Skipping swap, I ran the following:</p>
+
+<pre><code>mount -t ext4 /dev/vg0/root /mnt
+mount -t ext4 /dev/vg0/home /mnt/home
+</code></pre>
+
+<p>...even though I don't necessarily need the <code>/home</code> partition, it will still be useful in case I cannot repair my grub configuration.</p>
+
+<p>Now, we just need to prepare the chroot:</p>
+
+<pre><code>mount --bind /dev /mnt/dev
+mount --bind /sys /mnt/sys
+mount --bind /proc /mnt/proc
+</code></pre>
+
+<p>Chroot into the mounted filesystem</p>
+
+<pre><code>chroot /mnt
+</code></pre>
+
+<p>And now, you're in!</p>
+
+<h4>Repair and reboot</h4>
+
+<p>Usually, I note what changes I make to my grub file in comments and on a piece of paper if needed. In my case, I just had to edit <code>/etc/default/grub</code> and find the line I had to change. At this time, you have access to whatever editor and packages you had on your system before breaking grub, so use the editor of your choice.</p>
+
+<p>After writing your changes, run the following:</p>
+
+<pre><code>update-grub
+</code></pre>
+
+<p>Reboot into your repaired system. If you still have kernel panics, follow this guide again to troubleshoot or in a worst case scenario, back up your files and reinstall the OS.</p>
+
+<p>Thank you for following my guide. Please let me know of any questions, comments, or concerns you may have. Be careful when modifying the grub config again!</p>
+
+<p>Tags: <a href='tag_development.html'>development</a>, <a href='tag_guide.html'>guide</a></p>
+
+
+
+
+
+
+
+
+
+<!-- text end -->
+]]></description><link>https://omraheja.me/blog/repair-broken-luks-grub-config.html</link>
+<guid>https://omraheja.me/blog/./repair-broken-luks-grub-config.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Mon, 19 Feb 2024 12:00:00 -0500</pubDate></item>
+<item><title>
+
+
+
+
+
+
+We love bash scripting!
+</title><description><![CDATA[
+
+
+
+
+
+
+
+
+
+
+
+
+<p>As I was in the throes of configuring my mail client, I was jolted back to reality by the sight of my unfinished chemistry homework. Without a moment to lose, I seized the paper and gave it a quick once-over. It became apparent that I needed to meticulously label and number the axes of the graph.</p>
+
+<p>For the x-axis, I had 38 points to mark. Swiftly, I assigned numbers from 0 to 14, allotting 2 boxes for each. The simplicity of this task spared me any complex mental gymnastics. However, the real challenge was yet to come.</p>
+
+<p>The y-axis was a daunting grid of 50 boxes, needing to be numbered from -200 to 250. The thought of doing the calculations mentally was unappealing, to say the least. So, I turned to a more efficient solution - a bash script that would do the work for me in a matter of seconds.</p>
+
+<p>I promptly opened a new file and embedded the following script:</p>
+
+<pre><code>#!/bin/bash
+num=-200
+
+while [ "$num" != 250 ] ; do
+    echo $num
+    num=$(expr $num + 9)
+    read e
+done
+</code></pre>
+
+<p>My task was simplified to merely reading a number and pressing enter to label the next cell.</p>
+
+<p>This, I believe, is the true beauty of coding. It empowers you to automate simple tasks in a blink, saving precious time and effort that a machine can spare. While there are numerous reasons to create full-fledged programs, like the neovim I'm using for this post, the real value for an average person lies in these small yet significant automations.</p>
+
+<p>This journey with the command line began two years ago and since then, my efficiency with technology has grown leaps and bounds. Why should I twiddle my thumbs waiting for Gmail to load, when I can swiftly navigate my emails using keyboard keys via the command line? Why waste a minute loading YouTube (or Invidious, for that matter) when I can simply run ytfzf from my local terminal, opening mpv to enjoy videos while multitasking on my homework?</p>
+
+<p>So, here's to a safe and enlightening journey with bash scripting!</p>
+
+<p>Tags: <a href='tag_development.html'>development</a>, <a href='tag_command-line.html'>command-line</a></p>
+
+
+
+
+
+
+
+
+
+<!-- text end -->
+]]></description><link>https://omraheja.me/blog/we-love-bash-scripting.html</link>
+<guid>https://omraheja.me/blog/./we-love-bash-scripting.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Sun, 11 Feb 2024 22:16:39 -0500</pubDate></item>
 </channel></rss>
