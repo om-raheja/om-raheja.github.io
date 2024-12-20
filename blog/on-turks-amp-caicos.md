@@ -2,6 +2,8 @@ On Turks & Caicos
 
 During a recent vacation to the Turks and Caicos Islands, I couldn't help but notice the profound impact of British imperialism on the islands, despite the relaxing and enjoyable nature of the trip.
 
+---
+
 The cost of living in the Turks and Caicos was remarkably high, particularly in tourist areas. For instance, a container of yogurt cost $15, a half-day island tour was priced at $1300, and a plot of land exceeded a million dollars. These prices led me to wonder about the daily lives of the local population.
 
 Upon visiting grocery stores frequented by locals, such as Sunny Foods, the stark contrast between the middle class and working class became apparent. Locals resided in smaller, more affordable housing, and the prices in these areas were significantly lower and not inflated for tourists. This discovery was made while searching for Indian food in the area. The disparity in prices is not unique to my observation; bread is 73.4% more expensive in the Turks and Caicos compared to the United States, and on average, the islands are 26.7% more expensive than the U.S.

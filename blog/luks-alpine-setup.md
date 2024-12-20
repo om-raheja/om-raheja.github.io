@@ -1,5 +1,9 @@
 LUKS Alpine Setup
 
+How I set up alpine with LUKS.
+
+---
+
 Two weeks ago, my friend gave me his SSD because the hard drive on my laptop was failing. Without much difficulty, I was able to replace the drive even though it was my first time. Since I've used [Void Linux](https://voidlinux.org) for more than a year, I decided it was time to give [Alpine Linux](https://alpinelinux.org) a try, which is notoriously famous for being one of the smallest linux distros. Since I couldn't find a well documented guide to install Alpine with disk encryption, I made one myself.
 
 The harder part was figuring out how to install Alpine Linux with disk encryption on a MBR system. With that, let's get started.

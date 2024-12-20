@@ -1,6 +1,10 @@
 Back to Linux Sanity
 
-It took me two months and eight days to realize how important convenience is to me. In mid-February, I received an SSD to replace the outdated spinning disk in my laptop. Having used [Void Linux](https://voidlinux.org) on my laptop since I first installed Linux, I thought it would be a good idea to try out [Alpine Linux](https://alpinelinux.org). Initially, the setup was a bit tedious, but once I got started, the user experience was fantastic: packages installed almost instantly, the computer was quick and nimble in its computations, and the software I needed was readily available.
+It took me two months and eight days to realize how important convenience is to me. 
+
+---
+
+In mid-February, I received an SSD to replace the outdated spinning disk in my laptop. Having used [Void Linux](https://voidlinux.org) on my laptop since I first installed Linux, I thought it would be a good idea to try out [Alpine Linux](https://alpinelinux.org). Initially, the setup was a bit tedious, but once I got started, the user experience was fantastic: packages installed almost instantly, the computer was quick and nimble in its computations, and the software I needed was readily available.
 
 However, it didn't take long to realize that [Alpine Linux](https://alpinelinux.org) wasn't well-suited for all situations. The operating system struggled with a higher number of packages and computationally intensive operations. For example, setting up a cryptodisk increased my boot time to about two minutes, and after installing LibreOffice, it took much longer to install additional packages. I eventually had to create a chroot just to work with [PyTorch](https://pytorch.org), [Mojo](https://mojolang.org), and [checkra1n](https://checkra.in) on my iPhone.
 

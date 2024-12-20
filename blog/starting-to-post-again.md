@@ -1,6 +1,10 @@
 Starting to post again
 
-It's been a while since I last wrote a blog post and I never thought I would come to see this page again. 
+I'm back.
+
+---
+
+I didn't think I would be back. But turns out being reflective has more benefits than I thought.
 
 Since then, my old site [omraheja.us.to](https://omraheja.us.to) went out of service and the SSL certificates stopped working. After finding NameCheap's edu offer for a website, I am back on [omraheja.me](https://omraheja.me)!
 

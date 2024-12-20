@@ -2,6 +2,8 @@ On HackTCNJ 2024
 
 The past weekend was a whirlwind of coding, learning, and teamwork at HackTCNJ 2024. It was my first hackathon experience, and I'm still processing the rollercoaster of emotions and insights that came with it.
 
+---
+
 Firstly, I quickly understood how different in person hackathons were from the virtual competitions I had taken part in prior to this. After trying both USACO and PClassic it occured to me that I had no inherent interest in solving algorithmic problems; it feels too far removed from the actual importance of programming and innovation; rather feels like a math test. Even though these competitions are highly prestigious, hackathons are far more applicable to the business world and my interest in programming as there is significantly more room for innovation.
 
 The hackathon felt very immersive and was very motivating. I am very enthusiastic about Major League Hacking in general and appreciated the environment they provided with free food, conducive workspace, and no costs to participants even though the event was held in person. 
