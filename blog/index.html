@@ -13,6 +13,43 @@
 <div id="description">Articles, thoughts, misc</div>
 </div></div></div>
 <div id="divbody"><div class="content">
+<h3><a class="ablack" href="starting-to-post-again.html">
+Starting to post again
+</a></h3>
+<!-- bashblog_timestamp: #202412201501.29# -->
+<div class="subtitle">December 20, 2024 &mdash; 
+Om Raheja
+</div>
+<!-- text begin -->
+
+<p>It's been a while since I last wrote a blog post and I never thought I would come to see this page again. </p>
+
+<p>Since then, my old site <a href="https://omraheja.us.to">omraheja.us.to</a> went out of service and the SSL certificates stopped working. After finding NameCheap's edu offer for a website, I am back on <a href="https://omraheja.me">omraheja.me</a>!</p>
+
+<p>It's been longer than 8 months since I've last written anything here. In that time, I started doing whatever interested me and I really learned to embrace failure. After doing <a href="https://leangap.org">LeanGap</a> this summer, I acquired a taste for entrepreneurship. </p>
+
+<p>I've also somewhat lost my interest in finance. Money is interesting, but the financial sector has no impact on the real world. I don't think I'll ever get back to reading <a href="https://sec.gov">SEC</a> pages on companies, but I've started <a href="https://aquarc.org">aquarc</a> in the past few months and I might have to learn about all the technical details in there anyway.</p>
+
+<p>To expand on my work at aquarc, I decided to make an <strong>all-in-one</strong> platform for high schoolers. Actually, it wasn't my idea. I was working on <a href="https://www.linkedin.com/company/aviquo/">aviquo</a> but the team wasn't really moving at the pace I wanted it to. That's not to say that the people there aren't smart, just that I needed room to fully expend my random and spontaneous bursts of energy whenever I get them. It's kind of like a car; the entire vehicle moves due to spontaneous explosions happening in the engine. Just that I needed a few more of those to fully get started.</p>
+
+<p>One of the biggest challenges I'm facing at aquarc is keeping the team culture strong and problem-solving oriented. I have to work with about 10 people which isn't a problem in any way, but I'm going to be out for almost the entire winter break and I can't be there to fix every inconvenience. Most of the people on aquarc's tech team only understand frontend; that forces me to fill in for features like the log-in feature with email verification codes (using raw smtp, of course) or the blog post backend for aquarc. Neither of these are complicated, just that they don't understand the backend enough and don't want to poke around because it seems difficult. But a lot of tasks going forward are going to get more difficult.</p>
+
+<p>To counteract this problem, I want to have my team solve a USACO problem together every week. Seems a little bit odd for a web development team but if I can get them thinking then I've done my job. Let's see what happens.</p>
+
+<p>The problems should lead to better problem solving which should mitigate the second problem, the inability to fit time into their schedules. Our team is composed almost entirely of high schoolers and undergrads and with exams around almost every corner, finding time is difficult. But I'm hoping if I can help them think a little bit they can learn to make ends meet. Not to say they can't "think", just that they need to broaden their perspective MORE. I had the same problem last year with my petition, when I refused to use proprietary services to spread the word. Smart in theory because it is about privacy rights, but in practice it won't work. </p>
+
+<p>That's also partially why I came back to this blog. This entire site is a reflection of my inner minimalism and desire to have the lightest online footprint possible. I've started pruning my old unnecessary accounts from my experimentation phase like Figma, Locofy, or Liberapay. None of those are necessary for my startup now and I understand what I need to keep things moving smoothly.</p>
+
+<p>In the meantime, my tutoring initiative started to take off. <a href="https://codeabode.co">CodeAbode</a>'s site was updated just today and we have about 15+ leads on our first paying customer. Still a bit sluggish, but the library classes helped a lot. Now that I constructed a team for CodeAbode as well, things should move smoothly.</p>
+
+<p>I've learned a lot about team management. It is really hard, and I have a pile of books on psychology and remote work on my desk. But with practice comes experience and it can only help me in the long run.</p>
+
+<p>The last thing I need to kick into full gear would be my research work at <a href="https://aios.foundation">AIOS</a>. Since it's just me working on the current paper, things feel reallly sluggish and progress feels slow. However, once I force myself to move along a little bit things should get much better.</p>
+
+<p>I also want to say that now I will repurpose this blog. I don't expect anyone to find any useful information on here now, instead it will just consist of a random bunch of my thoughts. I am curious as to who's gonna look at this blog, so I might put Google Analytics on here in the future. If you truly love FOSS like I do, you'll have an adblocker and probably be reading through <code>w3m</code>.</p>
+
+<p>Tags: <a href='tag_reflection.html'>reflection</a></p>
+<!-- text end -->
 <h3><a class="ablack" href="what-makes-a-good-pull-request.html">
 What makes a good Pull Request?
 </a></h3>
@@ -299,233 +336,6 @@ Om Raheja
 
 <p>Tags: <a href='tag_waste-of-time.html'>waste-of-time</a>, <a href='tag_growth.html'>growth</a>, <a href='tag_development.html'>development</a></p>
 
-
-
-
-
-
-
-
-
-<!-- text end -->
-<h3><a class="ablack" href="luks-alpine-setup.html">
-
-
-
-
-
-
-LUKS Alpine Setup
-</a></h3>
-<!-- bashblog_timestamp: #202402282152.42# -->
-<div class="subtitle">February 28, 2024 &mdash; 
-Om Raheja
-</div>
-<!-- text begin -->
-
-
-
-
-
-
-
-
-
-
-
-
-<p>Two weeks ago, my friend gave me his SSD because the hard drive on my laptop was failing. Without much difficulty, I was able to replace the drive even though it was my first time. Since I've used <a href="https://voidlinux.org">Void Linux</a> for more than a year, I decided it was time to give <a href="https://alpinelinux.org">Alpine Linux</a> a try, which is notoriously famous for being one of the smallest linux distros. Since I couldn't find a well documented guide to install Alpine with disk encryption, I made one myself.</p>
-
-<p>The harder part was figuring out how to install Alpine Linux with disk encryption on a MBR system. With that, let's get started.</p>
-
-<ol>
-<li>Downloading and burning Alpine to a USB</li>
-<li>Setting up the live environment</li>
-<li>Creating the crypt disk</li>
-<li>Mounting and installing</li>
-<li>Chrooting and rebooting</li>
-</ol>
-
-<p>This guide is based heavily off of <a href="https://www.msiism.org/files/doc/alpine-linux-fde-custom.html">this guide</a>, but it required a significant amount of trial and error before I got the commands working correctly. The purpose of this guide is to bring that one up to date.</p>
-
-<h4>Download and burn Alpine</h4>
-
-<p>The first, most obvious step is to obtain an Alpine ISO. These can be found on <a href="https://alpinelinux.org/downloads/">their website</a>. </p>
-
-<p>If you are on linux, you can burn the ISO using the following command:</p>
-
-<pre><code>dd if=/path/to/alpine.iso of=/dev/sdX bs=1M
-</code></pre>
-
-<p>Where alpine.iso points to the iso and /dev/sdX points to the USB. On Windows, use <a href="https://etcher.balena.io/">balenaEtcher</a> or <a href="https://rufus.ie">Rufus</a>.</p>
-
-<p>Now, just boot into the USB using the specific function key your board uses.</p>
-
-<h4>Set up the environment</h4>
-
-<p>You want to run the following command until it starts to setup users and partition disks:</p>
-
-<pre><code>setup-alpine
-</code></pre>
-
-<p>It should take care of most of the manual setup. CTRL+C to exit once you get to that point. If you have trouble with WiFi hardware as I do on my system, you want to issue a combination of the following commands:</p>
-
-<pre><code>setup-interfaces
-# if you still can't connect afterward
-ip link set wlan0 up
-ip link set eth0 down
-rc-service networking restart
-</code></pre>
-
-<p>After obtaining an IP address, you can proceed with the <code>setup-alpine</code> command. </p>
-
-<p>Now, add the necessary packages:</p>
-
-<pre><code>apk add cryptsetup e2fsprogs grub grub-bios lvm2 mkinitfs util-linux
-</code></pre>
-
-<h4>Create the crypt disk</h4>
-
-<p>Randomize the disk prior to running any cryptsetup commands.</p>
-
-<pre><code>dd if=/dev/urandom of=/dev/sda bs=1M
-</code></pre>
-
-<p>Subsitute /dev/sda with your main disk. This command takes some time, so keep yourself busy with some other activity. I went out on the snow.</p>
-
-<p>Write your partition table using fdisk or cfdisk. Create a partition that starts from a sector far away from the boot signature, such as 2048. If your device sets the default to a double digit value, manually set it to 2048.</p>
-
-<p>Scan for the new device nodes:</p>
-
-<pre><code>mdev -s
-</code></pre>
-
-<p>Setup the container, replacing "name" with any string of your choice:</p>
-
-<pre><code>cryptsetup open /dev/sda1 name
-pvcreate /dev/mapper/name
-
-vgcreate vg0 /dev/mapper/name
-</code></pre>
-
-<p>Now create logical volumes. I made one for root and for home but you can make as many as you want. </p>
-
-<pre><code>lvcreate -L 2G vg0 -n swap
-lvcreate -L 30G vg0 -n root
-lvcreate -l 100%FREE vg0 -n home
-</code></pre>
-
-<p>Format them:</p>
-
-<pre><code>mkswap -L alpine-swap /dev/vg0/swap
-mkfs.ext4 -L alpine-root /dev/vg0/root
-mkfs.ext4 -L alpine-home /dev/vg0/home
-
-swapon /dev/vg0/swap
-</code></pre>
-
-<h4>Mount and install</h4>
-
-<p>Due to <code>setup-alpine</code> having configured everything else for you, all that needs to happen now is mounting the disk and installing files.</p>
-
-<pre><code>mount -t ext4 /dev/vg0/root /mnt
-mkdir -p /mnt/home
-mount -t ext4 /dev/vg0/home /mnt/home
-</code></pre>
-
-<p>And account for any additional partitions you may have created.</p>
-
-<p>Use the setup-disk command:</p>
-
-<pre><code>setup-disk -m sys /mnt
-</code></pre>
-
-<h4>Chroot and reboot</h4>
-
-<p>And now your task is quite simple. </p>
-
-<pre><code>mount --rbind /proc /mnt/proc
-mount --rbind /dev /mnt/dev
-mount --rbind /sys /mnt/sys
-
-chroot /mnt
-</code></pre>
-
-<p>Grab the UUID of the disk:</p>
-
-<pre><code>blkid -s UUID -o value /dev/sda1 &gt;&gt; /etc/default/gnvrub
-</code></pre>
-
-<p>Set the file to the following:</p>
-
-<pre><code>GRUB_TIMEOUT=2
-GRUB_DISABLE_SUBMENU=y
-GRUB_DISABLE_RECOVERY=true
-GRUB_ENABLE_CRYPTODISK=y
-GRUB_CMDLINE_LINUX_DEFAULT="modules=sd-mod,usb-storage,ext4 cryptroot=UUID=283ca385-4c57-40f1-842b-6beda9c3daf1 cryptdm=vault cryptkey quiet rootfstype=ext4"
-</code></pre>
-
-<p>Make a cryptkey to avoid entering the password twice on boot:</p>
-
-<pre><code>dd bs=512 count=4 if=/dev/urandom of=/crypto_keyfile.bin
-chmod 000 /crypto_keyfile.bin
-cryptsetup luksAddKey /dev/sda1 /crypto_keyfile.bin
-
-vi /etc/mkinitfs/mkinitfs.conf
-# add the "cryptkey" flag to features
-</code></pre>
-
-<p>Generate an initfs:</p>
-
-<pre><code>mkinitfs -c /etc/mkinitfs/mkinitfs.conf kernel_version
-</code></pre>
-
-<p>Choose the latest kernel version from the following:</p>
-
-<pre><code>ls /lib/modules
-</code></pre>
-
-<p>Now install GRUB</p>
-
-<pre><code>grub-install /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
-</code></pre>
-
-<p>Enable swap:</p>
-
-<pre><code>printf 'UUID=%s  swap  swap  defaults  0 0\n' "$(blkid -s UUID -o value /dev/vg0/swap)" &gt;&gt; /etc/fstab
-rc-update add swap boot
-</code></pre>
-
-<p>Create a normal user: </p>
-
-<pre><code>setup-user -a -g 'audio video cdrom netdev'
-</code></pre>
-
-<p>And reboot.</p>
-
-<h4>After installation</h4>
-
-<p>First, ensure you have access to the repositories you want:</p>
-
-<pre><code>vi /etc/apk/repositories
-</code></pre>
-
-<p>Unless you live under a rock, you will need graphical programs such as a web browser. </p>
-
-<pre><code>setup-xorg-base
-</code></pre>
-
-<p>After you have xfce4 or some UI working, you can proceed to install whatever WM your browser you use. The following drivers will be useful:</p>
-
-<pre><code>apk add xf86-input-evdev wireless-tools wpa_supplicant linux-firmware-i915
-</code></pre>
-
-<p>Now, for the most part your system is ready to use. Your system will be fast; but MUSL will not permit you to use most packages normally.</p>
-
-<p>If you liked my guide, check out <a href="/blog/repair-broken-luks-grub-config.html">repairing a broken luks config</a>. I'm still working on porting BashBlog to Alpine, please excuse the appearance of my blog.</p>
-
-<p>Tags: <a href='tag_guide.html'>guide</a>, <a href='tag_waste-of-time.html'>waste-of-time</a></p>
 
 
 
