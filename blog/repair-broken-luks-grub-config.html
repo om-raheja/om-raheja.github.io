@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="Subscribe to this page..." href="feed.rss" />
+<title>
+
+
+
+
+
+Repair broken luks GRUB config</title>
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="https://omraheja.us.to/blog/index.html">Om's Blog</a></h1>
+<div id="description">Articles, thoughts, misc</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="repair-broken-luks-grub-config.html">
+
+
+
+
+
+
+Repair broken luks GRUB config
+</a></h3>
+<!-- bashblog_timestamp: #202402191200.00# -->
+<div class="subtitle">February 19, 2024 &mdash; 
+Om Raheja
+</div>
+<!-- text begin -->
+
+
+
+
+
+
+
+
+
+
+
+
+<p>I was messing with my computer's grub configuration because I didn't like entering my password multiple times. After clicking on a random StackExchange link and doing exactly as it said, I quickly ran into some kernel panics on the next boot.</p>
+
+<p>If you are stuck in a similar situation, not to worry! Your computer will be in prime condition in no time... or at the minimum you will be able to get your files back.</p>
+
+<p>The process:</p>
+
+<ol>
+<li><p>Obtain a USB &amp; burn Alpine</p></li>
+<li><p>Install cryptsetup and lvm2 on Alpine</p></li>
+<li><p>Mount your system to /mnt and chroot</p></li>
+<li><p>Edit your grub config and reboot</p></li>
+</ol>
+
+<h4>Alpine USB</h4>
+
+<p>If you have a bootable USB lying around, go ahead and use it. Alpine is used for this guide due to its usability. Note that the instructions may differ.</p>
+
+<p>Otherwise, for the purpose of this guide <a href="https://alpinelinux.org/downloads/">burn a 200 MB disk image</a> to the Alpine USB. Should be finished rather quick.</p>
+
+<p>Boot using the USB and enter <code>root</code> when prompted for login. There is no password.</p>
+
+<h4>Prepare the tools</h4>
+
+<p>The quickest way to get everything setup is to run <code>setup-alpine</code>. Once the script prompts you to add a new user or create partitions on the disk, <strong>do not proceed.</strong> Exit the script with <code>CTRL+C</code>.</p>
+
+<p>I did have a few issues getting wlan0 to start properly. If you have those, please exit the installer and run <code>setup-interfaces</code>. If this does not work, do the following:</p>
+
+<pre><code>ip link set wlan0 up
+ip link set eth0 down
+</code></pre>
+
+<p>Run <code>wpa_supplicant</code> manually to connect to the network. Try running <code>udhcpc</code> if you cannot ping any IP addresses.</p>
+
+<p>Once the network is working, run the following:</p>
+
+<pre><code>apk add cryptsetup lvm2 lsblk
+</code></pre>
+
+<p>Now, all we need to do is mount the system. First, let's decrypt the disk.</p>
+
+<pre><code>lsblk
+</code></pre>
+
+<p>Once you find the disk name (/dev/sda most likely), find the partition you want to mount (probably /dev/sda1) and decrypt it.</p>
+
+<pre><code>cryptsetup luksOpen /dev/sda1 vault
+</code></pre>
+
+<p>Enter your password. Now you want to activate the volume group so you can mount partitions as necessary.</p>
+
+<p>Obtain the volume name from the following command:</p>
+
+<pre><code>vgscan
+</code></pre>
+
+<p>Activate the volume:</p>
+
+<pre><code>vgchange -ay [name]
+</code></pre>
+
+<p>Read your logical volume table:</p>
+
+<pre><code>lvscan
+lvs
+</code></pre>
+
+<p>And now you are equipped with which volumes need to be mounted, and hopefully you remember where they were mounted on your system.</p>
+
+<h4>Chroot</h4>
+
+<p>This depends on your exact volume table, but for simplicity mount all the volumes. If you aren't sure, just mount the ones that can give you access to the grub configurations at <code>/etc/default/grub</code> and <code>/boot/grub/grub.cfg</code> as well as any other needed files by grub.</p>
+
+<p>Mount your volumes to /mnt. My table included the following:</p>
+
+<ol>
+<li>vg0-root</li>
+<li>vg0-home</li>
+<li>vg0-swap</li>
+</ol>
+
+<p>Skipping swap, I ran the following:</p>
+
+<pre><code>mount -t ext4 /dev/vg0/root /mnt
+mount -t ext4 /dev/vg0/home /mnt/home
+</code></pre>
+
+<p>...even though I don't necessarily need the <code>/home</code> partition, it will still be useful in case I cannot repair my grub configuration.</p>
+
+<p>Now, we just need to prepare the chroot:</p>
+
+<pre><code>mount --bind /dev /mnt/dev
+mount --bind /sys /mnt/sys
+mount --bind /proc /mnt/proc
+</code></pre>
+
+<p>Chroot into the mounted filesystem</p>
+
+<pre><code>chroot /mnt
+</code></pre>
+
+<p>And now, you're in!</p>
+
+<h4>Repair and reboot</h4>
+
+<p>Usually, I note what changes I make to my grub file in comments and on a piece of paper if needed. In my case, I just had to edit <code>/etc/default/grub</code> and find the line I had to change. At this time, you have access to whatever editor and packages you had on your system before breaking grub, so use the editor of your choice.</p>
+
+<p>After writing your changes, run the following:</p>
+
+<pre><code>update-grub
+</code></pre>
+
+<p>Reboot into your repaired system. If you still have kernel panics, follow this guide again to troubleshoot or in a worst case scenario, back up your files and reinstall the OS.</p>
+
+<p>Thank you for following my guide. Please let me know of any questions, comments, or concerns you may have. Be careful when modifying the grub config again!</p>
+
+<p>Tags: <a href='tag_development.html'>development</a>, <a href='tag_guide.html'>guide</a></p>
+
+
+
+
+
+
+
+
+<!-- text end -->
+<!-- entry end -->
+</div>
+<div id="footer">CC0 <a href="https://omraheja.us.to/">Om Raheja</a> &mdash; <a href="mailto:rahejaom@#64;outlook.#46;com">rahejaom@#64;outlook.#46;com</a><br/>
+Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>
+</div></div>
+</body></html>

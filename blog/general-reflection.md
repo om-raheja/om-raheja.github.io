@@ -1,0 +1,47 @@
+General Reflection
+
+It is currently late at night, and instead of sleeping, I am up writing this blog post. I'm likely to wake up the next morning in utter confusion of what I have wrote here tonight.
+
+#### BashBlog (continued)
+I tried to configure bashblog to work better, by perhaps intregrating the blog and the frontpage together, but such a project is not for me. I don't want to poke around with the internals of this 1,000 line script any more than I've done already. If I feel like pursuing this later, you'll see the site look a lot more unified and improved.
+
+There also seems to be this weird glitch with an unnamed post in my blog, which caused the timestamp "January 08, 2024" to randomly appear at the top. I don't know how to fix it yet, but I will because I don't like it. That being said, once the front page hits its post limit, it may also disappear.
+
+That being said, I probably will unify the CSS in some way later, and will definitely work on SEO (Search Engine Optimization) first. 
+
+#### FBLA Summit 
+I went to a [Future Business Leaders of America](https://fbla.org) regional summit on Friday, and I learned quite a bit. Let me sum it up for you: 
+- I improved my confidence a lot more, because of the networking and law session that I chose. I can't say I liked one more than the other, as I met people from vastly different environments who had a keen interest in the business world and who also would like to make new friends. The law one was my favorite, because it enforced some of the concepts I was taught in my [JSA](https://jsa.org) experience, and how statistics along with theoretical makes your argument more convincing.
+- I gained a lot of useful knowledge and contacts. More than business related knowledge, I think I gained a new outlook on life. I came up with a better process to present myself in the professional world involving a set of rigid core values, which I followed already but going to summit helped me enforce those values. I met people who could help me accomplish my hopes and dreams and saved their contact information.
+- I had fun. It's not everyday I get to take time off from school, much less I get to meet new people. I don't dislike school, but a break is appreciated from time to time. Alongside of being a professional summit, it was generally a place for me to be social and for me and my friends to enjoy ourselves.
+
+#### Personality Change
+Think it's kind of strange, but I'm picking up on developments in my own personality over time. I don't know how common this is or anyone else who notices changes like these, but I thought I would write about it anyways, since it seems interesting.
+
+A quick google search of personality change doesn't yield much, except for the bipolar disorder, and the like. I am highly doubtful that there is any correlation between my experience and mental disorders, but instead a response to my environment.
+
+As time goes on, it seems as if I idolize things or people much less. I recall at the start of this school year, I was very disappointed to find out that I would not be able to spend as much time with a friend from a neighboring district. At the time, she meant the entire world to me, and I'm glad that I was able to express that even though it took me a few days to get all my thoughts and emotions out.
+
+Eventually, it came to a time where we would not be able to meet each other for almost a month at a time, which at the beginning was pretty degrading on my emotional health, but as time passed, those emotions started to disappear. In fact, the first time around, it seemed as if the inverse had occured, that I hadn't met her in so long, that I didn't want to meet her at all. I didn't want those powerful emotions to be invoked again.
+
+And when I met her after that, it was as if I was a different person. I became completely distant and she wasn't sure what to do with me, which is funny in retrospect. The pattern continued, and by the end of this arbitrary cycle my interactions with her became completely distorted, but in a more positive manner.
+
+These interactions, in fact, are what helped me to realize this change. A few months ago, maybe in the start of September, I was more reserved, very honest and didn't really say much other than deep talk. Now, I wouldn't say I'm the complete opposite, but I'm much more outgoing and a burst of energy. It's easier for me to form interactions this way, now that my confidence has improved, which came from a lot of public speaking in JSA. My interaction type in September wasn't bad, it was just less like myself. I'm a lot more goofy than most people are.
+
+That brings me to another point. It was commonly accepted in my area that being goofy was a simple way to protect yourself from real emotions. In retrospect, that is partially true if you are concealing your real emotions, but my heart desires me to do stupid things and make stupid jokes, so that itself is part of my personality. Whether it protects myself from "real emotions", or is negative in general and lowers my reputation or whatever, it doesn't matter in the end because this new interaction type has made me a lot happier and has definitely improved my confidence.
+
+As another example, I had this other close friend who I wasn't able to understand, and was under the severe misconception that she disliked me because she wanted to get work done during free study. Now, I spent the majority of my school day with her, knowing her only for 2 months but we had already gotten so close together, irrespective of our differences. The next day, I went to school without talking to her, and felt like garbage. I decided to tell another friend how I was feeling, even though we weren't that close. It eased the pain a little. The next day came, and it hurt a lot, but this time a little less. I quickly moved to make new friends because I realized that if I continued to get hurt through my lack of interaction with her I wouldn't last very long.
+
+A few days later, I wasn't able to take it anymore, because she was sitting right in front of me and doing her work during free study. On a completely divided basis, I decided to go sit next to her and finish my work, not knowing what else to do. And so I made up a stupid excuse to sit next to her, and she saw right through it... but I sat there anyways and didn't say anything and just finished my work.
+
+She looked at me a couple of times, confused, and scrolled through some reels on her phone. I glanced at her from time to time but I was bent on finishing my work, and that's what I did for the most part. Eventually she saw a funny reel and showed me and we both started laughing, and it reduced the intensity of the mood a lot. By the end of it, I asked her if she was mad at me, and after hearing her response I felt significantly relieved.
+
+I did not sit with her with the intention that the conflict would be resolved. It was a risky decision and could have hurt me potentially, but I was confident that I could take the risk, knowing very little about her emotions, I did.
+
+To simplify, it seems as if my personality development has stemed from a confidence change. I can project much better, make jokes in front of a whole group of people, laugh at my own mistakes, and feel good too. At the beginning, I mentioned that I stopped idolizing people and things. For people, it came to me that I can form deep connections with any kind of people, I just have to stay confident throughout the process. 
+
+I'm also experiencing personality change in other parts, of my life, not just my connections. I stopped worrying about my grades and whether my GPA would permit me to go into any college, and started focusing more on enjoying the work I did at school. It wasn't necessarily easy nor is it anything I want to do, but I took an interest in it and the process of learning and my grades have reached much higher than they have before. 
+
+In swimming, I'm not always sure about whether I can beat the competition or my own personal records at all, but I've been working harder in practice since November, to increase my confidence as a swimmer. This can also be extended to other parts of my life, as my willingness to purchase stocks with my own hard-earned money (after **thorough** research), asking for letters of recommendation for various summer programs, and so forth. My personality change seems to be constructed out of a push for confidence, which definitely has created a lot of upsides and has also made me unrecognizable to my friend listed above, as well as my other friends, family, past teachers, and colleagues. I would infer then, that a confidence boost has a significant amount of indirect upsides through the modifications of my own physcology. However, I still have a lot of improvements to make, so I will continue to work on my confidence.
+
+Tags: waste-of-time, growth, development

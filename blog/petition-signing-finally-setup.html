@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="Subscribe to this page..." href="feed.rss" />
+<title>
+
+
+
+
+
+Petition Signing Finally Setup!</title>
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="https://omraheja.us.to/blog/index.html">Om's Blog</a></h1>
+<div id="description">Articles, thoughts, misc</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<!-- entry begin -->
+<h3><a class="ablack" href="petition-signing-finally-setup.html">
+
+
+
+
+
+
+Petition Signing Finally Setup!
+</a></h3>
+<!-- bashblog_timestamp: #202401222216.53# -->
+<div class="subtitle">January 22, 2024 &mdash; 
+Om Raheja
+</div>
+<!-- text begin -->
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Before, you had to send me an email, or be lucky enough to be at my in person signing events to sign my petition... but no longer! You can now sign the petition on the homepage or <a href="/petition.html">here</a>. It only took me 2 days to reprogram the site, it being static initially...</p>
+
+<h4>How did you do it?</h4>
+
+<p>The petition signing uses a raw HTML form. I wanted the frontend to be as minimalist as possible and for most of the work to be handled by the backend, which did pose some pretty big difficulties.</p>
+
+<p>The config for the server currently looks something like this:</p>
+
+<pre><code>server "omraheja.us.to" {
+    listen on * port 80
+    root "/htdocs/omraheja.us.to"
+
+    location "/pub/*" {
+        directory auto index
+    }
+}
+</code></pre>
+
+<p>OpenBSD httpd is pretty straightforward, so all I did was change it to this: </p>
+
+<pre><code>server "omraheja.us.to" {
+    listen on * port 80
+    root "/htdocs/omraheja.us.to"
+
+        location "/pub/*" {
+            directory auto index
+        }
+
+        location "/vote.cgi" {
+            fastcgi socket "/run/slowcgi.sock"
+            root "/cgi-bin"
+        }
+}
+</code></pre>
+
+<p>...and then in /cgi-bin I wrote about 200 lines of vulnerable C. It's really been a while, I had almost forgotten how to use stdio's file API.</p>
+
+<h4>Hardest parts</h4>
+
+<p>This project is not complicated at all, it was just frustrating; it managed to prove how rough my C programming had became.</p>
+
+<p>You may ask why I chose C for such a project. Typically for CGI scripts, perl is used for its simplicity and support. The thing is, perl is an interpretive language, and this tiny vm I'm using has very limited resources. Having to run an actual executable instead of reading files is already a lot slower, so why not just put it in a native, compiled, language?</p>
+
+<p>Besides, I've been using C as my main language for 2 years. On the rare occasion that I decide to code, C is almost always my language of choice.</p>
+
+<p>That being said, the hardest part was supporting application/x-www-url-formencoded. Parsing it myself actually wasn't that difficult once I realized that anything thats not alphanumerical or a period will be encoded as a hex with a % sign before. </p>
+
+<p>strtol(3) is pretty garbage for this job, so I decided to parse it myself. For something like <code>%2a</code> in </p>
+
+<pre><code>name=om%2a
+</code></pre>
+
+<p>The respective C code was as simple as:</p>
+
+<pre><code>real = (hex_to_char(first) &lt;&lt; 4) | hex_to_char(second);
+</code></pre>
+
+<p>In simple words, it converts the '2' to a 2 and stores it in the upper 4 bits and 'a' to 10 and stores it in the lower 4 bits. It's pretty efficient.</p>
+
+<p>Once I relearned the file API and figured out how to make it append to a csv file, I had to mess around with permissions for the chroot directory until I realized a simple <code>chmod a+w signatures.csv</code> would do the job.</p>
+
+<p>The biggest problem right now is ratelimiting, because I don't want bot based spam. I don't want to IP rate limit, because then I will have a lot of trouble at public signing events.</p>
+
+<p>The final solution to this would be to implement something like <a href="https://simplecaptcha.sourceforge.net/">SimpleCaptcha</a>. It could be implemented easily server side and would require little to no JavaScript. It's not so annoying that it would prevent public signing events, but would allow only the more advanced bots to spam my form.</p>
+
+<h4>Source code?</h4>
+
+<p>I love making my projects open source, and this is no exception. I'm going to get a git hosted locally soon for my organization. </p>
+
+<p>Tags: <a href='tag_coding.html'>coding</a>, <a href='tag_waste-of-time.html'>waste-of-time</a></p>
+
+
+
+
+
+
+
+
+<!-- text end -->
+<!-- entry end -->
+</div>
+<div id="footer">CC0 <a href="https://omraheja.us.to/">Om Raheja</a> &mdash; <a href="mailto:rahejaom@#64;outlook.#46;com">rahejaom@#64;outlook.#46;com</a><br/>
+Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>
+</div></div>
+</body></html>

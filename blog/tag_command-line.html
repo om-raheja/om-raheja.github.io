@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="Subscribe to this page..." href="feed.rss" />
+<title>Om's Blog &mdash; Posts tagged "command-line"</title>
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="https://omraheja.us.to/blog/index.html">Om's Blog</a></h1>
+<div id="description">Articles, thoughts, misc</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="we-love-bash-scripting.html">
+
+
+
+
+
+
+We love bash scripting!
+</a></h3>
+<!-- bashblog_timestamp: #202402112216.39# -->
+<div class="subtitle">February 11, 2024 &mdash; 
+Om Raheja
+</div>
+<!-- text begin -->
+
+
+
+
+
+
+
+
+
+
+
+
+<p>As I was in the throes of configuring my mail client, I was jolted back to reality by the sight of my unfinished chemistry homework. Without a moment to lose, I seized the paper and gave it a quick once-over. It became apparent that I needed to meticulously label and number the axes of the graph.</p>
+
+<p>For the x-axis, I had 38 points to mark. Swiftly, I assigned numbers from 0 to 14, allotting 2 boxes for each. The simplicity of this task spared me any complex mental gymnastics. However, the real challenge was yet to come.</p>
+
+<p>The y-axis was a daunting grid of 50 boxes, needing to be numbered from -200 to 250. The thought of doing the calculations mentally was unappealing, to say the least. So, I turned to a more efficient solution - a bash script that would do the work for me in a matter of seconds.</p>
+
+<p>I promptly opened a new file and embedded the following script:</p>
+
+<pre><code>#!/bin/bash
+num=-200
+
+while [ "$num" != 250 ] ; do
+    echo $num
+    num=$(expr $num + 9)
+    read e
+done
+</code></pre>
+
+<p>My task was simplified to merely reading a number and pressing enter to label the next cell.</p>
+
+<p>This, I believe, is the true beauty of coding. It empowers you to automate simple tasks in a blink, saving precious time and effort that a machine can spare. While there are numerous reasons to create full-fledged programs, like the neovim I'm using for this post, the real value for an average person lies in these small yet significant automations.</p>
+
+<p>This journey with the command line began two years ago and since then, my efficiency with technology has grown leaps and bounds. Why should I twiddle my thumbs waiting for Gmail to load, when I can swiftly navigate my emails using keyboard keys via the command line? Why waste a minute loading YouTube (or Invidious, for that matter) when I can simply run ytfzf from my local terminal, opening mpv to enjoy videos while multitasking on my homework?</p>
+
+<p>So, here's to a safe and enlightening journey with bash scripting!</p>
+
+<p>Tags: <a href='tag_development.html'>development</a>, <a href='tag_command-line.html'>command-line</a></p>
+
+
+
+
+
+
+
+
+<!-- text end -->
+</div>
+<div id="footer">CC0 <a href="https://omraheja.us.to/">Om Raheja</a> &mdash; <a href="mailto:rahejaom@#64;outlook.#46;com">rahejaom@#64;outlook.#46;com</a><br/>
+Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>
+</div></div>
+</body></html>

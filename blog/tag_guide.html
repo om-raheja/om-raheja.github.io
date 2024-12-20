@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="Subscribe to this page..." href="feed.rss" />
+<title>Om's Blog &mdash; Posts tagged "guide"</title>
+</head><body>
+<div id="divbodyholder">
+<div class="headerholder"><div class="header">
+<div id="title">
+<h1 class="nomargin"><a class="ablack" href="https://omraheja.us.to/blog/index.html">Om's Blog</a></h1>
+<div id="description">Articles, thoughts, misc</div>
+</div></div></div>
+<div id="divbody"><div class="content">
+<h3><a class="ablack" href="luks-alpine-setup.html">
+
+
+
+
+
+
+LUKS Alpine Setup
+</a></h3>
+<!-- bashblog_timestamp: #202402282152.42# -->
+<div class="subtitle">February 28, 2024 &mdash; 
+Om Raheja
+</div>
+<!-- text begin -->
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Two weeks ago, my friend gave me his SSD because the hard drive on my laptop was failing. Without much difficulty, I was able to replace the drive even though it was my first time. Since I've used <a href="https://voidlinux.org">Void Linux</a> for more than a year, I decided it was time to give <a href="https://alpinelinux.org">Alpine Linux</a> a try, which is notoriously famous for being one of the smallest linux distros. Since I couldn't find a well documented guide to install Alpine with disk encryption, I made one myself.</p>
+
+<p>The harder part was figuring out how to install Alpine Linux with disk encryption on a MBR system. With that, let's get started.</p>
+
+<ol>
+<li>Downloading and burning Alpine to a USB</li>
+<li>Setting up the live environment</li>
+<li>Creating the crypt disk</li>
+<li>Mounting and installing</li>
+<li>Chrooting and rebooting</li>
+</ol>
+
+<p>This guide is based heavily off of <a href="https://www.msiism.org/files/doc/alpine-linux-fde-custom.html">this guide</a>, but it required a significant amount of trial and error before I got the commands working correctly. The purpose of this guide is to bring that one up to date.</p>
+
+<h4>Download and burn Alpine</h4>
+
+<p>The first, most obvious step is to obtain an Alpine ISO. These can be found on <a href="https://alpinelinux.org/downloads/">their website</a>. </p>
+
+<p>If you are on linux, you can burn the ISO using the following command:</p>
+
+<pre><code>dd if=/path/to/alpine.iso of=/dev/sdX bs=1M
+</code></pre>
+
+<p>Where alpine.iso points to the iso and /dev/sdX points to the USB. On Windows, use <a href="https://etcher.balena.io/">balenaEtcher</a> or <a href="https://rufus.ie">Rufus</a>.</p>
+
+<p>Now, just boot into the USB using the specific function key your board uses.</p>
+
+<h4>Set up the environment</h4>
+
+<p>You want to run the following command until it starts to setup users and partition disks:</p>
+
+<pre><code>setup-alpine
+</code></pre>
+
+<p>It should take care of most of the manual setup. CTRL+C to exit once you get to that point. If you have trouble with WiFi hardware as I do on my system, you want to issue a combination of the following commands:</p>
+
+<pre><code>setup-interfaces
+# if you still can't connect afterward
+ip link set wlan0 up
+ip link set eth0 down
+rc-service networking restart
+</code></pre>
+
+<p>After obtaining an IP address, you can proceed with the <code>setup-alpine</code> command. </p>
+
+<p>Now, add the necessary packages:</p>
+
+<pre><code>apk add cryptsetup e2fsprogs grub grub-bios lvm2 mkinitfs util-linux
+</code></pre>
+
+<h4>Create the crypt disk</h4>
+
+<p>Randomize the disk prior to running any cryptsetup commands.</p>
+
+<pre><code>dd if=/dev/urandom of=/dev/sda bs=1M
+</code></pre>
+
+<p>Subsitute /dev/sda with your main disk. This command takes some time, so keep yourself busy with some other activity. I went out on the snow.</p>
+
+<p>Write your partition table using fdisk or cfdisk. Create a partition that starts from a sector far away from the boot signature, such as 2048. If your device sets the default to a double digit value, manually set it to 2048.</p>
+
+<p>Scan for the new device nodes:</p>
+
+<pre><code>mdev -s
+</code></pre>
+
+<p>Setup the container, replacing "name" with any string of your choice:</p>
+
+<pre><code>cryptsetup open /dev/sda1 name
+pvcreate /dev/mapper/name
+
+vgcreate vg0 /dev/mapper/name
+</code></pre>
+
+<p>Now create logical volumes. I made one for root and for home but you can make as many as you want. </p>
+
+<pre><code>lvcreate -L 2G vg0 -n swap
+lvcreate -L 30G vg0 -n root
+lvcreate -l 100%FREE vg0 -n home
+</code></pre>
+
+<p>Format them:</p>
+
+<pre><code>mkswap -L alpine-swap /dev/vg0/swap
+mkfs.ext4 -L alpine-root /dev/vg0/root
+mkfs.ext4 -L alpine-home /dev/vg0/home
+
+swapon /dev/vg0/swap
+</code></pre>
+
+<h4>Mount and install</h4>
+
+<p>Due to <code>setup-alpine</code> having configured everything else for you, all that needs to happen now is mounting the disk and installing files.</p>
+
+<pre><code>mount -t ext4 /dev/vg0/root /mnt
+mkdir -p /mnt/home
+mount -t ext4 /dev/vg0/home /mnt/home
+</code></pre>
+
+<p>And account for any additional partitions you may have created.</p>
+
+<p>Use the setup-disk command:</p>
+
+<pre><code>setup-disk -m sys /mnt
+</code></pre>
+
+<h4>Chroot and reboot</h4>
+
+<p>And now your task is quite simple. </p>
+
+<pre><code>mount --rbind /proc /mnt/proc
+mount --rbind /dev /mnt/dev
+mount --rbind /sys /mnt/sys
+
+chroot /mnt
+</code></pre>
+
+<p>Grab the UUID of the disk:</p>
+
+<pre><code>blkid -s UUID -o value /dev/sda1 &gt;&gt; /etc/default/gnvrub
+</code></pre>
+
+<p>Set the file to the following:</p>
+
+<pre><code>GRUB_TIMEOUT=2
+GRUB_DISABLE_SUBMENU=y
+GRUB_DISABLE_RECOVERY=true
+GRUB_ENABLE_CRYPTODISK=y
+GRUB_CMDLINE_LINUX_DEFAULT="modules=sd-mod,usb-storage,ext4 cryptroot=UUID=283ca385-4c57-40f1-842b-6beda9c3daf1 cryptdm=vault cryptkey quiet rootfstype=ext4"
+</code></pre>
+
+<p>Make a cryptkey to avoid entering the password twice on boot:</p>
+
+<pre><code>dd bs=512 count=4 if=/dev/urandom of=/crypto_keyfile.bin
+chmod 000 /crypto_keyfile.bin
+cryptsetup luksAddKey /dev/sda1 /crypto_keyfile.bin
+
+vi /etc/mkinitfs/mkinitfs.conf
+# add the "cryptkey" flag to features
+</code></pre>
+
+<p>Generate an initfs:</p>
+
+<pre><code>mkinitfs -c /etc/mkinitfs/mkinitfs.conf kernel_version
+</code></pre>
+
+<p>Choose the latest kernel version from the following:</p>
+
+<pre><code>ls /lib/modules
+</code></pre>
+
+<p>Now install GRUB</p>
+
+<pre><code>grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+
+<p>Enable swap:</p>
+
+<pre><code>printf 'UUID=%s  swap  swap  defaults  0 0\n' "$(blkid -s UUID -o value /dev/vg0/swap)" &gt;&gt; /etc/fstab
+rc-update add swap boot
+</code></pre>
+
+<p>Create a normal user: </p>
+
+<pre><code>setup-user -a -g 'audio video cdrom netdev'
+</code></pre>
+
+<p>And reboot.</p>
+
+<h4>After installation</h4>
+
+<p>First, ensure you have access to the repositories you want:</p>
+
+<pre><code>vi /etc/apk/repositories
+</code></pre>
+
+<p>Unless you live under a rock, you will need graphical programs such as a web browser. </p>
+
+<pre><code>setup-xorg-base
+</code></pre>
+
+<p>After you have xfce4 or some UI working, you can proceed to install whatever WM your browser you use. The following drivers will be useful:</p>
+
+<pre><code>apk add xf86-input-evdev wireless-tools wpa_supplicant linux-firmware-i915
+</code></pre>
+
+<p>Now, for the most part your system is ready to use. Your system will be fast; but MUSL will not permit you to use most packages normally.</p>
+
+<p>If you liked my guide, check out <a href="/blog/repair-broken-luks-grub-config.html">repairing a broken luks config</a>. I'm still working on porting BashBlog to Alpine, please excuse the appearance of my blog.</p>
+
+<p>Tags: <a href='tag_guide.html'>guide</a>, <a href='tag_waste-of-time.html'>waste-of-time</a></p>
+
+
+
+
+
+
+
+
+<!-- text end -->
+<h3><a class="ablack" href="repair-broken-luks-grub-config.html">
+
+
+
+
+
+
+Repair broken luks GRUB config
+</a></h3>
+<!-- bashblog_timestamp: #202402191200.00# -->
+<div class="subtitle">February 19, 2024 &mdash; 
+Om Raheja
+</div>
+<!-- text begin -->
+
+
+
+
+
+
+
+
+
+
+
+
+<p>I was messing with my computer's grub configuration because I didn't like entering my password multiple times. After clicking on a random StackExchange link and doing exactly as it said, I quickly ran into some kernel panics on the next boot.</p>
+
+<p>If you are stuck in a similar situation, not to worry! Your computer will be in prime condition in no time... or at the minimum you will be able to get your files back.</p>
+
+<p>The process:</p>
+
+<ol>
+<li><p>Obtain a USB &amp; burn Alpine</p></li>
+<li><p>Install cryptsetup and lvm2 on Alpine</p></li>
+<li><p>Mount your system to /mnt and chroot</p></li>
+<li><p>Edit your grub config and reboot</p></li>
+</ol>
+
+<h4>Alpine USB</h4>
+
+<p>If you have a bootable USB lying around, go ahead and use it. Alpine is used for this guide due to its usability. Note that the instructions may differ.</p>
+
+<p>Otherwise, for the purpose of this guide <a href="https://alpinelinux.org/downloads/">burn a 200 MB disk image</a> to the Alpine USB. Should be finished rather quick.</p>
+
+<p>Boot using the USB and enter <code>root</code> when prompted for login. There is no password.</p>
+
+<h4>Prepare the tools</h4>
+
+<p>The quickest way to get everything setup is to run <code>setup-alpine</code>. Once the script prompts you to add a new user or create partitions on the disk, <strong>do not proceed.</strong> Exit the script with <code>CTRL+C</code>.</p>
+
+<p>I did have a few issues getting wlan0 to start properly. If you have those, please exit the installer and run <code>setup-interfaces</code>. If this does not work, do the following:</p>
+
+<pre><code>ip link set wlan0 up
+ip link set eth0 down
+</code></pre>
+
+<p>Run <code>wpa_supplicant</code> manually to connect to the network. Try running <code>udhcpc</code> if you cannot ping any IP addresses.</p>
+
+<p>Once the network is working, run the following:</p>
+
+<pre><code>apk add cryptsetup lvm2 lsblk
+</code></pre>
+
+<p>Now, all we need to do is mount the system. First, let's decrypt the disk.</p>
+
+<pre><code>lsblk
+</code></pre>
+
+<p>Once you find the disk name (/dev/sda most likely), find the partition you want to mount (probably /dev/sda1) and decrypt it.</p>
+
+<pre><code>cryptsetup luksOpen /dev/sda1 vault
+</code></pre>
+
+<p>Enter your password. Now you want to activate the volume group so you can mount partitions as necessary.</p>
+
+<p>Obtain the volume name from the following command:</p>
+
+<pre><code>vgscan
+</code></pre>
+
+<p>Activate the volume:</p>
+
+<pre><code>vgchange -ay [name]
+</code></pre>
+
+<p>Read your logical volume table:</p>
+
+<pre><code>lvscan
+lvs
+</code></pre>
+
+<p>And now you are equipped with which volumes need to be mounted, and hopefully you remember where they were mounted on your system.</p>
+
+<h4>Chroot</h4>
+
+<p>This depends on your exact volume table, but for simplicity mount all the volumes. If you aren't sure, just mount the ones that can give you access to the grub configurations at <code>/etc/default/grub</code> and <code>/boot/grub/grub.cfg</code> as well as any other needed files by grub.</p>
+
+<p>Mount your volumes to /mnt. My table included the following:</p>
+
+<ol>
+<li>vg0-root</li>
+<li>vg0-home</li>
+<li>vg0-swap</li>
+</ol>
+
+<p>Skipping swap, I ran the following:</p>
+
+<pre><code>mount -t ext4 /dev/vg0/root /mnt
+mount -t ext4 /dev/vg0/home /mnt/home
+</code></pre>
+
+<p>...even though I don't necessarily need the <code>/home</code> partition, it will still be useful in case I cannot repair my grub configuration.</p>
+
+<p>Now, we just need to prepare the chroot:</p>
+
+<pre><code>mount --bind /dev /mnt/dev
+mount --bind /sys /mnt/sys
+mount --bind /proc /mnt/proc
+</code></pre>
+
+<p>Chroot into the mounted filesystem</p>
+
+<pre><code>chroot /mnt
+</code></pre>
+
+<p>And now, you're in!</p>
+
+<h4>Repair and reboot</h4>
+
+<p>Usually, I note what changes I make to my grub file in comments and on a piece of paper if needed. In my case, I just had to edit <code>/etc/default/grub</code> and find the line I had to change. At this time, you have access to whatever editor and packages you had on your system before breaking grub, so use the editor of your choice.</p>
+
+<p>After writing your changes, run the following:</p>
+
+<pre><code>update-grub
+</code></pre>
+
+<p>Reboot into your repaired system. If you still have kernel panics, follow this guide again to troubleshoot or in a worst case scenario, back up your files and reinstall the OS.</p>
+
+<p>Thank you for following my guide. Please let me know of any questions, comments, or concerns you may have. Be careful when modifying the grub config again!</p>
+
+<p>Tags: <a href='tag_development.html'>development</a>, <a href='tag_guide.html'>guide</a></p>
+
+
+
+
+
+
+
+
+<!-- text end -->
+</div>
+<div id="footer">CC0 <a href="https://omraheja.us.to/">Om Raheja</a> &mdash; <a href="mailto:rahejaom@#64;outlook.#46;com">rahejaom@#64;outlook.#46;com</a><br/>
+Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>
+</div></div>
+</body></html>
