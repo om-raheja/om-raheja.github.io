@@ -1,4 +1,4 @@
-[blog](blog/index.html) [resume](use/Om-Raheja-Resume.pdf)
+<a href="blog/index.html">blog</a> &middot; <a href="use/Om-Raheja-Resume.pdf">resume</a>
 
 ---
 # I'm Om
