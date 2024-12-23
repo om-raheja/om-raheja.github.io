@@ -1,0 +1,263 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    {\Huge \scshape Om Raheja} \\ \vspace{1pt}
+    Princeton, NJ, 08550\\ \vspace{1pt}
+    \small \raisebox{-0.1\height}~ \href{mailto:omr@rslp.org}{\raisebox{-0.2\height}\faEnvelope\  \underline{omr@rslp.org}} ~ 
+    \href{https://www.linkedin.com/in/om-raheja-91a26b314/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/om-raheja-91a26b314/}}  ~
+    \href{https://github.com/om-raheja}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/om-raheja}} ~
+    \href{https://omraheja.me}{\raisebox{-0.2\height}\faGlobe\ \underline{omraheja.me}} ~
+    \vspace{-8pt}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {West Windsor Plainsboro High School North}{Sep. 2022 -- June 2026}
+      {4.3 WGPA}{Plainsboro, NJ}
+      \resumeItemListStart
+        \resumeItem{Ranked 7th in Computer Problem Solving for Central Jersey at Future Business Leaders America (FBLA)}
+        \resumeItem{Collected 100+ shoes and \$150+ cash for FBLA's State Leadership Conference}
+        \resumeItem{Serve as a lifeguard, providing pool safety by enforcing safety protocols and performing rescues }
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\href{https://aquarc.org}{\underline{aquarc}}}{June 2024 -- Present}
+      {Chief Executive Officer}{Remote}
+      % and the product
+      \resumeItemListStart
+        \resumeItem{Used Google Analytics to track 200+ weekly users, and beehiiv to track 45+ subscribers for the internship newsletter}
+        \resumeItem{Lead a team of 10+ developers remotely to build all-in-one tools for high schoolers}
+        \resumeItem{Co-authored Comprehensive Mental Health Support Act, co-sponsored by Sen. Burgess}
+        % \resumeItem{Made iOS app}
+    \resumeItemListEnd
+
+   \resumeSubheading
+     {\href{https://github.com/agiresearch/AIOS}{\underline{AIOS}} Rutgers University}{May 2024 -- Present}
+     {Research Assistant}{New Brunswick, NJ}
+     \resumeItemListStart
+     \resumeItem{Wrote documentation, allowing greater accessiblity in others' contributions}
+     \resumeItem{Co-authored AutoFlow, a agent workflow generation framework to break up complex prompts, publishing v2 }
+     \resumeItem{Presented to 20+ people at the AIOS Hackathon}
+   \resumeItemListEnd
+
+   \resumeSubheading
+      {\href{https://codeabode.co}{\underline{codeabode}}}{April 2024 -- Present}
+      {Chief Executive Officer}{Plainsboro, NJ}
+      \resumeItemListStart
+        \resumeItem{Lead a team of 7+ to teach digital literacy through programming, making knowledge more accessible}
+        \resumeItem{Taught 20+ students basic programming and thinking skills}
+      \resumeItemListEnd
+      
+
+    \resumeSubheading
+      {StockSort Inc}{June 2024 -- July 2024}
+      {Co-Founder}{Remote}
+      \resumeItemListStart
+        \resumeItem{Co-founded a team of 6 to build an app that helps sort inventory}
+        \resumeItem{Called 75+ leads, visited various shops in Princeton to promote and sell StockSort}
+        \resumeItem{Created and pitched project to investors to raise funding}
+      \resumeItemListEnd
+
+    
+
+%   \resumeSubheading
+%    {HackClub Sprig}{July 2024 -- Present}
+%    {Firmware Contributor}{Remote}
+%    \resumeItemListStart
+%    \resumeItem{Wrote a \href{https://github.com/hackclub/sprig/blob/main/games/tanks.js}\underline{tanks} game with sophisticated features for the sprig console}
+%    \resumeItem{Writing a game engine in C for 3D rendering and other CPU intensive games}
+%  \resumeItemListEnd
+
+    \resumeSubheading
+      {New Jersey Privacy Movement}{January 2024 -- March 2024}
+      {Founder}{Princeton, NJ}
+      \resumeItemListStart
+        \resumeItem{Wrote a petition on comprehensive privacy laws to access, modify, delete, or opt out of sale of user data}
+        \resumeItem{Worked with Sen. Turner to draft a privacy bill on the issue}
+        \resumeItem{Raised awareness at a Plainsboro Library Event}
+    \resumeItemListEnd
+
+%   \resumeSubheading
+%     {RISE}{June 2023 -- August 2023}
+%     {Technical Skills and Communication}{Princeton, NJ}
+%     \resumeItemListStart
+%       \resumeItem{Wrote a petition on comprehensive privacy laws \href{https://omraheja.us.to/petition.html}\underline{https://omraheja.us.to/petition.html}}
+%       \resumeItem{Drafted a privacy bill with Senator Turner on the issue}
+%       \resumeItem{Held an event at the Plainsboro Library for live signing}
+%   \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-16pt}
+
+%-----------PROJECTS-----------
+\section{Projects}
+   \vspace{-5pt}
+   \resumeSubHeadingListStart
+     \resumeProjectHeading
+         {\textbf{Integrate!} $|$ \emph{Godot}}{July 2024}
+         \resumeItemListStart
+            \resumeItem{Wrote a game that uses physics and collisions to teach calculus through velocity, acceleration, etc}
+            \resumeItem{Learned Apple Vision and Godot API}
+         \resumeItemListEnd
+         \vspace{-13pt}
+     \resumeProjectHeading
+         {\textbf{Fridge2Fit} $|$ \emph{Node.js, Express, Axiom, Groq}}{May 2024}
+         \resumeItemListStart
+            \resumeItem{Deployed a full stack AI-powered app to turn pictures of fridges into potential healthy recipes}
+            \resumeItem{Placed at HackMHS as a solo project}
+         \resumeItemListEnd 
+         \vspace{-13pt}
+         \resumeProjectHeading
+         {\textbf{omOS} $|$ \emph{C, x86 ASM, QEMU}}{February 2024}
+         \resumeItemListStart
+            \resumeItem{Worked with a team of 3 with no prior experience}
+            \resumeItem{Wrote a standard C library and a VGA driver with keyboard handler}
+            \resumeItem{Learned the difficulty of implementing several resources in OSes such as process management}
+         \resumeItemListEnd 
+   \resumeSubHeadingListEnd
+\vspace{-15pt}
+
+
+% -----------PROGRAMMING SKILLS-----------
+\section{Skills \& Achievements}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Java, Go, C, C++, Rust, Swift, JavaScript, SQL} \\
+     \textbf{Technologies}{: PyTorch, React, git, NeoVim, Linux} \\
+     \textbf{Achievements}{: 2nd Nationals at AIxEducation, FBLA Excellence} 
+        %      \textbf{Other}{: Investing, Team Management, Guitar}
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+
+
+\end{document}
