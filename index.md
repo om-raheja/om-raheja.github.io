@@ -7,6 +7,8 @@ I'm an entrepreneur and a software engineer. I like to build stuff.
 
 [![omraheja](use/omraheja.jpg)](https://omraheja.me)
 
+[High School North](https://www.west-windsor-plainsboro.k12.nj.us/schools/high_school_north) Class of '26.
+
 You can find some of my projects below:
 
 1. [aquarc](https://aquarc.org)
