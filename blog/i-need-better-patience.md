@@ -34,4 +34,8 @@ Took a break, practiced some box breathing. I'll wish a friend New Year's and th
 
 When I'm back, I'll hopefully understand how to be a better motivater. And maybe my patience will stick around.
 
+---
+
+Edit later that night: It's really hard to break habits like these. It'll be a while before I can resist that urge again.
+
 Tags: waste-of-time, reflection
