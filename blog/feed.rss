@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Mon, 30 Dec 2024 22:03:37 -1000</lastBuildDate>
-<pubDate>Mon, 30 Dec 2024 22:03:37 -1000</pubDate>
+<lastBuildDate>Sun, 05 Jan 2025 16:49:57 -1000</lastBuildDate>
+<pubDate>Sun, 05 Jan 2025 16:49:57 -1000</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+On Hawaii
+</title><description><![CDATA[
+
+<p>A beautiful, natural place. Plenty of hens and great beaches. But there's a lot to see under the surface and a lot I learned in my personal journey, too.</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/on-hawaii.html</link>
+<guid>https://omraheja.me/blog/./on-hawaii.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Sun, 05 Jan 2025 16:49:55 -1000</pubDate></item>
 <item><title>
 I need better patience
 </title><description><![CDATA[
@@ -104,15 +115,4 @@ LUKS Alpine Setup
 <guid>https://omraheja.me/blog/./luks-alpine-setup.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Wed, 28 Feb 2024 16:52:42 -1000</pubDate></item>
-<item><title>
-On HackTCNJ 2024
-</title><description><![CDATA[
-
-<p>The past weekend was a whirlwind of coding, learning, and teamwork at HackTCNJ 2024. It was my first hackathon experience, and I'm still processing the rollercoaster of emotions and insights that came with it.</p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/on-hacktcnj-2024.html</link>
-<guid>https://omraheja.me/blog/./on-hacktcnj-2024.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 23 Feb 2024 14:29:54 -1000</pubDate></item>
 </channel></rss>
