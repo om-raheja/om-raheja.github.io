@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Sun, 05 Jan 2025 16:49:57 -1000</lastBuildDate>
-<pubDate>Sun, 05 Jan 2025 16:49:57 -1000</pubDate>
+<lastBuildDate>Sat, 25 Jan 2025 00:03:56 -0500</lastBuildDate>
+<pubDate>Sat, 25 Jan 2025 00:03:56 -0500</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+Effectiveness of Not Micromanaging
+</title><description><![CDATA[
+
+<p>The title is somewhat misleading, but not micromanaging has many positive effects.</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/effectiveness-of-not-micromanaging.html</link>
+<guid>https://omraheja.me/blog/./effectiveness-of-not-micromanaging.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Sat, 25 Jan 2025 00:03:55 -0500</pubDate></item>
 <item><title>
 On Hawaii
 </title><description><![CDATA[
@@ -15,7 +26,7 @@ On Hawaii
 ]]></description><link>https://omraheja.me/blog/on-hawaii.html</link>
 <guid>https://omraheja.me/blog/./on-hawaii.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Sun, 05 Jan 2025 16:49:55 -1000</pubDate></item>
+<pubDate>Sun, 05 Jan 2025 21:49:55 -0500</pubDate></item>
 <item><title>
 I need better patience
 </title><description><![CDATA[
@@ -26,7 +37,7 @@ I need better patience
 ]]></description><link>https://omraheja.me/blog/i-need-better-patience.html</link>
 <guid>https://omraheja.me/blog/./i-need-better-patience.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Mon, 30 Dec 2024 12:38:45 -1000</pubDate></item>
+<pubDate>Mon, 30 Dec 2024 17:38:45 -0500</pubDate></item>
 <item><title>
 So.. what happened?
 </title><description><![CDATA[
@@ -37,7 +48,7 @@ So.. what happened?
 ]]></description><link>https://omraheja.me/blog/so-what-happened.html</link>
 <guid>https://omraheja.me/blog/./so-what-happened.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Sat, 21 Dec 2024 07:27:44 -1000</pubDate></item>
+<pubDate>Sat, 21 Dec 2024 12:27:44 -0500</pubDate></item>
 <item><title>
 Starting to post again
 </title><description><![CDATA[
@@ -48,7 +59,7 @@ Starting to post again
 ]]></description><link>https://omraheja.me/blog/starting-to-post-again.html</link>
 <guid>https://omraheja.me/blog/./starting-to-post-again.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 20 Dec 2024 10:01:29 -1000</pubDate></item>
+<pubDate>Fri, 20 Dec 2024 15:01:29 -0500</pubDate></item>
 <item><title>
 What makes a good Pull Request?
 </title><description><![CDATA[
@@ -59,7 +70,7 @@ What makes a good Pull Request?
 ]]></description><link>https://omraheja.me/blog/what-makes-a-good-pull-request.html</link>
 <guid>https://omraheja.me/blog/./what-makes-a-good-pull-request.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 14 Jun 2024 08:31:12 -1000</pubDate></item>
+<pubDate>Fri, 14 Jun 2024 14:31:12 -0400</pubDate></item>
 <item><title>
 May Update
 </title><description><![CDATA[
@@ -70,7 +81,7 @@ May Update
 ]]></description><link>https://omraheja.me/blog/may-update.html</link>
 <guid>https://omraheja.me/blog/./may-update.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 31 May 2024 11:57:40 -1000</pubDate></item>
+<pubDate>Fri, 31 May 2024 17:57:40 -0400</pubDate></item>
 <item><title>
 Vote Against Premier Financial Corporation Board!
 </title><description><![CDATA[
@@ -81,7 +92,7 @@ Vote Against Premier Financial Corporation Board!
 ]]></description><link>https://omraheja.me/blog/vote-against-premier-financial-corporation-board.html</link>
 <guid>https://omraheja.me/blog/./vote-against-premier-financial-corporation-board.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Sat, 27 Apr 2024 12:53:08 -1000</pubDate></item>
+<pubDate>Sat, 27 Apr 2024 18:53:08 -0400</pubDate></item>
 <item><title>
 Back to Linux Sanity
 </title><description><![CDATA[
@@ -92,7 +103,7 @@ Back to Linux Sanity
 ]]></description><link>https://omraheja.me/blog/back-to-linux-sanity.html</link>
 <guid>https://omraheja.me/blog/./back-to-linux-sanity.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Sat, 27 Apr 2024 11:43:39 -1000</pubDate></item>
+<pubDate>Sat, 27 Apr 2024 17:43:39 -0400</pubDate></item>
 <item><title>
 On Turks &amp; Caicos
 </title><description><![CDATA[
@@ -103,16 +114,5 @@ On Turks &amp; Caicos
 ]]></description><link>https://omraheja.me/blog/on-turks-amp-caicos.html</link>
 <guid>https://omraheja.me/blog/./on-turks-amp-caicos.html</guid>
 <dc:creator>Om Raheja</dc:creator>
-<pubDate>Sun, 31 Mar 2024 07:56:14 -1000</pubDate></item>
-<item><title>
-LUKS Alpine Setup
-</title><description><![CDATA[
-
-<p>How I set up alpine with LUKS.</p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/luks-alpine-setup.html</link>
-<guid>https://omraheja.me/blog/./luks-alpine-setup.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Wed, 28 Feb 2024 16:52:42 -1000</pubDate></item>
+<pubDate>Sun, 31 Mar 2024 13:56:14 -0400</pubDate></item>
 </channel></rss>
