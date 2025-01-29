@@ -2,25 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Sun, 26 Jan 2025 19:24:29 -0500</lastBuildDate>
-<pubDate>Sun, 26 Jan 2025 19:24:29 -0500</pubDate>
+<lastBuildDate>Tue, 28 Jan 2025 22:01:14 -0500</lastBuildDate>
+<pubDate>Tue, 28 Jan 2025 22:01:14 -0500</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
 <item><title>
 Need for Speed
 </title><description><![CDATA[
 
-<h2>Every startup needs to go <strong>fast</strong>. How am I going to do that?</h2>
+<p>Every startup needs to go <strong>fast</strong>. How am I going to do that?</p>
 
-<p>In the beginning of my professional career, every project I undertook would remain unfinished because I realized the difficulty of attaining perfection in that field. In fact, it was impossible. I remember designing a website and adding URL-http redirects when the initial product wasn't even finished. And I never finished that project, nor any others like it. After years, I finally realize where my obsession with perfection came from, and how I can help others like myself overcome it.</p>
-
-<p>I've started focusing on the immediate problems. There's no sense of collective direction, or at least there are too many ways in which we are expanding which leads to procrastination. I think we need one defined, unified plan and bring people on board with it. </p>
-
-<p>In addition to that, I want to focus on cutting down procrastination, which is a prevalent problem for both me and my team. If I can simplify the aquarc playing field and help people manage their commitments effectively, I can help myself and others overcome procrastination.</p>
-
-<p>Building aquarc isn't coding up a useful platform for high school students. It's a battle against all the problems high schoolers face, inside and outside the team. Time management being something that everyone sucks at, maybe that's a strong potential direction for aquarc once we mature at it. </p>
-
-<p>Tags: <a href='tag_reflection.html'>reflection</a>, <a href='tag_waste-of-time.html'>waste-of-time</a></p>
-<!-- text end -->
+<hr />
 ]]></description><link>https://omraheja.me/blog/need-for-speed.html</link>
 <guid>https://omraheja.me/blog/./need-for-speed.html</guid>
 <dc:creator>Om Raheja</dc:creator>

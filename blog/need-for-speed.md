@@ -1,6 +1,7 @@
 Need for Speed
 
 Every startup needs to go **fast**. How am I going to do that?
+
 ---
 
 In the beginning of my professional career, every project I undertook would remain unfinished because I realized the difficulty of attaining perfection in that field. In fact, it was impossible. I remember designing a website and adding URL-http redirects when the initial product wasn't even finished. And I never finished that project, nor any others like it. After years, I finally realize where my obsession with perfection came from, and how I can help others like myself overcome it.
