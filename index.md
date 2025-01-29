@@ -9,7 +9,7 @@ I'm an entrepreneur and a software engineer. I like to build stuff.
 
 [High School North](https://www.west-windsor-plainsboro.k12.nj.us/schools/high_school_north) Class of '26.
 
-You can find some of my projects below:
+My highlights:
 
 1. [aquarc](https://aquarc.org)
 2. [codeabode](https://codeabode.co)
@@ -19,9 +19,7 @@ You can find some of my projects below:
 
 1. [GitHub](https://github.com/om-raheja)
 2. [LinkedIn](https://www.linkedin.com/in/om-raheja-91a26b314/)
-3. Email - omr (at) rslp (dot) org
-
-I'll respond quick if I'm not busy.
+3. Email - rahejaom (at) outlook (dot) com
 
 ## Publication(s)
 
