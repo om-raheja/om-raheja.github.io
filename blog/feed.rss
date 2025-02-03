@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Tue, 28 Jan 2025 22:01:14 -0500</lastBuildDate>
-<pubDate>Tue, 28 Jan 2025 22:01:14 -0500</pubDate>
+<lastBuildDate>Sun, 02 Feb 2025 20:44:08 -0500</lastBuildDate>
+<pubDate>Sun, 02 Feb 2025 20:44:08 -0500</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+Progress on Autonomy
+</title><description><![CDATA[
+
+<p>While I still have a long way to go as a leader, I've certainly made strong progress along the way.</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/progress-on-autonomy.html</link>
+<guid>https://omraheja.me/blog/./progress-on-autonomy.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Sun, 02 Feb 2025 20:44:06 -0500</pubDate></item>
 <item><title>
 Need for Speed
 </title><description><![CDATA[
@@ -104,15 +115,4 @@ Vote Against Premier Financial Corporation Board!
 <guid>https://omraheja.me/blog/./vote-against-premier-financial-corporation-board.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Sat, 27 Apr 2024 18:53:08 -0400</pubDate></item>
-<item><title>
-Back to Linux Sanity
-</title><description><![CDATA[
-
-<p>It took me two months and eight days to realize how important convenience is to me. </p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/back-to-linux-sanity.html</link>
-<guid>https://omraheja.me/blog/./back-to-linux-sanity.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Sat, 27 Apr 2024 17:43:39 -0400</pubDate></item>
 </channel></rss>
