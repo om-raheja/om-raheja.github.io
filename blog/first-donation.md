@@ -1,6 +1,6 @@
 First Donation
 
-Today I started recurring donations, deducting a part of my paycheck. It's one of the best things I've felt in a long time.
+Today I started recurring donations, deducting a part of my paycheck. The feeling of donating is one of the best things I've felt in a long time.
 
 ---
 
