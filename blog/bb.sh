@@ -965,8 +965,8 @@ create_includes() {
 
     if [[ -f $footer_file ]]; then cp "$footer_file" .footer.html
     else {
-        protected_mail=${global_email//@/&#64;}
-        protected_mail=${protected_mail//./&#46;}
+        protected_mail=${global_email//@/\&#64;}
+        protected_mail=${protected_mail//./\&#46;}
         echo "<div id=\"footer\">$global_license <a href=\"$global_author_url\">$global_author</a> &mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
         echo 'Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>'
         } >> ".footer.html"
