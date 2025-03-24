@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Mon, 17 Feb 2025 15:29:18 -0500</lastBuildDate>
-<pubDate>Mon, 17 Feb 2025 15:29:18 -0500</pubDate>
+<lastBuildDate>Mon, 24 Mar 2025 16:53:27 -0400</lastBuildDate>
+<pubDate>Mon, 24 Mar 2025 16:53:27 -0400</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+Change of Direction
+</title><description><![CDATA[
+
+<p><a href="https://aquarc.org">aquarc</a> and <a href="https://codeabode.co">codeabode</a> have both improved, check out what's next.</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/change-of-direction.html</link>
+<guid>https://omraheja.me/blog/./change-of-direction.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Mon, 24 Mar 2025 16:53:26 -0400</pubDate></item>
 <item><title>
 First Donation
 </title><description><![CDATA[
@@ -104,15 +115,4 @@ What makes a good Pull Request?
 <guid>https://omraheja.me/blog/./what-makes-a-good-pull-request.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Fri, 14 Jun 2024 14:31:12 -0400</pubDate></item>
-<item><title>
-May Update
-</title><description><![CDATA[
-
-<p>It's been more than a month since my last blog post. In this month, the changes I've made would make me completely unrecognizable to myself from April.</p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/may-update.html</link>
-<guid>https://omraheja.me/blog/./may-update.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 31 May 2024 17:57:40 -0400</pubDate></item>
 </channel></rss>

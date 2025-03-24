@@ -1,0 +1,19 @@
+Change of Direction
+
+[aquarc](https://aquarc.org) and [codeabode](https://codeabode.co) have both improved, check out what's next.
+
+--- 
+
+Now that [aquarc](https://aquarc.org) as a product is more developed, it's time for a significant development iteration. We've boosted average engagement time from 23 seconds to about a minute and a half and we've built up a steady user presence even though the SAT just ended. I've become a UI designer, the rest of my team have taken on all sorts of odd jobs like data collection or SQL development, but we've made something that works and feels comfortable to use. 
+
+Our focus has to now shift to marketing and iterating in development. Most of my team suggested making a [Discord](https://discord.com) server, which is something that I'm not a fan of personally but I believe it would be good for [aquarc](https://aquarc.org), as it's an easy way to get feedback and continue to iterate. Feature requests. issues, and pull requests-- all without the user ever having to know about GitHub. Bidirectional communication, too. We've also agreed as a team to cut back on reels or marketing videos and focus more intensely on providing values like worked through SAT problems on YouTube or blog posts that give advice on how to use Desmos. 
+
+I've shifted away from research and more into UI. To be honest, I really like research, but I want to research a topic that's more necessary or has a more direct impact than [AIOS](https://aios.foundation). I have a research idea that [aquarc](https://aquarc.org) will be collecting data for which none of our competitors have, and we will be collecting data for it. I feel as if that work directly links to my work in UI, because UI seems to have the most dramatic increase in user retention. The actual number of users have remained the same, but each user is now more interested in what we're building. For my experiment to be successful, we need a lot of users. 
+
+At [codeabode](https://codeabode.co), we're down to only one paying customer. That seems kind of sad to me if you look at it from that angle, but my one customer is very loyal and I've provided them with value to show them how great [codeabode](https://codeabode.co) really is. I guess in another sense, it is a blessing, because it empowers me to focus entirely on one customer and fulfill their demands completely before we expand to more customers. At the same time, the organization has undergone the restructuring and downsizing that [aquarc](https://aquarc.org) went under to make it so successful, and now all free classes are managed autonomously. The feeling of empowering my team to succeed without me and watching them inch into paid classes as well empowers both organizations to become more self sufficient. And at this point, I feel as if my control isn't even necessary anymore.
+
+On the topic of lowering my control, I want to point out that I need to detach from my work a bit more. I spoke to one of my mentors who taught me everything he knew, and he showed me that my value is not entirely represented in my work. I understood what he was saying on that day, but only today do I sort of realize how deep of a trap I'm stuck in. In order to avoid relying on other people, I place the value of who I am in what I do. It has empowered me to do a lot, but it also leads to anger when users don't use my services. I feel that if I detach from my work completely, I would feel quite unstable; rather, I need to learn to acknowledge criticism as constructive no matter how it is given to me, because [aquarc](https://aquarc.org) and [codeabode](https://codeabode.co) are only two parts of what I do. 
+
+I doubt I'll be making posts for a while again, but progress will continue to show on my live site. Let's see what happens next.
+
+Tags: reflection, growth
