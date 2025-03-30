@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Mon, 24 Mar 2025 16:53:27 -0400</lastBuildDate>
-<pubDate>Mon, 24 Mar 2025 16:53:27 -0400</pubDate>
+<lastBuildDate>Sun, 30 Mar 2025 14:15:47 -0400</lastBuildDate>
+<pubDate>Sun, 30 Mar 2025 14:15:47 -0400</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+The Feeling of Learning
+</title><description><![CDATA[
+
+<p>Quite literally, unlimited power.</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/the-feeling-of-learning.html</link>
+<guid>https://omraheja.me/blog/./the-feeling-of-learning.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Sun, 30 Mar 2025 14:15:45 -0400</pubDate></item>
 <item><title>
 Change of Direction
 </title><description><![CDATA[
@@ -104,15 +115,4 @@ Starting to post again
 <guid>https://omraheja.me/blog/./starting-to-post-again.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Fri, 20 Dec 2024 15:01:29 -0500</pubDate></item>
-<item><title>
-What makes a good Pull Request?
-</title><description><![CDATA[
-
-<p>Recently my first pull request to the <a href="https://github.com/agiresearch/AIOS">AIOS Project</a> was approved. Having never contributed to such a large project before, I had to navigate the complex realms of teamwork on GitHub.</p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/what-makes-a-good-pull-request.html</link>
-<guid>https://omraheja.me/blog/./what-makes-a-good-pull-request.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 14 Jun 2024 14:31:12 -0400</pubDate></item>
 </channel></rss>
