@@ -19,8 +19,7 @@ Highlights:
 
 1. [GitHub](https://github.com/om-raheja)
 2. [LinkedIn](https://www.linkedin.com/in/om-raheja-91a26b314/)
-3. Email: om (at) omraheja (dot) me
-- Previously: omr (at) rslp (dot) org 
+3. (Working) Email: rahejaom (at) outlook (dot) com. My other emails online will not work.
 
 ## Publication(s)
 
