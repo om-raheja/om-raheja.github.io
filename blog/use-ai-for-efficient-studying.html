@@ -69,98 +69,180 @@ Om Raheja
 
 <p>One of the biggest challenges I faced on my journey was evaluating prompts. I would first set a high temperature and generate multiple variations of prompts, like this for the debate-style analysis:</p>
 
-<pre><code>response = client.models.generate_content(
+<p><code>
+response = client.models.generate_content(
+<br>
     model="gemini-2.0-flash-001",
+<br>
     # no specs yet
+<br>
     contents=f"Generate prompts for a model that will do nothing more but take information about the current question, rationale, user answer and their rationale (if there is one) for the SAT. Come up with different variations for the prompt like more or less concise or multiple thought processes or just one, etc. Here is an example question to illustrate my point (although math and english still exist)\
+<br>
                   {question['question']}\n \
+<br>
               {question['rationale']}\n\
+<br>
               The user got: {question['user_answer']}\n \
+<br>
               {question['user_rationale']}",
+<br>
     config=GenerateContentConfig(
+<br>
         system_instruction=[
+<br>
             "You are a prompt engineer's assistant. Help the prompt engineer generate some prompts for his AI-powered SAT learning platform called Aquarc. The platform currently holds an SAT question bank with over 5000 questions and tracks which questions you get wrong per category. While this feature is helpful it lacks the intelligence necessary to be a full fledged SAT platform",
+<br>
         ],
+<br>
         temperature=2.0,
+<br>
         top_k=10,
+<br>
     ),
+<br>
 )
-</code></pre>
+</code></p>
 
 <p>To simulate a tutor’s debate, we force the AI to argue against the user’s rationale. Here’s the prompt structure we found that balances creativity and SAT rigor:</p>
 
-<pre><code>final_eval_prompt = """
+<p><code>
+final_eval_prompt = """
+<br>
 Evaluate both the correct answer and the user's answer as potential responses to the question.
+<br></p>
 
-*   Present the strongest possible argument *in favor* of the user's answer.
-*   Present the strongest possible argument *against* the user's answer.
+<p><br>
+*   Present the strongest possible argument <em>in favor</em> of the user's answer.
+<br>
+*   Present the strongest possible argument <em>against</em> the user's answer.
+<br>
 *   Explain why, ultimately, the correct answer is the superior choice based on textual evidence.
 """
-</code></pre>
+</code></p>
 
 <p>I tried experimenting with various temperatures and <code>top_k</code> values. After selecting the best prompts from each batch, I had to evaluate them. I adapted the evaluation rubric from <a href="https://www.kaggle.com/code/omraheja/day-1-evaluation-and-structured-output">here</a> to account for aspects like creativity but to ensure that these aspects were also grounded in reality. My new criteria included:</p>
 
-<pre><code>## **New Criteria**  
-1. **Instructional Creativity**:  
-   - Does the creative approach (e.g., debate, step-by-step analysis) **enhance understanding** of why the correct answer is textually supported?  
-   - Does it **strategically use the prompt’s structure** (e.g., arguments for/against) to highlight key SAT skills like evidence analysis or assumption identification?  
+<p><code></p>
 
-2. **Educational Effectiveness**:  
-   - Does the creativity **directly serve the learning goal** (e.g., clarifying misconceptions, modeling SAT logic), or is it merely ornamental?  
-   - Does it **engage the learner** while maintaining rigor (e.g., making complex reasoning more accessible)?  
+<h2><strong>New Criteria</strong></h2>
 
-## **Revised Rating Rubric**  
-- **5 (Excellent)**:  
-  - Creative structure (e.g., debate) **directly reinforces** why the correct answer is superior.  
-  - Uses the format to **explicitly contrast** the user’s error with textual evidence (e.g., “The strongest argument *for* the user’s answer is X, but the text contradicts this because Y”).  
-  - Balances creativity with precision and clarity.  
+<p><br>
+1. <strong>Instructional Creativity</strong>: <br />
+<br>
+   - Does the creative approach (e.g., debate, step-by-step analysis) <strong>enhance understanding</strong> of why the correct answer is textually supported? <br />
+<br>
+   - Does it <strong>strategically use the prompt’s structure</strong> (e.g., arguments for/against) to highlight key SAT skills like evidence analysis or assumption identification? <br />
+<br></p>
 
-- **4 (Good)**:  
-  - Creative approach is **mostly effective** but slightly misses opportunities to deepen understanding (e.g., lists arguments but doesn’t explicitly tie them to SAT skills).  
-  - Minor clarity issues in linking creativity to the text.  
+<p><br>
+2. <strong>Educational Effectiveness</strong>: <br />
+<br>
+   - Does the creativity <strong>directly serve the learning goal</strong> (e.g., clarifying misconceptions, modeling SAT logic), or is it merely ornamental? <br />
+<br>
+   - Does it <strong>engage the learner</strong> while maintaining rigor (e.g., making complex reasoning more accessible)? <br />
+<br></p>
 
-- **3 (Adequate)**:  
-  - Creativity **distracts** slightly from the core analysis (e.g., overemphasizes hypothetical arguments without grounding in the text).  
-  - Fails to fully leverage the creative structure to address the user’s error.
-</code></pre>
+<p><br></p>
+
+<h2><strong>Revised Rating Rubric</strong></h2>
+
+<p><br>
+- <strong>5 (Excellent)</strong>: <br />
+<br>
+  - Creative structure (e.g., debate) <strong>directly reinforces</strong> why the correct answer is superior. <br />
+<br>
+  - Uses the format to <strong>explicitly contrast</strong> the user’s error with textual evidence (e.g., “The strongest argument <em>for</em> the user’s answer is X, but the text contradicts this because Y”). <br />
+<br>
+  - Balances creativity with precision and clarity. <br />
+<br></p>
+
+<p><br>
+- <strong>4 (Good)</strong>: <br />
+<br>
+  - Creative approach is <strong>mostly effective</strong> but slightly misses opportunities to deepen understanding (e.g., lists arguments but doesn’t explicitly tie them to SAT skills). <br />
+<br>
+  - Minor clarity issues in linking creativity to the text. <br />
+<br></p>
+
+<p><br>
+- <strong>3 (Adequate)</strong>: <br />
+<br>
+  - Creativity <strong>distracts</strong> slightly from the core analysis (e.g., overemphasizes hypothetical arguments without grounding in the text). <br />
+<br>
+  - Fails to fully leverage the creative structure to address the user’s error. <br />
+</code></p>
 
 <p>SAT logic isn’t monolithic—there are multiple ways to arrive at right and wrong answers. We model this variability using constrained JSON outputs:</p>
 
-<pre><code>response = client.models.generate_content(
+<p><code>
+response = client.models.generate_content(
+<br>
     model="gemini-2.0-flash-001",
+<br>
     contents=str(question),
+<br>
     config=GenerateContentConfig(
+<br>
         system_instruction=[prompt["prompt"],],
+<br>
         temperature=0.1,
+<br>
         response_mime_type="application/json",
+<br>
         response_schema=
+<br>
           {
+<br>
               "title": "SAT Analysis Response",
+<br>
               "description": "Response format for SAT mistake analysis using multiple thinking processes",
+<br>
               "type": "array",
+<br>
               "minItems": 3,
+<br>
               "maxItems": 8,
+<br>
               "items": {
+<br>
                 "type": "object",
+<br>
                 "properties": {
+<br>
                   "thinking_process": {
+<br>
                     "type": "string",
+<br>
                     "description": "Step-by-step explanation of cognitive path leading to an answer choice",
+<br>
                     "minLength": 50,
+<br>
                     "maxLength": 500
+<br>
                   },
+<br>
                   "leads_to": {
+<br>
                     "type": "string",
+<br>
                     "enum": ["user", "correct"],
+<br>
                     "description": "Indicates whether this thinking process leads to the student's answer or the correct answer"
+<br>
                   }
+<br>
                 },
+<br>
                 "required": ["thinking_process", "leads_to"],
+<br>
               }
+<br>
           }
+<br>
     ),
+<br>
 )
-</code></pre>
+</code></p>
 
 <p>This JSON is parsed and turned into collapsibles on the <a href="https://aquarc.org/sat">aquarc</a> question bank. </p>
 
@@ -168,67 +250,118 @@ Evaluate both the correct answer and the user's answer as potential responses to
 
 <p>First, I made a function to embed the questions in the vector store:</p>
 
-<pre><code>class GeminiEmbeddingFunction(EmbeddingFunction):
+<p><code>
+class GeminiEmbeddingFunction(EmbeddingFunction):
+<br>
     # Specify whether to generate embeddings for documents, or queries
+<br>
     document_mode = True
+<br></p>
 
+<p><br>
     @retry.Retry(predicate=is_retriable)
-    def __call__(self, input: Documents) -&gt; Embeddings:
+<br>
+    def __call__(self, input: Documents) -> Embeddings:
+<br>
         if self.document_mode:
+<br>
             embedding_task = "retrieval_document"
+<br>
         else:
+<br>
             embedding_task = "retrieval_query"
+<br></p>
 
+<p><br>
         response = client.models.embed_content(
+<br>
             model="models/text-embedding-004",
+<br>
             contents=input,
+<br>
             config=types.EmbedContentConfig(
+<br>
                 task_type=embedding_task,
+<br>
             ),
+<br>
         )
+<br>
         return [e.values for e in response.embeddings]
-</code></pre>
+</code></p>
 
 <p>I used this function to embed the vectors like this:</p>
 
-<pre><code>db = chroma_client.get_or_create_collection(name=DB_NAME, embedding_function=embed_fn)
+<p><code>
+db = chroma<em>client.get</em>or<em>create</em>collection(name=DB<em>NAME, embedding</em>function=embed_fn)
+<br>
 db.add(documents=[question["question"] for question in questions], ids=[str(id) for id in range(len(questions))])
-</code></pre>
+</code></p>
 
 <p>And queried it with data in the following manner:</p>
 
-<pre><code>result = db.query(query_texts=[query_question["question"]], n_results=1)
-</code></pre>
+<p><code>
+result = db.query(query<em>texts=[query</em>question["question"]], n_results=1)
+</code></p>
 
 <p>In order to make this semantic finder work for <a href="https://aquarc.org">aquarc</a>, I had to embed each of the vectors and put it in a <code>pgvector</code> database. For that, I made this python script:</p>
 
-<pre><code>conn = psycopg2.connect("dbname=sat user=aquarc host=aquarc.org port=5432 password=" + 
+<p><code>
+conn = psycopg2.connect("dbname=sat user=aquarc host=aquarc.org port=5432 password=" + 
+<br>
                         getenv("DB_PASSWORD")) 
+<br>
 cur = conn.cursor()
+<br>
+<br></p>
 
-# Get all text to embed
-cur.execute("SELECT id, details, question FROM vec_sat_questions WHERE embedding IS NULL")
+<h1>Get all text to embed</h1>
+
+<p><br>
+cur.execute("SELECT id, details, question FROM vec<em>sat</em>questions WHERE embedding IS NULL")
+<br>
 rows = cur.fetchall()
+<br>
 i = len(rows)
+<br></p>
 
-# Batch update embeddings
-for row_id, text, question in rows:
-    embedding = client.models.embed_content(
+<p><br></p>
+
+<h1>Batch update embeddings</h1>
+
+<p><br>
+for row<em>id, text, question in rows:
+<br>
+    embedding = client.models.embed</em>content(
+<br>
             model="models/text-embedding-004",
+<br>
             contents=sanitize(text + "\n" + question),
+<br>
             config=types.EmbedContentConfig(
+<br>
                 task_type='retrieval_document',
+<br>
             ),
+<br>
         ).embeddings[0].values
+<br>
     cur.execute("""
+<br>
         UPDATE vec_sat_questions 
+<br>
         SET embedding = %s::vector 
+<br>
         WHERE id = %s AND embedding IS NULL
+<br>
     """, (embedding, row_id))
+<br>
     i -= 1
+<br>
     print("Updated", row_id, ": ", i, "remaining")
+<br>
     conn.commit()
-</code></pre>
+</code></p>
 
 <p>You can view the full source <a href="https://github.com/aquarc/webstack-v2/blob/main/vectorize.py">here</a>. </p>
 
@@ -237,7 +370,7 @@ for row_id, text, question in rows:
 <p><code>
 CREATE INDEX ON recipes
 <br>
-USING hnsw (embedding vector<em>l2</em>ops)
+USING hnsw (embedding vector_l2_ops)
 <br>
 WITH (m = 16, ef_construction = 200);
 </code></p>
@@ -251,7 +384,7 @@ rows, err := db.Query(&#96;
 <br>
     SELECT *
 <br>
-    FROM vec<em>sat</em>questions
+    FROM vec_sat_questions
 <br>
     ORDER BY embedding &lt;-> $1::vector
 <br>
