@@ -21,4 +21,15 @@ practice will have to be reinforced - al;so what practice
 
 It's time to address the elephant in the room: how to start? In order to even do simple Prompt Engineering, data has to flow from the [aquarc](https://aquarc.org) website to the Kaggle Notebook that does the HTTP requests. I can release the Notebook as a proof of concept that uses the terminal for now, using sample data from [aquarc](https://aquarc.org) and integrate it more tightly with the website later on. The Notebook can serve as a demo, rather than a direct implementation. Besides, translating code from the notebook to the Go backend should be a task complex enough to teach someone on the team about backend.
 
+
+#### Introduction
+Aquarc has XYZ problem
+
+!!!
+
+#### First Iteration
+
+#### Future Direction
+
+
 Tags: kaggle, development, competition

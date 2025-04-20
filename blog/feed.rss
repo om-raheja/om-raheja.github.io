@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Sun, 30 Mar 2025 14:15:47 -0400</lastBuildDate>
-<pubDate>Sun, 30 Mar 2025 14:15:47 -0400</pubDate>
+<lastBuildDate>Sun, 20 Apr 2025 19:22:41 -0400</lastBuildDate>
+<pubDate>Sun, 20 Apr 2025 19:22:41 -0400</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+Use AI for efficient studying
+</title><description><![CDATA[
+
+<p>Scoring 1400 on my first SAT taught me a brutal truth: grinding practice tests isn’t enough. You need a mirror for your mistakes—something to reflect exactly where your logic breaks down. Existing tools couldn’t do this, so I built an AI tutor that dissects errors like a human would.</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/use-ai-for-efficient-studying.html</link>
+<guid>https://omraheja.me/blog/./use-ai-for-efficient-studying.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Sun, 20 Apr 2025 19:13:43 -0400</pubDate></item>
 <item><title>
 The Feeling of Learning
 </title><description><![CDATA[
@@ -104,15 +115,4 @@ So.. what happened?
 <guid>https://omraheja.me/blog/./so-what-happened.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Sat, 21 Dec 2024 12:26:00 -0500</pubDate></item>
-<item><title>
-Starting to post again
-</title><description><![CDATA[
-
-<p>I'm back.</p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/starting-to-post-again.html</link>
-<guid>https://omraheja.me/blog/./starting-to-post-again.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Fri, 20 Dec 2024 15:01:29 -0500</pubDate></item>
 </channel></rss>
