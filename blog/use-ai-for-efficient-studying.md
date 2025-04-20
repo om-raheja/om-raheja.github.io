@@ -199,20 +199,31 @@ You can view the full source [here](https://github.com/aquarc/webstack-v2/blob/m
 
 For efficiency purposes, I created an `HNSW` index:
 
-    CREATE INDEX ON recipes
-    USING hnsw (embedding vector_l2_ops)
-    WITH (m = 16, ef_construction = 200);
+<code>
+CREATE INDEX ON recipes
+<br>
+USING hnsw (embedding vector_l2_ops)
+<br>
+WITH (m = 16, ef_construction = 200);
+</code>
 
 Because the SAT dataset is small (~5000 questions) and rarely inserts new questions, it can handle higher neighbors (m) or neighbor consideration when inserting (ef_construction). It isn't particularly necessary though. 
 
-Finding semantically related questions is now as easy as the following code in go:
+Finding semantically related questions is now as easy as the following code in Go:
 
-    rows, err := db.Query(`
-        SELECT questionid, id, test, category, domain, skill, difficulty, details, question, answer_choices, answer, rationale
-        FROM vec_sat_questions
-        ORDER BY embedding <-> $1::vector
-        LIMIT $2;
-    `, queryVector, n) // Now $1 is a string that PostgreSQL will cast to vector
+<code>
+rows, err := db.Query(&#96;
+<br>
+    SELECT *
+<br>
+    FROM vec_sat_questions
+<br>
+    ORDER BY embedding <-> $1::vector
+<br>
+    LIMIT $2;
+<br>
+&#96; , queryVector, n) 
+</code>
 
 I also experimented with encoding chunks of a PDF on the SAT specs in a similar way. Since most of the data is irrelevant, it would require further research on figuring out what information is relevant for the chatbot and what isn't to properly construct a RAG pipeline. Also it is worth noting that this information is not readily available online. 
 
