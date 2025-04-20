@@ -69,108 +69,58 @@ Om Raheja
 
 <p>One of the biggest challenges I faced on my journey was evaluating prompts. I would first set a high temperature and generate multiple variations of prompts, like this for the debate-style analysis:</p>
 
-<p><code>
-response = client.models.generate_content(
-<br>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>response = client.models.generate_content(
     model="gemini-2.0-flash-001",
-<br>
     # no specs yet
-<br>
-    contents=f"Generate prompts for a model that will do nothing more but take information about the current question, rationale, user answer and their rationale (if there is one) for the SAT. Come up with different variations for the prompt like more or less concise or multiple thought processes or just one, etc. Here is an example question to illustrate my point (although math and english still exist)\
-<br>
-                  {question['question']}\n \
-<br>
+    contents=f"Generate prompts for a model that will take SAT question info, rationale, user answer, and their rationale. Create variations in conciseness and thought processes. Example: \
+              {question['question']}\n \
               {question['rationale']}\n\
-<br>
-              The user got: {question['user_answer']}\n \
-<br>
-              {question['user_rationale']}",
-<br>
+              User answer: {question['user_answer']}\n \
+              User rationale: {question['user_rationale']}",
     config=GenerateContentConfig(
-<br>
         system_instruction=[
-<br>
-            "You are a prompt engineer's assistant. Help the prompt engineer generate some prompts for his AI-powered SAT learning platform called Aquarc. The platform currently holds an SAT question bank with over 5000 questions and tracks which questions you get wrong per category. While this feature is helpful it lacks the intelligence necessary to be a full fledged SAT platform",
-<br>
+            "You help develop prompts for Aquarc, an SAT platform needing smarter analysis of user performance across 5000+ questions.",
         ],
-<br>
         temperature=2.0,
-<br>
         top_k=10,
-<br>
     ),
-<br>
-)
-</code></p>
+)</code></pre>
 
 <p>To simulate a tutor’s debate, we force the AI to argue against the user’s rationale. Here’s the prompt structure we found that balances creativity and SAT rigor:</p>
 
-<p><code>
-final_eval_prompt = """
-<br>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>final_eval_prompt = """
 Evaluate both the correct answer and the user's answer as potential responses to the question.
-<br></p>
 
-<p><br>
-*   Present the strongest possible argument <em>in favor</em> of the user's answer.
-<br>
-*   Present the strongest possible argument <em>against</em> the user's answer.
-<br>
+*   Present the strongest possible argument *in favor* of the user's answer.
+*   Present the strongest possible argument *against* of the user's answer.
 *   Explain why, ultimately, the correct answer is the superior choice based on textual evidence.
-"""
-</code></p>
+"""</code></pre>
 
 <p>I tried experimenting with various temperatures and <code>top_k</code> values. After selecting the best prompts from each batch, I had to evaluate them. I adapted the evaluation rubric from <a href="https://www.kaggle.com/code/omraheja/day-1-evaluation-and-structured-output">here</a> to account for aspects like creativity but to ensure that these aspects were also grounded in reality. My new criteria included:</p>
 
-<p><code></p>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>&#35;&#35; **New Criteria**  
+1. **Instructional Creativity**:  
+   - Does the creative approach (e.g., debate, step-by-step analysis) **enhance understanding** of why the correct answer is textually supported?  
+   - Does it **strategically use the prompt&apos;s structure** (e.g., arguments for/against) to highlight key SAT skills like evidence analysis or assumption identification?  
 
-<h2><strong>New Criteria</strong></h2>
+2. **Educational Effectiveness**:  
+   - Does the creativity **directly serve the learning goal** (e.g., clarifying misconceptions, modeling SAT logic), or is it merely ornamental?  
+   - Does it **engage the learner** while maintaining rigor (e.g., making complex reasoning more accessible)?  
 
-<p><br>
-1. <strong>Instructional Creativity</strong>: <br />
-<br>
-   - Does the creative approach (e.g., debate, step-by-step analysis) <strong>enhance understanding</strong> of why the correct answer is textually supported? <br />
-<br>
-   - Does it <strong>strategically use the prompt’s structure</strong> (e.g., arguments for/against) to highlight key SAT skills like evidence analysis or assumption identification? <br />
-<br></p>
+&#35;&#35; **Revised Rating Rubric**  
+- **5 (Excellent)**:  
+  - Creative structure (e.g., debate) **directly reinforces** why the correct answer is superior.  
+  - Uses the format to **explicitly contrast** the user&apos;s error with textual evidence (e.g., &quot;The strongest argument &ast;for&ast; the user&apos;s answer is X, but the text contradicts this because Y&quot;).  
+  - Balances creativity with precision and clarity.  
 
-<p><br>
-2. <strong>Educational Effectiveness</strong>: <br />
-<br>
-   - Does the creativity <strong>directly serve the learning goal</strong> (e.g., clarifying misconceptions, modeling SAT logic), or is it merely ornamental? <br />
-<br>
-   - Does it <strong>engage the learner</strong> while maintaining rigor (e.g., making complex reasoning more accessible)? <br />
-<br></p>
+- **4 (Good)**:  
+  - Creative approach is **mostly effective** but slightly misses opportunities to deepen understanding (e.g., lists arguments but doesn&apos;t explicitly tie them to SAT skills).  
+  - Minor clarity issues in linking creativity to the text.  
 
-<p><br></p>
-
-<h2><strong>Revised Rating Rubric</strong></h2>
-
-<p><br>
-- <strong>5 (Excellent)</strong>: <br />
-<br>
-  - Creative structure (e.g., debate) <strong>directly reinforces</strong> why the correct answer is superior. <br />
-<br>
-  - Uses the format to <strong>explicitly contrast</strong> the user’s error with textual evidence (e.g., “The strongest argument <em>for</em> the user’s answer is X, but the text contradicts this because Y”). <br />
-<br>
-  - Balances creativity with precision and clarity. <br />
-<br></p>
-
-<p><br>
-- <strong>4 (Good)</strong>: <br />
-<br>
-  - Creative approach is <strong>mostly effective</strong> but slightly misses opportunities to deepen understanding (e.g., lists arguments but doesn’t explicitly tie them to SAT skills). <br />
-<br>
-  - Minor clarity issues in linking creativity to the text. <br />
-<br></p>
-
-<p><br>
-- <strong>3 (Adequate)</strong>: <br />
-<br>
-  - Creativity <strong>distracts</strong> slightly from the core analysis (e.g., overemphasizes hypothetical arguments without grounding in the text). <br />
-<br>
-  - Fails to fully leverage the creative structure to address the user’s error. <br />
-</code></p>
+- **3 (Adequate)**:  
+  - Creativity **distracts** slightly from the core analysis (e.g., overemphasizes hypothetical arguments without grounding in the text).  
+  - Fails to fully leverage the creative structure to address the user&apos;s error.
+</code></pre>
 
 <p>SAT logic isn’t monolithic—there are multiple ways to arrive at right and wrong answers. We model this variability using constrained JSON outputs:</p>
 
