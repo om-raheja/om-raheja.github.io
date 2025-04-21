@@ -97,75 +97,40 @@ I tried experimenting with various temperatures and `top_k` values. After select
 
 SAT logic isn’t monolithic—there are multiple ways to arrive at right and wrong answers. We model this variability using constrained JSON outputs:
 
-<code>
-response = client.models.generate\_content(
-<br>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>response = client.models.generate&lowbar;content(
     model="gemini-2.0-flash-001",
-<br>
     contents=str(question),
-<br>
     config=GenerateContentConfig(
-<br>
-        system\_instruction=[prompt["prompt"],],
-<br>
+        system&lowbar;instruction=[prompt["prompt"],],
         temperature=0.1,
-<br>
-        response\_mime\_type="application/json",
-<br>
-        response\_schema=
-<br>
+        response&lowbar;mime&lowbar;type="application/json",
+        response&lowbar;schema=
           {
-<br>
               "title": "SAT Analysis Response",
-<br>
               "description": "Response format for SAT mistake analysis using multiple thinking processes",
-<br>
               "type": "array",
-<br>
               "minItems": 3,
-<br>
               "maxItems": 8,
-<br>
               "items": {
-<br>
                 "type": "object",
-<br>
                 "properties": {
-<br>
-                  "thinking\_process": {
-<br>
+                  "thinking&lowbar;process": {
                     "type": "string",
-<br>
                     "description": "Step-by-step explanation of cognitive path leading to an answer choice",
-<br>
                     "minLength": 50,
-<br>
                     "maxLength": 500
-<br>
                   },
-<br>
-                  "leads\_to": {
-<br>
+                  "leads&lowbar;to": {
                     "type": "string",
-<br>
                     "enum": ["user", "correct"],
-<br>
                     "description": "Indicates whether this thinking process leads to the student's answer or the correct answer"
-<br>
                   }
-<br>
                 },
-<br>
-                "required": ["thinking\_process", "leads\_to"],
-<br>
+                "required": ["thinking&lowbar;process", "leads&lowbar;to"],
               }
-<br>
           }
-<br>
     ),
-<br>
-)
-</code>
+)</code></pre>
 
 This JSON is parsed and turned into collapsibles on the [aquarc](https://aquarc.org/sat) question bank. 
 
@@ -173,144 +138,82 @@ The semantic question finder was the hardest one. On [aquarc](https://aquarc.org
 
 First, I made a function to embed the questions in the vector store:
 
-<code>
-class GeminiEmbeddingFunction(EmbeddingFunction):
-<br>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>class GeminiEmbeddingFunction(EmbeddingFunction):
     # Specify whether to generate embeddings for documents, or queries
-<br>
-    document\_mode = True
-<br>
+    document&lowbar;mode = True
 
-<br>
-    @retry.Retry(predicate=is\_retriable)
-<br>
-    def \_\_call\_\_(self, input: Documents) -> Embeddings:
-<br>
-        if self.document\_mode:
-<br>
-            embedding\_task = "retrieval\_document"
-<br>
+    @retry.Retry(predicate=is&lowbar;retriable)
+    def &lowbar;&lowbar;call&lowbar;&lowbar;(self, input: Documents) -> Embeddings:
+        if self.document&lowbar;mode:
+            embedding&lowbar;task = "retrieval&lowbar;document"
         else:
-<br>
-            embedding\_task = "retrieval\_query"
-<br>
+            embedding&lowbar;task = "retrieval&lowbar;query"
 
-<br>
-        response = client.models.embed\_content(
-<br>
+        response = client.models.embed&lowbar;content(
             model="models/text-embedding-004",
-<br>
             contents=input,
-<br>
             config=types.EmbedContentConfig(
-<br>
-                task\_type=embedding\_task,
-<br>
+                task&lowbar;type=embedding&lowbar;task,
             ),
-<br>
         )
-<br>
-        return [e.values for e in response.embeddings]
-</code>
+        return [e.values for e in response.embeddings]</code></pre>
 
 I used this function to embed the vectors like this:
 
-<code>
-db = chroma_client.get_or_create_collection(name=DB_NAME, embedding_function=embed_fn)
-<br>
-db.add(documents=[question["question"] for question in questions], ids=[str(id) for id in range(len(questions))])
-</code>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>db = chroma&lowbar;client.get&lowbar;or&lowbar;create&lowbar;collection(name=DB&lowbar;NAME, embedding&lowbar;function=embed&lowbar;fn)
+db.add(documents=[question["question"] for question in questions], ids=[str(id) for id in range(len(questions))])</code></pre>
 
 And queried it with data in the following manner:
 
-<code>
-result = db.query(query_texts=[query_question["question"]], n_results=1)
-</code>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>result = db&lowbar;query(query&lowbar;texts=[query&lowbar;question["question"]], n&lowbar;results=1)</code></pre>
 
 In order to make this semantic finder work for [aquarc](https://aquarc.org), I had to embed each of the vectors and put it in a `pgvector` database. For that, I made this python script:
 
-<code>
-conn = psycopg2.connect("dbname=sat user=aquarc host=aquarc.org port=5432 password=" + 
-<br>
-                        getenv("DB_PASSWORD")) 
-<br>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>conn = psycopg2.connect("dbname=sat user=aquarc host=aquarc.org port=5432 password=" + 
+                        getenv("DB&lowbar;PASSWORD")) 
 cur = conn.cursor()
-<br>
-<br>
-# Get all text to embed
-<br>
-cur.execute("SELECT id, details, question FROM vec_sat_questions WHERE embedding IS NULL")
-<br>
-rows = cur.fetchall()
-<br>
-i = len(rows)
-<br>
 
-<br>
+# Get all text to embed
+cur.execute("SELECT id, details, question FROM vec&lowbar;sat&lowbar;questions WHERE embedding IS NULL")
+rows = cur.fetchall()
+i = len(rows)
+
 # Batch update embeddings
-<br>
-for row_id, text, question in rows:
-<br>
-    embedding = client.models.embed_content(
-<br>
+for row&lowbar;id, text, question in rows:
+    embedding = client.models.embed&lowbar;content(
             model="models/text-embedding-004",
-<br>
             contents=sanitize(text + "\n" + question),
-<br>
             config=types.EmbedContentConfig(
-<br>
-                task\_type='retrieval\_document',
-<br>
+                task&lowbar;type='retrieval&lowbar;document',
             ),
-<br>
         ).embeddings[0].values
-<br>
     cur.execute("""
-<br>
-        UPDATE vec\_sat\_questions 
-<br>
+        UPDATE vec&lowbar;sat&lowbar;questions 
         SET embedding = %s::vector 
-<br>
         WHERE id = %s AND embedding IS NULL
-<br>
-    """, (embedding, row\_id))
-<br>
+    """, (embedding, row&lowbar;id))
     i -= 1
-<br>
-    print("Updated", row\_id, ": ", i, "remaining")
-<br>
-    conn.commit()
-</code>
+    print("Updated", row&lowbar;id, ": ", i, "remaining")
+    conn.commit()</code></pre>
 
 You can view the full source [here](https://github.com/aquarc/webstack-v2/blob/main/vectorize.py). 
 
 For efficiency purposes, I created an `HNSW` index:
 
-<code>
-CREATE INDEX ON recipes
-<br>
-USING hnsw (embedding vector\_l2\_ops)
-<br>
-WITH (m = 16, ef\_construction = 200);
-</code>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>CREATE INDEX ON recipes
+USING hnsw (embedding vector&lowbar;l2&lowbar;ops)
+WITH (m = 16, ef&lowbar;construction = 200);</code></pre>
 
 Because the SAT dataset is small (~5000 questions) and rarely inserts new questions, it can handle higher neighbors (m) or neighbor consideration when inserting (ef_construction). It isn't particularly necessary though. 
 
 Finding semantically related questions is now as easy as the following code in Go:
 
-<code>
-rows, err := db.Query(&#96;
-<br>
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>rows, err := db.Query(&#96;
     SELECT *
-<br>
-    FROM vec\_sat\_questions
-<br>
+    FROM vec&lowbar;sat&lowbar;questions
     ORDER BY embedding <-> $1::vector
-<br>
     LIMIT $2;
-<br>
-&#96; , queryVector, n) 
-</code>
+&#96;, queryVector, n)</code></pre>
 
 I also experimented with encoding chunks of a PDF on the SAT specs in a similar way. Since most of the data is irrelevant, it would require further research on figuring out what information is relevant for the chatbot and what isn't to properly construct a RAG pipeline. Also it is worth noting that this information is not readily available online. 
 
@@ -328,10 +231,10 @@ The alternative approaches generator is not fine tuned, and the output is highly
 
 The semantic question finder is also highly inaccurate because of the weak handling of data used to create embeddings. Right now, each vector is simply Gemini's representation of the details and question, with the answer choices, answer, and rationale omitted for clarity. This data is also passed through a quick sanitization function that makes the embeddings clearer:
 
-    from markdownify import markdownify as md 
+<pre style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 10px;"><code>from markdownify import markdownify as md 
 
-    def sanitize(text):
-        return md(text.replace("<u>", "[Underlined]").replace("</u>", "[End]"))
+def sanitize(text):
+    return md(text.replace("&lt;u&gt;", "[Underlined]").replace("&lt;/u&gt;", "[End]"))</code></pre>
 
 However, semantic meaning embodied by the encoded information may not be the most relevant to the users and it isn't handled properly by the frontend either. SVG data gets turned into garbage data. Given more time and proper research of what users actually need, we will be able to build a better semantic question finder. 
 
