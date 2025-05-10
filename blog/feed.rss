@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Sun, 20 Apr 2025 20:01:17 -0400</lastBuildDate>
-<pubDate>Sun, 20 Apr 2025 20:01:17 -0400</pubDate>
+<lastBuildDate>Sat, 10 May 2025 14:31:25 -0400</lastBuildDate>
+<pubDate>Sat, 10 May 2025 14:31:25 -0400</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+Back in Black
+</title><description><![CDATA[
+
+<p>In the last few weeks, my life has changed in ways I couldn't have even imagined. Here's what happens next.</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/back-in-black.html</link>
+<guid>https://omraheja.me/blog/./back-in-black.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Sat, 10 May 2025 14:31:23 -0400</pubDate></item>
 <item><title>
 Use AI for efficient studying
 </title><description><![CDATA[
@@ -104,15 +115,4 @@ I need better patience
 <guid>https://omraheja.me/blog/./i-need-better-patience.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Mon, 30 Dec 2024 12:38:45 -0500</pubDate></item>
-<item><title>
-So.. what happened?
-</title><description><![CDATA[
-
-<p>Here's how I've changed in the last few months.</p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/so-what-happened.html</link>
-<guid>https://omraheja.me/blog/./so-what-happened.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Sat, 21 Dec 2024 12:26:00 -0500</pubDate></item>
 </channel></rss>

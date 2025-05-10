@@ -13,13 +13,12 @@ Highlights:
 
 1. [aquarc](https://aquarc.org)
 2. [codeabode](https://codeabode.co)
-3. [AIOS (I help out)](https://aios.foundation)
 
 ## Contact
 
-1. [GitHub](https://github.com/om-raheja)
-2. [LinkedIn](https://www.linkedin.com/in/om-raheja-91a26b314/)
-3. (Working) Email: rahejaom (at) outlook (dot) com. My other emails online will not work.
+1. Email: rahejaom (at) outlook (dot) com. My other emails don't work.
+2. [GitHub](https://github.com/om-raheja)
+3. [LinkedIn](https://www.linkedin.com/in/om-raheja-91a26b314/) (don't check)
 
 ## Publication(s)
 
