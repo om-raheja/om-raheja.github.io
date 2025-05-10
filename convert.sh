@@ -8,6 +8,7 @@ for filename in *.md; do
             --html-no-escapehtml \
             --html-hardwrap \
             -mtitle="Om Raheja - Entrepreneur & Software Engineer" \
+            -mcss=style.css \
             -M htmlheader='<meta name="description" content="Om Raheja. Entrepreneur and software engineer. High School North Class of 2026. Creator of aquarc and codeabode.">' \
             "$filename" > "$clean.html"
     else
@@ -17,6 +18,7 @@ for filename in *.md; do
             --html-no-escapehtml \
             --html-hardwrap \
             -mtitle="$clean" \
+            -mcss=style.css \
             "$filename" > "$clean.html"
     fi
 done
