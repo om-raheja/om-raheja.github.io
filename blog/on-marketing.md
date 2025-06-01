@@ -45,8 +45,11 @@ As Fitzpatrick from *The Mom Test* says, "Compliments are the fool’s gold of c
 Once you figure out the problem or problem(s), it's easy to build because you don't need any "ideas". Just build and refine.
 
 In order to better understand what students struggled with, I became an SAT tutor at [SchoolHouse](https://schoolhouse.world). Although I never mentioned [aquarc](https://aquarc.org), I kept working through problems and finding similar recurring themes:
+
 - No one felt motivated to study on their own
+
 - Subject-verb agreement was not understood well
+
 - Neither were dangling modifiers
 
 And from these problems, I was able to conclude that the information on [KhanAcademy](https://khanacademy.org) (and the platform itself) was not satisfying/detailed enough for students to use as [KhanAcademy](https://khanacademy.org) is very closely connected to [SchoolHouse](https://schoolhouse.world).
@@ -76,25 +79,41 @@ But perhaps they desire to be appreciated by their girlfriend, or want to show o
 Every customer is the hero of their story. Empower them. Show them how they're going to transform, and raise the stakes so they feel inclined to use your product.
 
 Your story should have the following elements (directly taken from StoryBrand):
+
 - Character 
+
 - With a Problem 
+
 - Villain (internal problem, external problem, philosophical problem)
+
 - Guide who cares and can help you 
+
 - A simple plan
+
 - Call to Action
+
 - Success
+
 - The failure they avoided
+
 - Character transformation
 
 There will be multiple answers to each of the questions (like what problems your character has), but pick one that is specific and an umbrella for all the other ones and move on. 
 
 For [aquarc](https://aquarc.org), we have:
+
 - Character: A high school student looking to stand out among their peers and make their parents proud
+
 - Problem: Demotivated, has other interesting things to do and quite stressed
+
 - Villain: Your environment. Your internal problem is your desire to feel validated by your friends and family, your external problem is your lack of time and motivation, and the philosophical problem is that you shouldn't have to spend too much time figuring out how to study or what app to use. 
+
 - Guide: We (aquarc) understand you are demotivated. We have 500+ weekly users that found our app easy and simple to use.
+
 - Success: They get a high score! Parents are proud and bragging rights.
+
 - Failure: Retaking, more time invested in studying and preparing all over again... Even worse if you're a junior at this point.
+
 - Transformation: from stressed, uncertain, and demotivated to calm, satisfied, and done without much effort. No need to study *Atomic Habits*.
 
 And based on that, we've built our website and our tagline. Everything is consistent so our users have the highest chance of remembering what we're here for.
@@ -121,19 +140,12 @@ Another example: my friend had issues with his email while signing up. Simple Go
 
 One of my friends switched to OnePrep because the UI was easier on the eyes and felt less convoluted. I plan to design an interface using Google Slides to figure out what he actually wants and is usable to him.
 
-
-plans for refinement:
-- too complicated to figure out what i gotta pick to study 
-    - adaptive practice
-- notice it is hard to stay motivated
-    - SAT game
-
 #### Putting it all together
 
 Marketing is a multi step process. But more important than anything else, it means refining when other people think your product is a joke. And constant validation.
 
 I've done it wrong too: when I made the "Ask AI" feature, I didn't realize that the rationale was typically enough for most people. The feature took up space without being used too much. And I had already coded a question similarity finder, thought process generator, and other cognitive tools...
 
-Are those useful features? Yes. But they weren't worth the effort at this point in time. That's what we need to solve right now.
+Are those useful features? Yes. But they weren't worth the effort at this point in time. That's what we need to solve right now. Its more important to code features like adaptive practice or gamification to keep the studying process as easy and simple as possible.
 
 Tags: marketing, plan
