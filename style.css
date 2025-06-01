@@ -9,22 +9,6 @@
 	--visited: #8542ff;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--bg: #000;
-		--bg-side: #333;
-		--fg: #ffebeb;
-		--link: #6d878d;
-		--alert: #ca6800;
-		--visited: #9b64fb;
-	}
-
-	mark {
-		background-color: var(--fg);
-		color: var(--bg);
-		--link: #2aa3be;
-	}
-}
 
 html {
 	background-color: var(--bg-side);
@@ -191,3 +175,25 @@ pre {
     background: #f4f4f4; 
     padding: 10px;
 } 
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #000;
+		--bg-side: #333;
+		--fg: #ffebeb;
+		--link: #6d878d;
+		--alert: #ca6800;
+		--visited: #9b64fb;
+	}
+
+	mark {
+		background-color: var(--fg);
+		color: var(--bg);
+		--link: #2aa3be;
+	}
+
+    pre {
+        background: #3a3a3a;
+    }
+}
+
