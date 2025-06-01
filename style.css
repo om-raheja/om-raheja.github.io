@@ -184,3 +184,10 @@ mark {
 #team img {
 	margin-left: auto;
 }
+
+pre {
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    background: #f4f4f4; 
+    padding: 10px;
+} 
