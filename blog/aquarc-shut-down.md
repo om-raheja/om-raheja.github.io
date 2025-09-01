@@ -2,6 +2,8 @@ Aquarc Shut Down
 
 Aquarc is shutting down. Here's why and what I'm doing now.
 
+---
+
 I've learned a lot by working on Aquarc. I made a huge team, ended up getting rid of half the people, started with ECs and internships and then later pivoted to an SAT website. It took me a while to realize the importance of consolidating market share in one market before moving onto others and making an ambitious WeChat-like app for high schoolers, which was my dream. Recently, the Aquarc server stopped working and I've come to realize I either have to pay for a VPS or migrate to Vercel. So we're deciding to shut down.
 
 I'm not shutting down because its "too hard." I know it will take a lot of code, a lot of validation, and I constantly will have to market. I'm shutting down because I learned what success meant in this field.
