@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase Connection Test</title>
+    <!-- Load UMD build of Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+    <div id="status">Connecting to Supabase...</div>
+
+    <script>
+        // Use the globally available 'supabase' object
+        const { createClient } = supabase; // No import needed!
+
+        // Initialize client
+        const supabaseClient = createClient(
+            'https://fagwljtpiydkwxxlequl.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhZ3dsanRwaXlka3d4eGxlcXVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQxODg0NjEsImV4cCI6MjA2OTc2NDQ2MX0.YVGRq6MJ-hZDZUxGE3opRQOXv_f8OtSHPKeQbWTxSHw'
+        );
+
+        // Test connection
+        async function testConnection() {
+            const statusDiv = document.getElementById('status');
+            try {
+                const { data, error } = await supabaseClient
+                    .from('your_table') // Replace with your table name
+                    .select('*')
+                    .limit(1);
+
+                if (error) throw error;
+                statusDiv.textContent = '✅ Connected to Supabase!';
+            } catch (error) {
+                statusDiv.textContent = `❌ Connection failed: ${error.message}`;
+            }
+        }
+
+        testConnection();
+    </script>
+</body>
+</html>

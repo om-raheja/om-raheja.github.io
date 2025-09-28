@@ -11,18 +11,17 @@ I'm an entrepreneur and a software engineer. I like to build stuff.
 
 Highlights:
 
-1. [aquarc](https://aquarc.org)
-2. [codeabode](https://codeabode.co)
+1. [codeabode](https://codeabode.co)
+2. [aquarc](https://aquarc.org)
 
 ## Contact
 
-1. Email: rahejaom (at) outlook (dot) com. My other emails don't work.
-2. [GitHub](https://github.com/om-raheja)
-3. [LinkedIn](https://www.linkedin.com/in/om-raheja-91a26b314/) (don't check)
+rahejaom (at) outlook (dot) com. My other emails don't work.
 
 ## Publication(s)
 
-1. [AutoFlow: *Automated Workflow Generation for Large Language Model Agents*](https://arxiv.org/abs/2407.12821)
+1. [AutoFlow: *Automated Workflow Generation for Large Language Model Agents*](https://arxiv.org/abs/2407.12821) (2024)
+2. [New Jersey Privacy Act: *An act to access, modify, delete, or opt out of sale of your personal data*](use/petition.pdf) (2023)
 
 ---
 To the extent possible under law, Om Raheja has waived all copyright and related or neighboring rights to this website. This work is published from the United States.
