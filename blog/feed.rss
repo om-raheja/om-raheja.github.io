@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Mon, 01 Sep 2025 10:43:00 -0400</lastBuildDate>
-<pubDate>Mon, 01 Sep 2025 10:43:00 -0400</pubDate>
+<lastBuildDate>Wed, 08 Oct 2025 23:15:40 -0400</lastBuildDate>
+<pubDate>Wed, 08 Oct 2025 23:15:40 -0400</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+What's the point?
+</title><description><![CDATA[
+
+<p>I tilted my head up and looked into his pupils and felt a warm, wet tingling under my sleeves, in spite of the air conditioned room and the chill of night. My question was not unique and I was certain he had heard it countless times before, but it felt like an insult, like a direct blow to everything they stood for, and prepared myself to be condemned for the rest of the night. Without changing my expression, I asked unflinchingly, without lifting my eyes from Swamiji's gaze: "Scientifically, how do we know god exists?"</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/whats-the-point.html</link>
+<guid>https://omraheja.me/blog/./whats-the-point.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Wed, 08 Oct 2025 23:15:38 -0400</pubDate></item>
 <item><title>
 Aquarc Shut Down
 </title><description><![CDATA[
@@ -104,15 +115,4 @@ Need for Speed
 <guid>https://omraheja.me/blog/./need-for-speed.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Sun, 26 Jan 2025 19:24:27 -0500</pubDate></item>
-<item><title>
-Effectiveness of Not Micromanaging
-</title><description><![CDATA[
-
-<p>The title is somewhat misleading, but not micromanaging has many positive effects.</p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/effectiveness-of-not-micromanaging.html</link>
-<guid>https://omraheja.me/blog/./effectiveness-of-not-micromanaging.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Sat, 25 Jan 2025 00:03:55 -0500</pubDate></item>
 </channel></rss>
