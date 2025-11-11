@@ -2,9 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel><title>Om's Blog</title><link>https://omraheja.me/blog/index.html</link>
 <description>Articles, thoughts, misc</description><language>en</language>
-<lastBuildDate>Wed, 08 Oct 2025 23:15:40 -0400</lastBuildDate>
-<pubDate>Wed, 08 Oct 2025 23:15:40 -0400</pubDate>
+<lastBuildDate>Tue, 11 Nov 2025 16:45:12 -0500</lastBuildDate>
+<pubDate>Tue, 11 Nov 2025 16:45:12 -0500</pubDate>
 <atom:link href="https://omraheja.me/blog/feed.rss" rel="self" type="application/rss+xml" />
+<item><title>
+On Connection and Death
+</title><description><![CDATA[
+
+<p>Although my face remained sealed, my thoughts whirred, wondering whether to comfort them or to express the heaviness I now felt, knowing that my friend may pass away significantly earlier than expected, only after watching the same suffering themself.</p>
+
+<hr />
+]]></description><link>https://omraheja.me/blog/on-connection-and-death.html</link>
+<guid>https://omraheja.me/blog/./on-connection-and-death.html</guid>
+<dc:creator>Om Raheja</dc:creator>
+<pubDate>Tue, 11 Nov 2025 16:45:10 -0500</pubDate></item>
 <item><title>
 What's the point?
 </title><description><![CDATA[
@@ -104,15 +115,4 @@ Progress on Autonomy
 <guid>https://omraheja.me/blog/./progress-on-autonomy.html</guid>
 <dc:creator>Om Raheja</dc:creator>
 <pubDate>Sun, 02 Feb 2025 20:44:06 -0500</pubDate></item>
-<item><title>
-Need for Speed
-</title><description><![CDATA[
-
-<p>Every startup needs to go <strong>fast</strong>. How am I going to do that?</p>
-
-<hr />
-]]></description><link>https://omraheja.me/blog/need-for-speed.html</link>
-<guid>https://omraheja.me/blog/./need-for-speed.html</guid>
-<dc:creator>Om Raheja</dc:creator>
-<pubDate>Sun, 26 Jan 2025 19:24:27 -0500</pubDate></item>
 </channel></rss>
