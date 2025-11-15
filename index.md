@@ -1,4 +1,4 @@
-<a href="blog/index.html">blog</a> &middot; <a href="use/Om-Raheja-Resume.pdf">resume</a>
+<a href="blog/index.html">blog</a> &middot; <a href="https://github.com/om-raheja">github</a> &middot; <a href="use/Om-Raheja-Resume.pdf">resume</a>
 
 ---
 # I'm Om
