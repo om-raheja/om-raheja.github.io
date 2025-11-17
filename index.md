@@ -1,4 +1,4 @@
-<a href="blog/index.html">blog</a> &middot; <a href="https://github.com/om-raheja">github</a> &middot; <a href="use/Om-Raheja-Resume.pdf">resume</a>
+<a href="blog/index.html">blog</a> &middot; <a href="https://github.com/om-raheja">github</a> &middot; <a href="https://open.spotify.com/user/31gtiik4uzsa2hz5a6m2t6bkluu4">spotify</a> &middot; <a href="use/Om-Raheja-Resume.pdf">resume</a>
 
 ---
 # I'm Om
