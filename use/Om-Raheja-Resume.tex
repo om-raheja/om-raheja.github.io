@@ -18,12 +18,11 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
-\usepackage{fontawesome5}
+\usepackage{fontawesome}
 \usepackage{multicol}
 \setlength{\multicolsep}{-3.0pt}
+\setlength{\emergencystretch}{1em}
 \setlength{\columnsep}{-1pt}
-\input{glyphtounicode}
-
 
 %----------FONT OPTIONS----------
 % sans-serif
@@ -47,8 +46,8 @@
 \addtolength{\oddsidemargin}{-0.6in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1.19in}
-\addtolength{\topmargin}{-.7in}
-\addtolength{\textheight}{1.4in}
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{1.7in}
 
 \urlstyle{same}
 
@@ -58,17 +57,14 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large\bfseries
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
-
-% Ensure that generate pdf is machine readable/ATS parsable
-\pdfgentounicode=1
+  \vspace{-6pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
 
 %-------------------------
 % Custom commands
 \newcommand{\resumeItem}[1]{
   \item\small{
-    {#1 \vspace{-2pt}}
+    {#1 \vspace{-3pt}}
   }
 }
 
@@ -79,11 +75,11 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
+  \vspace{-4pt}\item
    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & \textbf{\small #2} \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-8pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
@@ -97,7 +93,7 @@
     \item
     \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
       \small#1 & \textbf{\small #2}\\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-9pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
@@ -107,8 +103,8 @@
 
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, labelsep=0.05in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
 
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,18 +113,14 @@
 \begin{document}
 
 %----------HEADING----------
-% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
-%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
-% \end{tabular*}
 
 \begin{center}
-    {\Huge \scshape Om Raheja} \\ \vspace{1pt}
-    Princeton, NJ, 08550\\ \vspace{1pt}
+    {\LARGE \scshape Om Raheja} \\ \vspace{1pt}
+    Princeton, NJ 08550\\ \vspace{1pt}
     \small \raisebox{-0.1\height}~ \href{mailto:rahejaom@outlook.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{rahejaom@outlook.com}} ~ 
     \href{https://omraheja.me}{\raisebox{-0.2\height}\faGlobe\ \underline{omraheja.me}} ~
     \href{https://github.com/om-raheja}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/om-raheja}} ~
-    \href{https://www.linkedin.com/in/om-raheja-91a26b314/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/om-raheja-91a26b314/}}  ~
+    \href{https://www.linkedin.com/in/om-raheja-91a26b314/}{\raisebox{-0.2\height}\faLinkedinSquare\ \underline{linkedin.com/in/om-raheja-91a26b314}}  ~
     \vspace{-8pt}
 \end{center}
 
@@ -136,134 +128,113 @@
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {West Windsor Plainsboro High School North}{Sep. 2022 -- June 2026}
-      {4.59 WGPA}{Plainsboro, NJ}
-      \resumeItemListStart
-        \resumeItem{Ranked 7th in Computer Problem Solving for Central Jersey at Future Business Leaders America (FBLA)}
-        \resumeItem{Collected 100+ shoes and \$150+ cash for FBLA's State Leadership Conference}
-        \resumeItem{Serve as a lifeguard, providing pool safety by enforcing safety protocols and performing rescues }
-      \resumeItemListEnd
+      {University of Illinois Urbana-Champaign (UIUC)}{Expected May 2029}
+      {Bachelor of Science in Computer Engineering}{Urbana, IL}
   \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+  \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages:} Python, JavaScript, SQL, Go, C, x86 Assembly, GDScript, HTML/CSS \\
+     \textbf{Frameworks \& Libraries:} Next.js, React, Node.js, Express, PostgreSQL, Groq API, Gemini API, TensorFlow.js, Axios \\
+     \textbf{AI \& Systems:} Agentic AI, Vision-Language Models (VLMs), OCR, Structured Data Extraction, Multi-Agent Systems, OpenClaw, AutoFlow, QEMU, Linux Internals \\
+     \textbf{Tools \& Analytics:} Git, GitHub, Google Analytics, beehiiv, Godot Engine (2D/3D)
+    }}
+  \end{itemize}
+  \vspace{-16pt}
 
 %-----------EXPERIENCE-----------
 \section{Experience}
   \resumeSubHeadingListStart
    \resumeSubheading
       {\href{https://codeabode.co}{\underline{codeabode}}}{April 2024 -- Present}
-      {Chief Executive Officer}{Plainsboro, NJ}
+      {Chief Executive Officer \& Lead Developer}{Plainsboro, NJ}
       \resumeItemListStart
-        \resumeItem{Lead a team of 7+ and taught 100+ students Scratch and Python \& Game Development in 70+ hours}
-        \resumeItem{Earned \$2,000 in revenue by teaching classes}
-        \resumeItem{Made AI pipeline to generate unique curriculums per student and re-optimize after each class and homework}
+        \resumeItem{Architected a Python-based AI pipeline to dynamically generate and optimize personalized programming curriculums based on real-time student performance metrics}
+        \resumeItem{Engineering an interactive 3D educational game in Godot to visually simulate core programming paradigms}
+        \resumeItem{Lead product strategy and a team of 7+ to deliver 70+ hours of instruction to 100+ students, earning \$2,000 in revenue}
       \resumeItemListEnd
       
     \resumeSubheading
-      {\href{https://aquarc.org}{\underline{aquarc}}}{June 2024 -- July 2025}
-      {Chief Executive Officer}{Remote}
-      % and the product
+      {AIOS -- Rutgers University}{May 2024 -- Dec. 2025}
+      {Research Assistant}{New Brunswick, NJ}
       \resumeItemListStart
-        \resumeItem{Used Google Analytics to track 1000+ lifetime users, and beehiiv to track 45+ subscribers for the internship newsletter}
-        \resumeItem{Lead a team of 10+ developers remotely to build an SAT platform with 8000+ questions using Go, React, and PostgreSQL}
-        \resumeItem{Co-authored Comprehensive Mental Health Support Act, co-sponsored by Sen. Burgess}
-        % \resumeItem{Made iOS app}
-    \resumeItemListEnd
-
-   \resumeSubheading
-     {\href{https://hbsp.harvard.edu/inspiring-minds/how-students-are-actually-using-generative-ai}{\underline{AIxEducation}} Athena Edtech}{Sept 2024 -- Nov 2024}
-     {Finalist}{Remote}
-     \resumeItemListStart
-     \resumeItem{Won 2nd Place Nationals for research on efficient alternatives to Prussian education model}
-     \resumeItem{Presented on the effectiveness of simulated Montessori schools using AI \& \href{https://2hourlearning.com/}{\underline{2 hour learning}}}
-     \resumeItem{Used insights to make codeabode more efficient and collaborative}
-   \resumeItemListEnd
-
-   \resumeSubheading
-     {\href{https://github.com/agiresearch/AIOS}{\underline{AIOS}} Rutgers University}{May 2024 -- Dec 2025}
-     {Research Assistant}{New Brunswick, NJ}
-     \resumeItemListStart
-     \resumeItem{Main speaker at AIOS Hackathon \& RUSLUG-AIOS event, introduced 50+ people to AIOS}
-     \resumeItem{Co-authored AutoFlow, an automatic agentic workflow generator}
-     \resumeItem{Documented the AIOS installation, usage, contribution and kept meeting notes}
-   \resumeItemListEnd
-
-    \resumeSubheading
-      {\href{https://web.archive.org/web/20250119183417if_/https://stocksort.net/}{\underline{StockSort}}}{June 2024 -- July 2024}
-      {Co-Founder}{Remote}
-      \resumeItemListStart
-        \resumeItem{Co-founded a team of 6 to build an app that helps sort inventory for enterprises}
-        \resumeItem{Called 75+ leads, earned \$80+ in revenue, visited various shops in Princeton to promote and sell StockSort}
-        \resumeItem{Designed deck \& pitched StockSort to unicorn investors}
+        \resumeItem{Co-authored \href{https://arxiv.org/abs/2407.12821}{\underline{AutoFlow}}, an automatic agentic workflow generator optimizing LLM task execution and multi-agent coordination}
+        \resumeItem{Maintained open-source repository documentation for framework installation, system usage, and contributor guidelines}
+        \resumeItem{Served as primary speaker at the AIOS Hackathon, presenting agentic infrastructure to an audience of 50+ developers}
       \resumeItemListEnd
 
-    
-
-%   \resumeSubheading
-%    {HackClub Sprig}{July 2024 -- Present}
-%    {Firmware Contributor}{Remote}
-%    \resumeItemListStart
-%    \resumeItem{Wrote a \href{https://github.com/hackclub/sprig/blob/main/games/tanks.js}\underline{tanks} game with sophisticated features for the sprig console}
-%    \resumeItem{Writing a game engine in C for 3D rendering and other CPU intensive games}
-%  \resumeItemListEnd
-
-    \resumeSubheading
-      {New Jersey Privacy Movement}{January 2024 -- March 2024}
-      {Founder}{Princeton, NJ}
+   \resumeSubheading
+      {\href{https://aquarc.org}{\underline{aquarc}}}{June 2024 -- July 2025}
+      {Chief Executive Officer \& Lead Architect}{Remote}
       \resumeItemListStart
-        \resumeItem{Wrote a petition on comprehensive privacy laws to access, modify, delete, or opt out of sale of user data}
-        \resumeItem{Worked with Sen. Turner to draft a privacy bill on the issue}
-        \resumeItem{Raised awareness at a Plainsboro Library Event}
+        \resumeItem{Built and launched an enterprise SAT prep platform scaling to 8{,}000+ questions using Go, React, and PostgreSQL}
+        \resumeItem{Managed a distributed remote team of 10+ developers from product conception through agile deployment cycles}
+        \resumeItem{Utilized Google Analytics and beehiiv to drive growth to 1{,}000+ active users and launch an internship newsletter}
     \resumeItemListEnd
-
-%   \resumeSubheading
-%     {RISE}{June 2023 -- August 2023}
-%     {Technical Skills and Communication}{Princeton, NJ}
-%     \resumeItemListStart
-%       \resumeItem{Wrote a petition on comprehensive privacy laws \href{https://omraheja.us.to/petition.html}\underline{https://omraheja.us.to/petition.html}}
-%       \resumeItem{Drafted a privacy bill with Senator Turner on the issue}
-%       \resumeItem{Held an event at the Plainsboro Library for live signing}
-%   \resumeItemListEnd
 
   \resumeSubHeadingListEnd
 \vspace{-16pt}
-
-
-% -----------PROGRAMMING SKILLS-----------
-% \section{Skills \& Achievements}
-%  \begin{itemize}[leftmargin=0.15in, label={}]
-%     \small{\item{
-%      \textbf{Achievements}{: 2nd Nationals at AIxEducation, FBLA Excellence} 
-%      \textbf{Languages}{: Python, Java, Go, C, C++, Rust, Swift, JavaScript, SQL} \\
-%      \textbf{Technologies}{: PyTorch, React, git, NeoVim, Linux} \\
-%     }}
-%  \end{itemize}
-%  \vspace{-16pt}
 
 %-----------PROJECTS-----------
 \section{Projects}
    \vspace{-5pt}
    \resumeSubHeadingListStart
      \resumeProjectHeading
-         {\textbf{Integrate!} $|$ \emph{Godot}}{July 2024}
+         {\href{https://github.com/acodes123/SwimIQ}{\underline{SwimIQ}} $|$ \emph{React, TensorFlow.js, Express, Groq Llama 4 Scout}}{July 2026}
          \resumeItemListStart
-            \resumeItem{Wrote a game that uses physics and collisions to teach calculus through velocity, acceleration, etc}
-            \resumeItem{Learned Apple Vision and Godot API}
+            \resumeItem{Developed a real-time computer vision web application using TensorFlow.js and MoveNet Thunder to perform in-browser pose estimation, tracking 17 body keypoints at 30 FPS}
+            \resumeItem{Designed a hybrid edge/cloud AI architecture integrating Groq's Llama 4 Scout vision model to analyze uploaded videos and generate context-aware, terminology-specific coaching feedback}
+            \resumeItem{Engineered a React frontend with live skeleton overlays, voice feedback, and a custom kinematic engine to identify stroke types, phase symmetry, and body rotation in highly variable real-world conditions}
+            \resumeItem{Deployed at \href{https://swim-iq.vercel.app/}{\underline{swim-iq.vercel.app}}}
          \resumeItemListEnd
          \vspace{-13pt}
      \resumeProjectHeading
-         {\textbf{Fridge2Fit} $|$ \emph{Node.js, Express, Axiom, Groq}}{May 2024}
+         {\href{https://github.com/om-raheja/MeetTimeTracker}{\underline{MeetTimeTracker}} $|$ \emph{Python, Gemini API, OCR, JSON}}{Jan. 2026}
          \resumeItemListStart
-            \resumeItem{Deployed a full stack AI-powered app to turn pictures of fridges into potential healthy recipes}
-            \resumeItem{Placed at HackMHS as a solo project}
-         \resumeItemListEnd 
+            \resumeItem{Engineered an AI agent utilizing the Gemini API for multimodal Optical Character Recognition (OCR) to automatically extract and parse unstructured physical swim meet results into a centralized database}
+            \resumeItem{Designed custom prompt algorithms to resolve complex data row alignment errors and overlapping text structures within scanned images of medley relay results}
+            \resumeItem{Automated the conversion of raw image data into highly accurate, structured JSON payloads, drastically reducing manual data entry for athletic tracking platforms}
+         \resumeItemListEnd
          \vspace{-13pt}
-         \resumeProjectHeading
-         {\textbf{omOS} $|$ \emph{C, x86 ASM, QEMU}}{February 2024}
+     \resumeProjectHeading
+         {\textbf{omOS} $|$ \emph{C, x86 Assembly, QEMU}}{Feb. 2024}
          \resumeItemListStart
-            \resumeItem{Worked with a team of 3 with no prior experience}
-            \resumeItem{Wrote a standard C library and a VGA driver with keyboard handler}
-            \resumeItem{Learned the difficulty of implementing several resources in OSes such as process management}
-         \resumeItemListEnd 
+            \resumeItem{Developed a monolithic 16/32-bit operating system kernel from scratch featuring custom low-level process management}
+            \resumeItem{Wrote a standalone C standard library and a VGA graphics driver integrated with a hardware interrupt keyboard handler}
+            \resumeItem{Utilized QEMU for system emulation, kernel debugging, and low-level memory mapping}
+         \resumeItemListEnd
    \resumeSubHeadingListEnd
 \vspace{-15pt}
+
+%-----------LEADERSHIP & AWARDS-----------
+\section{Leadership \& Awards}
+   \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{New Jersey Privacy Movement} $|$ \emph{Founder}}{Jan. 2024 -- Mar. 2024}
+          \resumeItemListStart
+            \resumeItem{Authored a public petition for user data rights and collaborated with NJ State Senator Turner to draft a formal privacy bill}
+          \resumeItemListEnd
+          \vspace{-13pt}
+      \resumeProjectHeading
+          {\textbf{AIxEducation} $|$ \emph{National Finalist \& Co-Author}}{Sep. 2024 -- Nov. 2024}
+          \resumeItemListStart
+            \resumeItem{Won 2nd Place Nationally for AI research simulating collaborative Montessori schools to replace traditional models}
+            \resumeItem{Co-authored the Comprehensive Mental Health Support Act, securing co-sponsorship from State Senator Burgess}
+          \resumeItemListEnd
+          \vspace{-13pt}
+      \resumeProjectHeading
+          {\textbf{FBLA} $|$ \emph{7th Place Regional Champion}}{Sep. 2022 -- June 2026}
+          \resumeItemListStart
+            \resumeItem{Ranked 7th in Computer Problem Solving for Central NJ; raised \$150+ and collected 100+ shoes for charity drives}
+          \resumeItemListEnd
+          \vspace{-13pt}
+      \resumeProjectHeading
+          {\textbf{Community Safety Operations} $|$ \emph{Certified Lifeguard}}{May 2023 -- Present}
+          \resumeItemListStart
+            \resumeItem{Enforce pool safety protocols, manage risk prevention, and perform emergency water rescues and first-aid}
+          \resumeItemListEnd
+   \resumeSubHeadingListEnd
 
 \end{document}
