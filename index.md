@@ -7,8 +7,8 @@ I'm an entrepreneur and software engineer building AI-powered tools for develope
 
 <a href="https://omraheja.me"><img src="use/omraheja.jpg" class="profile" /></a>
 
-UIUC Computer Engineering, Class of 2030.
-High School North Class of 2026.
+[UIUC](https://illinois.edu) Computer Engineering, Class of 2030.
+[High School North](https://www.west-windsor-plainsboro.k12.nj.us/schools/high_school_north) Class of 2026.
 
 ## Contact
 
