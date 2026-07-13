@@ -3,20 +3,16 @@
 ---
 # I'm Om
 
-I'm an entrepreneur and a software engineer. I like to build stuff. 
+I'm an entrepreneur and software engineer building AI-powered tools for developers and students. I founded [codeabode](https://codeabode.co) and [aquarc](https://aquarc.org), and co-authored [AutoFlow](https://arxiv.org/abs/2407.12821), an agentic workflow generator for LLMs.
 
-[![omraheja](use/omraheja.jpg)](https://omraheja.me)
+<a href="https://omraheja.me"><img src="use/omraheja.jpg" class="profile" /></a>
 
-[High School North](https://www.west-windsor-plainsboro.k12.nj.us/schools/high_school_north) Class of '26.
-
-Highlights:
-
-1. [codeabode](https://codeabode.co)
-2. [aquarc](https://aquarc.org)
+UIUC Computer Engineering, Class of 2030.
+High School North Class of 2026.
 
 ## Contact
 
-rahejaom (at) outlook (dot) com. My other emails don't work.
+agent-raft-preface (at) duck (dot) com
 
 ## Publication(s)
 

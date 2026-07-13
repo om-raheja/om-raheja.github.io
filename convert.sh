@@ -12,7 +12,7 @@ for filename in *.md; do
             --html-hardwrap \
             -mtitle="Om Raheja - Entrepreneur & Software Engineer" \
             -mcss=style.css \
-            -M htmlheader='<meta name="description" content="Om Raheja. Entrepreneur and software engineer. High School North Class of 2026. Creator of aquarc and codeabode.">'"$GOOGLE_TAG" \
+            -M htmlheader='<meta name="description" content="Om Raheja. Entrepreneur and software engineer. UIUC Computer Engineering Class of 2030. Creator of aquarc and codeabode.">'"$GOOGLE_TAG" \
             "$filename" > "$clean.html"
     else
         lowdown -s \
