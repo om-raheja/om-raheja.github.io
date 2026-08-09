@@ -411,6 +411,70 @@ is_boilerplate_file() {
     esac
 }
 
+# Check if the file is a translated satellite page of a multilingual post
+# (i.e. `foo.en.html` or `foo-romanized.html`). These are real pages but must
+# not be listed as separate posts on the index, tag, all-posts or feed pages.
+#
+# $1 the file
+#
+# Return 0 (true) if the input file is a satellite page, or 1 (false) otherwise
+is_satellite_file() {
+    name=${1#./}
+    [[ $name == *.en.html || $name == *-romanized.html ]]
+}
+
+# Prints the language dropdown for a trilingual post page.
+#
+# $1 the page filename its name, relative and without a leading "./" (e.g. "foo.en.html")
+#
+# Emits a native <details> dropdown (0 JS) linking the three language variants
+# when the post actually has siblings. Returns immediately otherwise.
+lang_nav() {
+    name=${1#./}
+    name=${name%.rebuilt}
+    case $name in
+    *.en.html)        base=${name%.en.html} ;;
+    *-romanized.html) base=${name%-romanized.html} ;;
+    *.html)           base=${name%.html} ;;
+    *)                return ;;
+    esac
+
+    # Only render for posts that actually exist as a trilingual set
+    [[ -f "$base.html" || -f "$base.en.html" || -f "$base-romanized.html" ]] || return
+    [[ -f "$base.html" && ( -f "$base.en.html" || -f "$base-romanized.html" ) ]] || return
+
+    # Which language is the current page?
+    case $name in
+        *.en.html)        cur=en ;;
+        *-romanized.html) cur=romanized ;;
+        *)                cur=hi ;;
+    esac
+
+    echo '<details class="lang-nav"><summary>'भाषा'</summary><div class="lang-nav-inner">'
+    if [[ -f $base.html ]]; then
+        if [[ $cur == hi ]]; then
+            echo -n "<span class=\"lang-active\">हिन्दुस्तानी</span>"
+        else
+            echo -n "<a href=\"$base.html\">हिन्दुस्तानी</a>"
+        fi
+    fi
+    if [[ -f $base-romanized.html ]]; then
+        if [[ $cur == romanized ]]; then
+            echo -n "<span class=\"lang-active\">रोमन हिन्दुस्तानी</span>"
+        else
+            echo -n "<a href=\"$base-romanized.html\">रोमन हिन्दुस्तानी</a>"
+        fi
+    fi
+    if [[ -f $base.en.html ]]; then
+        if [[ $cur == en ]]; then
+            echo -n "<span class=\"lang-active\">English</span>"
+        else
+            echo -n "<a href=\"$base.en.html\">English</a>"
+        fi
+    fi
+    echo '</div></details>'
+}
+
 # Adds all the bells and whistles to format the html page
 # Every blog post is marked with a <!-- entry begin --> and <!-- entry end -->
 # which is parsed afterwards in the other functions. There is also a marker
@@ -455,6 +519,7 @@ create_html_page() {
         file_url=${file_url%.rebuilt} # Get the correct URL when rebuilding
         # one blog entry
         if [[ $index == no ]]; then
+            lang_nav "$filename"
             echo '<!-- entry begin -->' # marks the beginning of the whole post
             echo "<h3><a class=\"ablack\" href=\"$file_url\">"
             # remove possible <p>'s on the title because of markdown conversion
@@ -521,9 +586,6 @@ html_escape() {
 parse_file() {
     # Read for the title and check that the filename is ok
     title=""
-    title_en=""
-    title_roman=""
-    lang_open=""
     while IFS='' read -r line; do
         if [[ -z $title ]]; then
             # remove extra <p> and </p> added by markdown
@@ -544,34 +606,9 @@ parse_file() {
                     filename=${filename%.html}$RANDOM.html
                 done
             fi
-            content=$filename.tmp
-        # Title translations
-        elif [[ $line == "<!-- title-en:"* ]]; then
-            title_en=$(echo "$line" | sed "s/^<!-- title-en: *//; s/ *-->$//")
-        elif [[ $line == "<!-- title-roman:"* ]]; then
-            title_roman=$(echo "$line" | sed "s/^<!-- title-roman: *//; s/ *-->$//")
-        # Language section markers
-        elif [[ $line == "<!-- lang-en -->" ]]; then
-            close_lang_block
-            { echo '<div class="post-lang" data-postlang>'
-              echo '<div data-lang="en">'
-            } >> "$content"
-            lang_open="en"
-        elif [[ $line == "<!-- lang-hi -->" ]]; then
-            close_lang_block
-            { echo '<div class="post-lang" data-postlang>'
-              echo '<div data-lang="hi">'
-            } >> "$content"
-            lang_open="hi"
-        elif [[ $line == "<!-- lang-roman -->" ]]; then
-            close_lang_block
-            { echo '<div class="post-lang" data-postlang>'
-              echo '<div data-lang="roman">'
-            } >> "$content"
-            lang_open="roman"
+content=$filename.tmp
         # Parse possible tags
         elif [[ $line == "<p>$template_tags_line_header"* ]]; then
-            close_lang_block
             tags=$(echo "$line" | cut -d ":" -f 2- | sed -e 's/<\/p>//g' -e 's/^ *//' -e 's/ *$//' -e 's/, /,/g')
             IFS="," read -r -a array <<< "$tags"
 
@@ -584,32 +621,74 @@ parse_file() {
             echo "$line" >> "$content"
         fi
     done < "$1"
-    close_lang_block
-
-    # Store translated titles inside the preserved content region so that
-    # 'rebuild' keeps them; the client reads these to swap the h3/page title.
-    # Prepend so it survives the index <hr> excerpt cut.
-    if [[ -n $title_en || -n $title_roman ]]; then
-        tmp=$content.tit.tmp
-        {
-            echo "<span class=\"post-title-swap\" data-title=\"$(html_escape "$title")\""
-            echo "  data-title-en=\"$(html_escape "$title_en")\" data-title-roman=\"$(html_escape "$title_roman")\" hidden></span>"
-            cat "$content"
-        } > "$tmp" && mv "$tmp" "$content"
-    fi
 
     # Create the actual html page
     create_html_page "$content" "$filename" no "$title" "$2" "$global_author"
     rm "$content"
 }
 
-# Closes any open multi-language divs started in parse_file
-close_lang_block() {
-    [[ -n $lang_open ]] && {
-        echo '</div>' >> "$content"
-        echo '</div>' >> "$content"
-        lang_open=""
-    }
+# Creates the three language variants of a multilingual post from a single
+# Hindi markdown file and an optional English markdown sibling.
+#
+# Given `post.md` (Hindi, Devanagari) it looks for `post.en.md` and produces:
+#   - post.html (Hindi, primary; drives index/tags/rss)
+#   - post.en.html (English, satellite)
+#   - post-romanized.html (devanagari->roman transliteration, satellite)
+#
+# The romanized variant is generated at build time via the node CLI
+# (`lang/cli.js print`) which shares the same transliteration engine as the
+# slug conversion (see convert_filename in .config).
+#
+# $1 the Hindi markdown file
+trilingual() {
+    [[ -f $1 ]] || { echo "The file $1 doesn't exist"; return; }
+    test_markdown || { echo "Markdown is not working, please edit the HTML file directly"; exit; }
+
+    hi_file=$1
+    hi_base=${1%.md}
+    en_file=${hi_base}.en.md
+
+    # The Hindi source posts first to get the primary filename/slug
+    hi_html=$(markdown "$hi_file")
+    parse_file "$hi_html"
+
+    # parse_file writes output to $filename, but the primary page needs a
+    # filename derived from the Devanagari title converted to a roman slug.
+    # markdown() returns an output file; the slug is computed by parse_file
+    # via $convert_filename. So primary file is $filename already.
+    base=${filename%.html}
+    rm -f "$hi_html"
+    chmod 644 "$filename"
+    echo "Posted $filename (हिन्दुस्तानी)"
+
+    # English variant if a matching .en.md sibling exists
+    if [[ -f $en_file ]]; then
+        en_html=$(markdown "$en_file")
+        parse_file "$en_html" "" "$base.en.html"
+        rm -f "$en_html"
+        chmod 644 "$base.en.html"
+        echo "Posted $base.en.html (English)"
+    else
+        echo "No $en_file found; skipping English variant."
+    fi
+
+    # Romanized variant: transliterate the Hindi markdown source to a roman
+    # markdown file, then run it through the same pipeline.
+    if command -v node &> /dev/null && [[ -f lang/cli.js ]]; then
+        roman_md=.lang-$RANDOM-romanized.md
+        node lang/cli.js print < "$hi_file" > "$roman_md"
+        roman_html=$(markdown "$roman_md")
+        parse_file "$roman_html" "" "$base-romanized.html"
+        rm -f "$roman_html" "$roman_md"
+        chmod 644 "$base-romanized.html"
+        echo "Posted $base-romanized.html (रोमन हिन्दुस्तानी)"
+    fi
+
+    # Re-render all entries so the language dropdown appears on pages that
+    # were created before their sibling variants existed.
+    rebuild_all_entries
+    rebuild_tags
+    return 0
 }
 
 # Manages the creation of the text file and the parsing to html file
@@ -722,6 +801,7 @@ all_posts() {
         prev_month=""
         while IFS='' read -r i; do
             is_boilerplate_file "$i" && continue
+            is_satellite_file "$i" && continue
             echo -n "." 1>&3
             # Month headers
             month=$(LC_ALL=$date_locale date -r "$i" +"$date_allposts_header")
@@ -799,6 +879,7 @@ rebuild_index() {
         n=0
         while IFS='' read -r i; do
             is_boilerplate_file "$i" && continue;
+            is_satellite_file "$i" && continue
             if ((n >= number_of_index_articles)); then break; fi
             if [[ -n $cut_do ]]; then
                 get_html_file_content 'entry' 'entry' 'cut' <"$i" | awk "/$cut_line/ { print \"<p class=\\\"readmore\\\"><a href=\\\"$i\\\">$template_read_more</a></p>\" ; next } 1"
@@ -874,6 +955,7 @@ rebuild_tags() {
     while [[ -f $tmpfile ]]; do tmpfile=tmp.$RANDOM; done
     while IFS='' read -r i; do
         is_boilerplate_file "$i" && continue;
+        is_satellite_file "$i" && continue
         echo -n "."
         if [[ -n $cut_do ]]; then
             get_html_file_content 'entry' 'entry' 'cut' <"$i" | awk "/$cut_line/ { print \"<p class=\\\"readmore\\\"><a href=\\\"$i\\\">$template_read_more</a></p>\" ; next } 1"
@@ -947,6 +1029,7 @@ list_posts() {
     n=1
     while IFS='' read -r i; do
         is_boilerplate_file "$i" && continue
+        is_satellite_file "$i" && continue
         line="$n # $(get_post_title "$i") # $(LC_ALL=$date_locale date -r "$i" +"$date_format")"
         lines+=$line\\n
         n=$(( n + 1 ))
@@ -975,6 +1058,7 @@ make_rss() {
         n=0
         while IFS='' read -r i; do
             is_boilerplate_file "$i" && continue
+            is_satellite_file "$i" && continue
             ((n >= number_of_feed_articles)) && break # max 10 items
             echo -n "." 1>&3
             echo '<item><title>' 
@@ -1197,7 +1281,7 @@ do_main() {
         echo "Please set your \$EDITOR environment variable. For example, to use nano, add the line 'export EDITOR=nano' to your \$HOME/.bashrc file" && exit
 
     # Check for validity of argument
-    [[ $1 != "reset" && $1 != "post" && $1 != "rebuild" && $1 != "list" && $1 != "edit" && $1 != "delete" && $1 != "tags" ]] && 
+    [[ $1 != "reset" && $1 != "post" && $1 != "trilingual" && $1 != "rebuild" && $1 != "list" && $1 != "edit" && $1 != "delete" && $1 != "tags" ]] && 
         usage && exit
 
     [[ $1 == list ]] &&
@@ -1233,6 +1317,7 @@ do_main() {
     create_css
     create_includes
     [[ $1 == post ]] && write_entry "$@"
+    [[ $1 == trilingual ]] && trilingual "$2"
     [[ $1 == rebuild ]] && rebuild_all_entries && rebuild_tags
     [[ $1 == delete ]] && rm "$2" &> /dev/null && rebuild_tags
     if [[ $1 == edit ]]; then
