@@ -1,0 +1,11 @@
+name = "omraheja-api"
+compatibility_date = "2026-05-14"
+compatibility_flags = ["nodejs_compat"]
+main = "src/index.js"
+
+[vars]
+WORKOS_REDIRECT_URI = "https://api.omraheja.me/auth/callback"
+REDIRECT_AFTER_LOGIN = "https://omraheja.me/blog/"
+SITE_URL = "https://omraheja.me"
+ALLOWED_EMAILS = "rahejaom@outlook.com,rahejaom@gmail.com"
+ADMIN_EMAILS = "rahejaom@outlook.com"

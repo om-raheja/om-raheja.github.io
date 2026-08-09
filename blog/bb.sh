@@ -500,6 +500,16 @@ create_html_page() {
     } > "$filename"
 }
 
+# Escape a string for use inside an HTML attribute
+html_escape() {
+    local s="$1"
+    s=${s//&/&amp;}
+    s=${s//\"/&quot;}
+    s=${s//</&lt;}
+    s=${s//>/&gt;}
+    printf '%s' "$s"
+}
+
 # Parse the plain text file into an html file
 #
 # $1    source file name
@@ -511,6 +521,9 @@ create_html_page() {
 parse_file() {
     # Read for the title and check that the filename is ok
     title=""
+    title_en=""
+    title_roman=""
+    lang_open=""
     while IFS='' read -r line; do
         if [[ -z $title ]]; then
             # remove extra <p> and </p> added by markdown
@@ -521,7 +534,7 @@ parse_file() {
                 filename=$title
                 [[ -n $convert_filename ]] &&
                     filename=$(echo "$title" | eval "$convert_filename")
-                [[ -n $filename ]] || 
+                [[ -n $filename ]] ||
                     filename=$RANDOM # don't allow empty filenames
 
                 filename=$filename.html
@@ -532,23 +545,71 @@ parse_file() {
                 done
             fi
             content=$filename.tmp
+        # Title translations
+        elif [[ $line == "<!-- title-en:"* ]]; then
+            title_en=$(echo "$line" | sed "s/^<!-- title-en: *//; s/ *-->$//")
+        elif [[ $line == "<!-- title-roman:"* ]]; then
+            title_roman=$(echo "$line" | sed "s/^<!-- title-roman: *//; s/ *-->$//")
+        # Language section markers
+        elif [[ $line == "<!-- lang-en -->" ]]; then
+            close_lang_block
+            { echo '<div class="post-lang" data-postlang>'
+              echo '<div data-lang="en">'
+            } >> "$content"
+            lang_open="en"
+        elif [[ $line == "<!-- lang-hi -->" ]]; then
+            close_lang_block
+            { echo '<div class="post-lang" data-postlang>'
+              echo '<div data-lang="hi">'
+            } >> "$content"
+            lang_open="hi"
+        elif [[ $line == "<!-- lang-roman -->" ]]; then
+            close_lang_block
+            { echo '<div class="post-lang" data-postlang>'
+              echo '<div data-lang="roman">'
+            } >> "$content"
+            lang_open="roman"
         # Parse possible tags
         elif [[ $line == "<p>$template_tags_line_header"* ]]; then
+            close_lang_block
             tags=$(echo "$line" | cut -d ":" -f 2- | sed -e 's/<\/p>//g' -e 's/^ *//' -e 's/ *$//' -e 's/, /,/g')
-            IFS=, read -r -a array <<< "$tags"
+            IFS="," read -r -a array <<< "$tags"
 
             echo -n "<p>$template_tags_line_header " >> "$content"
             for item in "${array[@]}"; do
                 echo -n "<a href='$prefix_tags$item.html'>$item</a>, "
-            done | sed 's/, $/<\/p>/g' >> "$content"
+            done >> "$content"
+            sed -i 's/, $/<\/p>/g' "$content"
         else
             echo "$line" >> "$content"
         fi
     done < "$1"
+    close_lang_block
+
+    # Store translated titles inside the preserved content region so that
+    # 'rebuild' keeps them; the client reads these to swap the h3/page title.
+    # Prepend so it survives the index <hr> excerpt cut.
+    if [[ -n $title_en || -n $title_roman ]]; then
+        tmp=$content.tit.tmp
+        {
+            echo "<span class=\"post-title-swap\" data-title=\"$(html_escape "$title")\""
+            echo "  data-title-en=\"$(html_escape "$title_en")\" data-title-roman=\"$(html_escape "$title_roman")\" hidden></span>"
+            cat "$content"
+        } > "$tmp" && mv "$tmp" "$content"
+    fi
 
     # Create the actual html page
     create_html_page "$content" "$filename" no "$title" "$2" "$global_author"
     rm "$content"
+}
+
+# Closes any open multi-language divs started in parse_file
+close_lang_block() {
+    [[ -n $lang_open ]] && {
+        echo '</div>' >> "$content"
+        echo '</div>' >> "$content"
+        lang_open=""
+    }
 }
 
 # Manages the creation of the text file and the parsing to html file

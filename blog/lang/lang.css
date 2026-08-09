@@ -1,0 +1,44 @@
+[hidden] {
+    display: none !important;
+}
+
+#omr-langbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 6px 0;
+    margin-bottom: 14px;
+    font-size: 0.9em;
+}
+
+#omr-langbar .bar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+#omr-langbar .bar-label {
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+#omr-langbar button {
+    font: inherit;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 4px;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+
+#omr-langbar button:hover {
+    border-color: #999;
+}
+
+#omr-langbar button.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}

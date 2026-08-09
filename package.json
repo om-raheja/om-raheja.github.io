@@ -1,0 +1,19 @@
+{
+  "name": "omraheja-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy:api": "wrangler deploy --config api/wrangler.toml",
+    "deploy:site": "wrangler pages deploy . --project-name=omraheja --branch=main",
+    "dev:api": "wrangler dev --config api/wrangler.toml",
+    "dev:site": "wrangler pages dev .",
+    "build:landing": "./convert.sh",
+    "build:blog": "cd blog && ./bb.sh rebuild"
+  },
+  "dependencies": {
+    "jose": "^6.2.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.108.0"
+  }
+}
