@@ -1,0 +1,89 @@
+A Programme for the New Era
+
+Why did I write this piece? On the 29th of July I couldn't sleep because my thoughts and plans seemed wrong or difficult. It was only after talking to a close friend and walking in the hills that I started writing this.
+
+----
+
+## New Mumbai, a New Language
+
+None of my thoughts are going to be in English anymore. To be honest, ever since I was small I've been curious about reading in my own language. I remember moments when I watched Chhota Bheem while living in Vijayawada. That was my whole schooling. Now, seven years later, my reading and writing have improved a lot, and I've learned how else I can grow. Hindi isn't even the language of my nation, and I still have to learn Urdu, Sindhi, Punjabi and a great deal more. Talking with people from other nations matters too — Arabic, Chinese, and many others whose names I don't know yet. That is, for now I'm going to write in Hindi. First, there's no need to study English at my school. My first step is to reconnect with my earliest memories, my family and my nation. It feels like a new light that in whatever way I can, I should bring my people back to their culture, because there's more to life than work. To move past colonialism is absolutely necessary, and that river whose other shore is socialism seems like one stone for crushing the power of the oppressors. Really, without socialism a whole year of life passes away in a job. Learning outside of a job also matters a great deal. Everyone likes a cultured person. That doesn't mean I have to build my life around English culture the way I used to think, and the way Indians think now — no, the real meaning is to return to our own culture.
+
+My excitement for the tongues of my fellow Indians returned when I went to India at the start of this year. At the airport I tried reading every word: "no smoking, forbidden, exit, departure, aircraft, please…" and slowly, with effort, my words began to return. Suddenly I wanted to write everything in Hindi — thoughts, joys, even about cooperatives. As for Urdu, I learned it from the words of songs and by asking my Urdu-speaking friends a great deal. Before sleep the hint of the Hindi alphabet would come to me, and I would try to read. Many times there wasn't a real word, but my job was to read. As I write, the signs of words are coming back too. And all of this came while learning Chinese. I also tried to learn Japan's language, because any method that reduces the power of the English oppressors must be used. I'll go back to Chinese, but that too matters. For now, I'm happy in my work. It's funny that arriving in Iceland returned this knowledge to me. My posts are going to be in Hindutani until I know more Urdu. And now that I've started writing, I don't know why, but I like the rays of sunrise and sunset.
+
+## Erasing Others' Thoughts
+
+Many people capable of making this decision are unhappy. Those who speak Hindi also need English for important things — for their greeting documents and the like. Other people do understand the value of culture, but they don't yet see what writing in Hindi and erasing thoughts means. Honestly, I still find the full meaning impossible to grasp, but as I move forward in life the values will stand before me on their own. In today's era people are much more used to English and the English alphabet. And because writing Urdu completely is difficult for me right now, my duty is to make this piece reachable in that language and those letters. But, I can write in Hindi, and the website can turn it into the other language all by itself. That way I can grow my culture.
+
+## Desires
+
+Now the question rises: what will I do going forward? Balance between job and life is necessary. The most important thing is the work of socialism. The Janata Dal and the work of a job will both take a lot of time. The job (that is, my education) is necessary because I want to become a trader. Not a capitalist, just a way to earn money so my family can stay in Hindustan. My mother wants to study medicines, but working here is difficult and in India there isn't as much money as if we help people — my uncle, or get some rest and see places like Iceland.
+
+So I'll work in education in my business, whether in medicines or tech with AI, or learning how to teach kids well. Besides that, a financial business that buys and sells finance automatically with AI. Because of such a business one can work from wherever they want, and also do the work of other people's desires. For me, the real work will be in the Janata Dal — in the people's struggle, in books about socialism, in conversation with people and their nations. The second thing is to have time for family and friends, because life comes only once. Singing, dancing, get-togethers and cricket, football and other things for fun. Visiting India to connect with my family and culture is enough.
+
+I talk about socialism so much. I have many friends who want to become rich or build big houses, but that doesn't mean we can't stay friends. When we approach socialism, my business work, a home far from the city, and the benefit of earning money will all keep decreasing. Anyway, money means power and power is necessary. People don't need to distance themselves if they don't become capitalists. We'll see the benefit of friendship with capitalists further on. Think — those who are working are working for their own good, so focus on your own work.
+
+## Why Electrical Engineering
+
+Now, you should ask why I chose to study electrical engineering. It isn't necessary for socialism's success, nor will it teach me my business (and why would I spend so much money if I can learn tech myself). Understand that I'll study finance for earning. They'll teach how to ask for jobs and I have to do business. Maybe this job pays well. The hours are longer too. Anyway I don't know whether socialism will help make capitalists even more successful. Forming a union will also be hard if I go to a job and the business doesn't work out. Why study business if a trader's education happens outside school anyway? Marketing might help, but from outside there'll be plenty of opportunities, I just have to learn conversation. A job may help, but for those reasons I won't study finance — I won't study that.
+
+So I felt that to truly make real things and fulfil the duty of helping, I'd study to be an electrical engineer. In this era, without money or a university (or a good guru) this study is impossible. It seems a good knowledge of tech, or a good job where I can form a union or work from afar, will be useful and also help socialism. Honesty: if I had wanted to study those things I could have, but I felt that in the era of tomorrow, electrical engineering has far more use. And because I can't write this as my university essay, my essay wasn't good enough.
+
+## Clubs and Hobbies
+
+To fulfil the life of an electrical engineer and all my desires and duties, I'm going to a good university. Being in many clubs, talking with their people, and completing life's education are all necessary. I'll join clubs where there's:
+
+- dance, singing, guitar, drums — Hindutani and English
+- get-togethers
+- shooting/gun handling
+- comedy, being a host/emcee
+- football, cricket, cycling, hiking
+- cooking and selling
+- the gym, and a home gym too
+- boxing, wrestling
+- student government
+- building bicycles
+- an association of fellow Indians
+- people from other countries too, like Chinese, Pakistani, Nepali
+- blacksmithing
+
+For the job:
+
+- technology (because I'm headed to a job)
+- the Janata Dal (to help students)
+- experience
+- electrical engineering clubs
+- marketing
+
+It's necessary to learn ways of reaching the world and living among the people. As time comes I'll find out which of these I'll do, plus other things I don't even know yet. Some clubs, like a drawing or book club, I feel aren't worth going to, but maybe meeting people will help. If I'm not interested in that club, I probably won't go. That doesn't mean I don't like drawing or reading books — just that the club itself may not be worth it.
+
+## University
+
+Talking to gurus, gaining experience, finding a job — all of these are necessary for the success of my education. Besides that, finishing in 3 years shouldn't be that hard, and anyway studying for 3 years saves a lot of money and gives plenty of fun and learning. At my university there are many Hindi speakers. My friend's "Jai Maharashtra" outside our room will be different and new, but I have to take that passion up with full awareness. I have to learn conversation — ask people I don't know where they're from, what they do, and other questions. I also have to talk to girls to learn conversation, but I have to treat everyone as my sister. Talking is only for learning.
+
+## The Summer Season
+
+Every year this season comes and I feel I should have done more — even during the year I feel I should have done more. There are two meanings: first, understand what success is, and what I'm doing wrong on the path to it. It's also possible that the more I write, the more my new knowledge needs to be shared. As soon as I think of success, it seems that having money, some business, or a really good job from which I can learn a lot — or use or reach good people — matters. Because socialism seems so far away, its work doesn't seem successful to me. But that should change. It's also possible some good friends come along, but I don't know what "good" means — this time, if I find friends who like singing and playing music, it feels like I've gained a little "success".
+
+If the fruit of effort doesn't come — that is, if the business grows a little, or I can play a good song, or I learn something new — I feel the fruit didn't come. I think the biggest problem before my success is that I don't know enough people who can help me succeed. I should use whatever opportunities come to me fully, so they're not wasted. The most important thing is to start waking up early again. If I sleep around nine, I can easily wake at four or five in the morning. Sleeping at night is hard because everyone works late. Food gets made late, friends stay late, and the video game happens late too. That means I have to think, before sleeping, whose effort I must do and why. I must tell friends they can have fun during the day — anyway, right now they don't do anything during the day. If my help is needed at food time, I'll learn cooking and the housework will also reduce. I'll have to finish my tech-teaching video project. I'll have to market it on Instagram. The education of the two kids I'm teaching right now must finish before going to university. Whatever work there is and whatever's running, I should write the time of it all in one place so nothing is forgotten. I should also go to business unions and go outside the house to work. I'll have to study a great deal and find out what happens after I reach the university. Every day something or other happens.
+
+Besides that, if I work a little less on business, maybe that's enough. In the morning I'll have to start going to the gym.
+
+- going to the gym
+- studying for my three exams
+- business education and learning Instagram
+- the tech side of medicines
+- housework, cooking
+- and reading Hindi
+- building financial tech
+- growing the student union for the fight for socialism
+
+As soon as I get home:
+
+- put my posts on the web
+- start studying — asking for books or movies as needed
+- the diary on my phone
+- when's the next meeting of traders
+
+That should be enough.
+
+Tags: ग़ौर-ओ-फ़िक्र, ghaur-o-fikr, reflection

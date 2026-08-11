@@ -5,7 +5,9 @@ export function devanagariToRoman(text) {
   for (let i = 0; i < s.length; i++) {
     const c = s[i]
     const n = s[i + 1]
-    if (VOWEL_SIGN.has(c)) {
+    if (DIGIT.has(c)) {
+      out += DIGIT.get(c)
+    } else if (VOWEL_SIGN.has(c)) {
       out += VOWEL_SIGN.get(c)
     } else if (INDEPENDENT_VOWEL.has(c)) {
       out += INDEPENDENT_VOWEL.get(c)
@@ -72,6 +74,19 @@ const INDEPENDENT_VOWEL = new Map(Object.entries({
   '\u0914': 'au', // औ
 }))
 
+const DIGIT = new Map(Object.entries({
+  '\u0966': '0',
+  '\u0967': '1',
+  '\u0968': '2',
+  '\u0969': '3',
+  '\u096A': '4',
+  '\u096B': '5',
+  '\u096C': '6',
+  '\u096D': '7',
+  '\u096E': '8',
+  '\u096F': '9',
+}))
+
 const VOWEL_SIGN = new Map(Object.entries({
   '\u093E': 'a', // ा
   '\u093F': 'i', // ि
@@ -124,6 +139,14 @@ const CONSONANT = new Map(Object.entries({
   '\u0937': 'sh', // ष
   '\u0938': 's', // स
   '\u0939': 'h', // ह
+  '\u0958': 'q', // क़ (precomposed)
+  '\u0959': 'kh', // ख़
+  '\u095A': 'g', // ग़
+  '\u095B': 'z', // ज़
+  '\u095C': 'r', // ड़
+  '\u095D': 'rh', // ढ़
+  '\u095E': 'f', // फ़
+  '\u095F': 'y', // य़
 }))
 
 // base consonant + nukta ( combining "\u093C")

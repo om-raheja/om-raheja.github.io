@@ -187,8 +187,8 @@ test_markdown() {
 
 # Parse a Markdown file into HTML and return the generated file
 markdown() {
-    out=${1%.md}.html
-    while [[ -f $out ]]; do out=${out%.html}.$RANDOM.html; done
+    out=.md-$RANDOM.md.html
+    while [[ -f $out ]]; do out=.md-$RANDOM.md.html; done
     $markdown_bin "$1" > "$out"
     echo "$out"
 }
@@ -423,6 +423,26 @@ is_satellite_file() {
     [[ $name == *.en.html || $name == *-romanized.html ]]
 }
 
+# Prints the language of a trilingual post page: "en" for *.en.html,
+# "roman" for *-romanized.html, or nothing (empty) for everything else
+# (Hindi primaries, index/tag/archive pages and legacy posts use the
+# default site chrome). Only returns a value when the page is part of a
+# trilingual set, i.e. the base post actually has language siblings.
+#
+# $1 the page filename (may include a .rebuilt suffix)
+page_lang() {
+    name=${1#./}
+    name=${name%.rebuilt}
+    case $name in
+    *.en.html)        base=${name%.en.html};        lvar=en ;;
+    *-romanized.html) base=${name%-romanized.html}; lvar=roman ;;
+    *)                return 0 ;;
+    esac
+    # Only treat as localized when the trilingual set actually exists
+    [[ -f $base.html && ( -f $base.en.html || -f $base-romanized.html ) ]] || return 0
+    echo "$lvar"
+}
+
 # Prints the language dropdown for a trilingual post page.
 #
 # $1 the page filename its name, relative and without a leading "./" (e.g. "foo.en.html")
@@ -475,6 +495,19 @@ lang_nav() {
     echo '</div></details>'
 }
 
+# The site-wide header language picker. Identical HTML on every page; its
+# links are populated at runtime by lang/lang.js based on the current page
+# (localStorage remembers the visitor's choice across visits).
+lang_nav_picker() {
+    echo '<details class="lang-nav site-nav" lang="pick">'
+    echo '<summary>Pick a language &middot; भाषा चुनें</summary>'
+    echo '<div class="lang-nav-inner">'
+    echo '<a href="#" data-lang="hi">हिन्दी</a>'
+    echo '<a href="#" data-lang="rom">hindi</a>'
+    echo '<a href="#" data-lang="en">English</a>'
+    echo '</div></details>'
+}
+
 # Adds all the bells and whistles to format the html page
 # Every blog post is marked with a <!-- entry begin --> and <!-- entry end -->
 # which is parsed afterwards in the other functions. There is also a marker
@@ -495,10 +528,25 @@ create_html_page() {
     timestamp=$5
     author=$6
 
-    # Create the actual blog post
+    # Which localized variant does this page belong to? hi unless a
+    # trilingual satellite; romanized pages are Hindi written in Latin script
+    plang=$(page_lang "$filename")
+    [[ -z $plang ]] && plang=hi
+    htmllang=$plang
+    [[ $plang == roman ]] && htmllang=hi-Latn
+    if [[ $plang != hi ]]; then
+        title_inc=".title-$plang.html"
+        footer_inc=".footer-$plang.html"
+        eval "author=\$global_author_$plang"
+    else
+        title_inc=".title.html"
+        footer_inc=".footer.html"
+    fi
+
     # html, head
     {
-        cat ".header.html"
+        cat ".header.html" |
+            sed "s|<html |<html lang=\"$htmllang\" |"
         echo "<title>$title</title>"
         google_analytics
         twitter_card "$content" "$title"
@@ -511,7 +559,7 @@ create_html_page() {
         echo '<div class="headerholder"><div class="header">'
         # blog title
         echo '<div id="title">'
-        cat .title.html
+        cat "$title_inc"
         echo '</div></div></div>' # title, header, headerholder
         echo '<div id="divbody"><div class="content">'
 
@@ -556,7 +604,7 @@ create_html_page() {
         [[ $index == no ]] && disqus_body
 
         # page footer
-        cat .footer.html
+        cat "$footer_inc"
         # close divs
         echo '</div></div>' # divbody and divbodyholder 
         disqus_footer
@@ -1083,10 +1131,26 @@ make_rss() {
 
 # generate headers, footers, etc
 create_includes() {
+    # Default (site-wide) chrome is Hindi; English and romanized variants
+    # are used by the corresponding satellite pages of trilingual posts
+    #
+    # The site-wide language picker (site-nav) is injected here so it shows
+    # on every page. lang/lang.js fills in the variant links at runtime.
     {
-        echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title</a></h1>" 
+        echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title</a></h1>"
         echo "<div id=\"description\">$global_description</div>"
+        lang_nav_picker
     } > ".title.html"
+    {
+        echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title_en</a></h1>"
+        echo "<div id=\"description\">$global_description_en</div>"
+        lang_nav_picker
+    } > ".title-en.html"
+    {
+        echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title_roman</a></h1>"
+        echo "<div id=\"description\">$global_description_roman</div>"
+        lang_nav_picker
+    } > ".title-roman.html"
 
     if [[ -f $header_file ]]; then cp "$header_file" .header.html
     else {
@@ -1100,22 +1164,37 @@ create_includes() {
         else 
             echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"$template_subscribe_browser_button\" href=\"$global_feedburner\" />"
         fi
+        echo '<script defer src="lang/lang.js"></script>'
         } > ".header.html"
     fi
 
-    if [[ -f $footer_file ]]; then cp "$footer_file" .footer.html
+    if [[ -f $footer_file ]]; then cp "$footer_file" .footer.html .footer-en.html .footer-roman.html
     else {
         protected_mail=${global_email//@/\&#64;}
         protected_mail=${protected_mail//./\&#46;}
         echo "<div id=\"footer\">$global_license <a href=\"$global_author_url\">$global_author</a> &mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
         echo 'Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>'
         } >> ".footer.html"
+        {
+        protected_mail=${global_email//@/\&#64;}
+        protected_mail=${protected_mail//./\&#46;}
+        echo "<div id=\"footer\">$global_license <a href=\"$global_author_url\">$global_author_en</a> &mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
+        echo 'Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>'
+        } >> ".footer-en.html"
+        {
+        protected_mail=${global_email//@/\&#64;}
+        protected_mail=${protected_mail//./\&#46;}
+        echo "<div id=\"footer\">$global_license <a href=\"$global_author_url\">$global_author_roman</a> &mdash; <a href=\"mailto:$protected_mail\">$protected_mail</a><br/>"
+        echo 'Generated with <a href="https://github.com/cfenollosa/bashblog">bashblog</a>, a single bash script to easily create blogs like this one</div>'
+        } >> ".footer-roman.html"
     fi
 }
 
 # Delete the temporarily generated include files
 delete_includes() {
-    rm ".title.html" ".footer.html" ".header.html"
+    rm -f ".title.html" ".title-en.html" ".title-roman.html" \
+          ".footer.html" ".footer-en.html" ".footer-roman.html" \
+          ".header.html"
 }
 
 # Create the css file from scratch
