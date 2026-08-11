@@ -643,15 +643,15 @@ trilingual() {
     hi_base=${1%.md}
     en_file=${hi_base}.en.md
 
-    # The Hindi source posts first to get the primary filename/slug
+    # The Hindi source posts first to get the primary filename/slug.
+    # Compute the roman slug from the first (title) line so re-posting an
+    # existing post overwrites its pages rather than tripping parse_file's
+    # duplicate-name loop (which would create foo<RANDOM>.html).
     hi_html=$(markdown "$hi_file")
-    parse_file "$hi_html"
-
-    # parse_file writes output to $filename, but the primary page needs a
-    # filename derived from the Devanagari title converted to a roman slug.
-    # markdown() returns an output file; the slug is computed by parse_file
-    # via $convert_filename. So primary file is $filename already.
-    base=${filename%.html}
+    hi_slug=$(head -1 "$hi_file" | eval "$convert_filename")
+    [[ -n $hi_slug ]] || hi_slug=$RANDOM # don't allow empty slugs
+    parse_file "$hi_html" "" "$hi_slug.html"
+    base=$hi_slug
     rm -f "$hi_html"
     chmod 644 "$filename"
     echo "Posted $filename (हिन्दुस्तानी)"
