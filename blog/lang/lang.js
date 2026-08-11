@@ -60,11 +60,12 @@
         }
         if (isCurrent) a.classList.add('lang-active');
 
-        a.addEventListener('click', function () {
-            try { localStorage.setItem(KEY, a.getAttribute('data-lang')); } catch (e) {}
+        a.addEventListener('click', function (e) {
+            try { localStorage.setItem(KEY, a.getAttribute('data-lang')); } catch (err) {}
             stored = a.getAttribute('data-lang');
             reflectChoice();
             if (target === '#') {
+                e.preventDefault();
                 picker.removeAttribute('open');
                 return false;
             }

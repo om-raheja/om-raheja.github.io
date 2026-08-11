@@ -18,8 +18,8 @@
         --lang-border-strong: #7a7a7a;
         --lang-chip-bg: #2b2b2b;
         --lang-panel-bg: #1d1d1d;
-        --lang-active-bg: #ffebeb;
-        --lang-active-fg: #000;
+        --lang-active-bg: rgba(255, 255, 255, 0.14);
+        --lang-active-fg: #ffebeb;
     }
 }
 
