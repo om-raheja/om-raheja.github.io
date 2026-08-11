@@ -5,13 +5,15 @@
 //   1. reads the stored language choice (localStorage key: blog.lang)
 //   2. rewrites the picker links so they point at the current page's
 //      Hindi / romanized / English variants
-//   3. remembers new choices
-// On pages that have no per-post variants (index, tags, archive) the
-// picker only stores the preference; no silent redirect happens anywhere.
+//   3. remembers new choices and reflects them in the picker itself
+// On pages without per-post variants (index, tags, archive) choosing a
+// language stores the preference and visibly highlights it; there is no
+// silent redirect anywhere.
 (function () {
     'use strict';
 
     var KEY = 'blog.lang';
+    var LABELS = { hi: 'हिन्दी', rom: 'hindi', en: 'English' };
     var stored = null;
     try { stored = localStorage.getItem(KEY); } catch (e) {}
 
@@ -19,6 +21,7 @@
     if (!picker) return;
     var links = picker.querySelectorAll('a[data-lang]');
     if (!links.length) return;
+    var summary = picker.querySelector('summary');
 
     var file = (location.pathname.split('/').pop() || 'index.html');
 
@@ -59,6 +62,8 @@
 
         a.addEventListener('click', function () {
             try { localStorage.setItem(KEY, a.getAttribute('data-lang')); } catch (e) {}
+            stored = a.getAttribute('data-lang');
+            reflectChoice();
             if (target === '#') {
                 picker.removeAttribute('open');
                 return false;
@@ -67,12 +72,24 @@
         });
     });
 
-    // Reflect the stored preference in the popup, but never redirect
-    if (stored) {
+    // Show which language is chosen (or emphasise the current page's one)
+    function reflectChoice() {
+        var chosen = stored || (isPost ? curLangChar() : null);
         links.forEach(function (a) {
-            a.classList.toggle('lang-active', a.getAttribute('data-lang') === stored);
+            a.classList.toggle('lang-active', a.getAttribute('data-lang') === chosen);
         });
+        if (summary && chosen && LABELS[chosen]) {
+            summary.textContent = LABELS[chosen] + ' \u2713';
+            picker.setAttribute('lang', chosen);
+        }
     }
+
+    // First visit: open the picker so the three choices are plainly visible
+    if (!stored) {
+        picker.setAttribute('open', 'open');
+    }
+
+    reflectChoice();
 
     function curLangChar() {
         return curLang === 'en' ? 'e' : curLang === 'rom' ? 'r' : 'h';

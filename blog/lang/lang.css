@@ -52,3 +52,33 @@ details.lang-nav .lang-active {
     color: #fff;
     border-color: #222;
 }
+
+/* Site-wide header language picker: should read as an obvious bar on every page */
+details.lang-nav.site-nav {
+    margin: 12px 0 6px;
+    font-size: 0.9em;
+}
+
+details.lang-nav.site-nav > summary {
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #999;
+    background: #fafafa;
+    border-radius: 5px;
+    padding: 5px 14px;
+    font-weight: 600;
+}
+
+details.lang-nav.site-nav[open] {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: #fafafa;
+}
+
+details.lang-nav.site-nav[open] > summary {
+    background: transparent;
+    border: 0;
+    padding: 0 0 4px;
+    font-weight: 600;
+}

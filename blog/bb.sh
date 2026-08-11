@@ -500,7 +500,7 @@ lang_nav() {
 # (localStorage remembers the visitor's choice across visits).
 lang_nav_picker() {
     echo '<details class="lang-nav site-nav" lang="pick">'
-    echo '<summary>Pick a language &middot; भाषा चुनें</summary>'
+    echo '<summary>भाषा चुनें &middot; bhasha chunen &middot; pick a language</summary>'
     echo '<div class="lang-nav-inner">'
     echo '<a href="#" data-lang="hi">हिन्दी</a>'
     echo '<a href="#" data-lang="rom">hindi</a>'
