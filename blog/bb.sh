@@ -443,58 +443,6 @@ page_lang() {
     echo "$lvar"
 }
 
-# Prints the language dropdown for a trilingual post page.
-#
-# $1 the page filename its name, relative and without a leading "./" (e.g. "foo.en.html")
-#
-# Emits a native <details> dropdown (0 JS) linking the three language variants
-# when the post actually has siblings. Returns immediately otherwise.
-lang_nav() {
-    name=${1#./}
-    name=${name%.rebuilt}
-    case $name in
-    *.en.html)        base=${name%.en.html} ;;
-    *-romanized.html) base=${name%-romanized.html} ;;
-    *.html)           base=${name%.html} ;;
-    *)                return ;;
-    esac
-
-    # Only render for posts that actually exist as a trilingual set
-    [[ -f "$base.html" || -f "$base.en.html" || -f "$base-romanized.html" ]] || return
-    [[ -f "$base.html" && ( -f "$base.en.html" || -f "$base-romanized.html" ) ]] || return
-
-    # Which language is the current page?
-    case $name in
-        *.en.html)        cur=en ;;
-        *-romanized.html) cur=romanized ;;
-        *)                cur=hi ;;
-    esac
-
-    echo '<details class="lang-nav"><summary>'भाषा'</summary><div class="lang-nav-inner">'
-    if [[ -f $base.html ]]; then
-        if [[ $cur == hi ]]; then
-            echo -n "<span class=\"lang-active\">हिन्दुस्तानी</span>"
-        else
-            echo -n "<a href=\"$base.html\">हिन्दुस्तानी</a>"
-        fi
-    fi
-    if [[ -f $base-romanized.html ]]; then
-        if [[ $cur == romanized ]]; then
-            echo -n "<span class=\"lang-active\">रोमन हिन्दुस्तानी</span>"
-        else
-            echo -n "<a href=\"$base-romanized.html\">रोमन हिन्दुस्तानी</a>"
-        fi
-    fi
-    if [[ -f $base.en.html ]]; then
-        if [[ $cur == en ]]; then
-            echo -n "<span class=\"lang-active\">English</span>"
-        else
-            echo -n "<a href=\"$base.en.html\">English</a>"
-        fi
-    fi
-    echo '</div></details>'
-}
-
 # The site-wide header language picker. Identical HTML on every page; its
 # links are populated at runtime by lang/lang.js based on the current page
 # (localStorage remembers the visitor's choice across visits).
@@ -567,7 +515,6 @@ create_html_page() {
         file_url=${file_url%.rebuilt} # Get the correct URL when rebuilding
         # one blog entry
         if [[ $index == no ]]; then
-            lang_nav "$filename"
             echo '<!-- entry begin -->' # marks the beginning of the whole post
             echo "<h3><a class=\"ablack\" href=\"$file_url\">"
             # remove possible <p>'s on the title because of markdown conversion

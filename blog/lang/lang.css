@@ -2,27 +2,49 @@
     display: none !important;
 }
 
+/* Palette driven by the site's scheme; overridden below for dark mode */
+:root {
+    --lang-border: #ccc;
+    --lang-border-strong: #999;
+    --lang-chip-bg: #f5f5f5;
+    --lang-panel-bg: #fafafa;
+    --lang-active-bg: #222;
+    --lang-active-fg: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --lang-border: #4a4a4a;
+        --lang-border-strong: #7a7a7a;
+        --lang-chip-bg: #2b2b2b;
+        --lang-panel-bg: #1d1d1d;
+        --lang-active-bg: #ffebeb;
+        --lang-active-fg: #000;
+    }
+}
+
 /* Language dropdown (0 JS): links between the Hindi / Romanized / English variants */
 details.lang-nav {
     margin: 6px 0 14px;
     font-size: 0.85em;
+    color: var(--fg);
 }
 
 details.lang-nav > summary {
     display: inline-block;
     cursor: pointer;
-    border: 1px solid #ccc;
+    border: 1px solid var(--lang-border);
     border-radius: 4px;
     padding: 3px 10px;
     user-select: none;
 }
 
 details.lang-nav > summary:hover {
-    border-color: #999;
+    border-color: var(--lang-border-strong);
 }
 
 details.lang-nav[open] summary {
-    border-color: #999;
+    border-color: var(--lang-border-strong);
 }
 
 details.lang-nav .lang-nav-inner {
@@ -35,7 +57,7 @@ details.lang-nav .lang-nav-inner {
 
 details.lang-nav .lang-nav-inner a,
 details.lang-nav .lang-active {
-    border: 1px solid #ccc;
+    border: 1px solid var(--lang-border);
     border-radius: 4px;
     padding: 3px 12px;
     text-decoration: none;
@@ -43,37 +65,60 @@ details.lang-nav .lang-active {
 }
 
 details.lang-nav .lang-nav-inner a:hover {
-    border-color: #999;
-    background: #f5f5f5;
+    border-color: var(--lang-border-strong);
+    background: var(--lang-chip-bg);
 }
 
 details.lang-nav .lang-active {
-    background: #222;
-    color: #fff;
-    border-color: #222;
+    background: var(--lang-active-bg);
+    color: var(--lang-active-fg);
+    border-color: var(--lang-active-bg);
 }
 
-/* Site-wide header language picker: should read as an obvious bar on every page */
+/* Site-wide header language picker: a single button pinned to the top-right
+   of the page header, next to the blog title, on every page (index, posts,
+   tags, archive). */
+.headerholder,
+.header {
+    position: relative;
+}
+
 details.lang-nav.site-nav {
-    margin: 12px 0 6px;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    margin: 0;
     font-size: 0.9em;
+    z-index: 10;
+    color: var(--fg);
 }
 
 details.lang-nav.site-nav > summary {
     display: inline-block;
     cursor: pointer;
-    border: 1px solid #999;
-    background: #fafafa;
+    border: 1px solid var(--lang-border-strong);
+    background: var(--lang-panel-bg);
     border-radius: 5px;
     padding: 5px 14px;
     font-weight: 600;
+    color: var(--fg);
+    list-style: none;
+}
+
+details.lang-nav.site-nav > summary::-webkit-details-marker {
+    display: none;
 }
 
 details.lang-nav.site-nav[open] {
-    border: 1px solid #ccc;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    border: 1px solid var(--lang-border);
     border-radius: 6px;
     padding: 8px 12px;
-    background: #fafafa;
+    background: var(--lang-panel-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
 }
 
 details.lang-nav.site-nav[open] > summary {
@@ -81,4 +126,14 @@ details.lang-nav.site-nav[open] > summary {
     border: 0;
     padding: 0 0 4px;
     font-weight: 600;
+    color: var(--fg);
+}
+
+@media (max-width: 768px) {
+    details.lang-nav.site-nav,
+    details.lang-nav.site-nav[open] {
+        position: static;
+        margin: 10px 0 0;
+        box-shadow: none;
+    }
 }
