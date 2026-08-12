@@ -516,7 +516,22 @@ create_html_page() {
         # one blog entry
         if [[ $index == no ]]; then
             echo '<!-- entry begin -->' # marks the beginning of the whole post
-            echo "<h3><a class=\"ablack\" href=\"$file_url\">"
+            # Language variant attributes for this post (used by lang.js to
+            # rewrite the link on index/tag pages to the chosen language).
+            # Only set for entries that actually have sibling variants.
+            lvar=""
+            case $file_url in
+                *.en.html)        lbase=${file_url%.en.html} ;;
+                *-romanized.html) lbase=${file_url%-romanized.html} ;;
+                *.html)           lbase=${file_url%.html} ;;
+                *)                lbase= ;;
+            esac
+            if [[ -n $lbase && -f "$lbase.html" && ( -f "$lbase.en.html" || -f "$lbase-romanized.html" ) ]]; then
+                lvar=" data-hi=\"$lbase.html\""
+                [[ -f "$lbase-romanized.html" ]] && lvar+=" data-rom=\"$lbase-romanized.html\""
+                [[ -f "$lbase.en.html" ]] && lvar+=" data-en=\"$lbase.en.html\""
+            fi
+            echo "<h3><a class=\"ablack\" href=\"$file_url\"$lvar>"
             # remove possible <p>'s on the title because of markdown conversion
             title=${title//<p>/}
             title=${title//<\/p>/}

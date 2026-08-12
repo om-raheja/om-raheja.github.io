@@ -51,9 +51,10 @@ export function devanagariToRoman(text) {
 }
 
 export function slugify(text) {
-  return devanagariToRoman(text)
+  return String(text)
+    .trim()
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/[^\p{L}\p{M}\p{N}]+/gu, '-')
     .replace(/^-+|-+$/g, '')
 }
 
