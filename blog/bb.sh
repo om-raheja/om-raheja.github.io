@@ -401,7 +401,7 @@ is_boilerplate_file() {
     done
 
     case $name in
-    ( "$index_file" | "$archive_index" | "$tags_index" | "$footer_file" | "$header_file" | "$global_analytics_file" | "$prefix_tags"* )
+    ( "$index_file" | "${index_file%.html}.en.html" | "${index_file%.html}-romanized.html" | "$archive_index" | "${archive_index%.html}.en.html" | "${archive_index%.html}-romanized.html" | "$tags_index" | "${tags_index%.html}.en.html" | "${tags_index%.html}-romanized.html" | "$footer_file" | "$header_file" | "$global_analytics_file" | "$prefix_tags"* )
         return 0 ;;
     ( * ) # Check for excluded
         for excl in "${html_exclude[@]}"; do
@@ -423,24 +423,39 @@ is_satellite_file() {
     [[ $name == *.en.html || $name == *-romanized.html ]]
 }
 
-# Prints the language of a trilingual post page: "en" for *.en.html,
+# Print the filename of a page's language variant (hi|en|roman)
+list_page_name() {
+    case $2 in
+        en)   echo "${1%.html}.en.html" ;;
+        roman) echo "${1%.html}-romanized.html" ;;
+        *)    echo "$1" ;;
+    esac
+}
+
+# Print the post file whose entry belongs on a page in the given language:
+# the translated satellite for en/roman when one exists, else the base post
+post_in_lang() {
+    case $2 in
+        en)   [[ -f ${1%.html}.en.html ]] && echo "${1%.html}.en.html" || echo "$1" ;;
+        roman) [[ -f ${1%.html}-romanized.html ]] && echo "${1%.html}-romanized.html" || echo "$1" ;;
+        *)    echo "$1" ;;
+    esac
+}
+
+# Prints the language of a trilingual page: "en" for *.en.html,
 # "roman" for *-romanized.html, or nothing (empty) for everything else
-# (Hindi primaries, index/tag/archive pages and legacy posts use the
-# default site chrome). Only returns a value when the page is part of a
-# trilingual set, i.e. the base post actually has language siblings.
+# (Hindi primaries, legacy posts and the base list pages use the default
+# site chrome).
 #
 # $1 the page filename (may include a .rebuilt suffix)
 page_lang() {
     name=${1#./}
     name=${name%.rebuilt}
     case $name in
-    *.en.html)        base=${name%.en.html};        lvar=en ;;
-    *-romanized.html) base=${name%-romanized.html}; lvar=roman ;;
+    *.en.html)        echo en ;;
+    *-romanized.html) echo roman ;;
     *)                return 0 ;;
     esac
-    # Only treat as localized when the trilingual set actually exists
-    [[ -f $base.html && ( -f $base.en.html || -f $base-romanized.html ) ]] || return 0
-    echo "$lvar"
 }
 
 # The site-wide header language picker. Identical HTML on every page; its
@@ -468,6 +483,8 @@ lang_nav_picker() {
 # $4     title for the html header
 # $5     original blog timestamp
 # $6     post author
+# $7     (optional) explicit language "hi"|"en"|"roman"; when empty it is
+#        derived from the output filename
 create_html_page() {
     content=$1
     filename=$2
@@ -478,8 +495,12 @@ create_html_page() {
 
     # Which localized variant does this page belong to? hi unless a
     # trilingual satellite; romanized pages are Hindi written in Latin script
-    plang=$(page_lang "$filename")
-    [[ -z $plang ]] && plang=hi
+    if [[ -n $7 ]]; then
+        plang=$7
+    else
+        plang=$(page_lang "$filename")
+        [[ -z $plang ]] && plang=hi
+    fi
     htmllang=$plang
     [[ $plang == roman ]] && htmllang=hi-Latn
     if [[ $plang != hi ]]; then
@@ -801,116 +822,145 @@ EOF
 # Create an index page with all the posts
 all_posts() {
     echo -n "Creating an index page with all the posts "
-    contentfile=$archive_index.$RANDOM
-    while [[ -f $contentfile ]]; do
-        contentfile=$archive_index.$RANDOM
+    for plang in hi en roman; do
+        lname=$(list_page_name "$archive_index" "$plang")
+        contentfile=$lname.$RANDOM
+        while [[ -f $contentfile ]]; do
+            contentfile=$lname.$RANDOM
+        done
+
+        {
+            echo "<h3>$template_archive_title</h3>"
+            prev_month=""
+            while IFS='' read -r i; do
+                is_boilerplate_file "$i" && continue
+                is_satellite_file "$i" && continue
+                echo -n "." 1>&3
+                f=$(post_in_lang "$i" "$plang")
+                # Month headers
+                month=$(LC_ALL=$date_locale date -r "$i" +"$date_allposts_header")
+                if [[ $month != "$prev_month" ]]; then
+                    [[ -n $prev_month ]] && echo "</ul>"  # Don't close ul before first header
+                    echo "<h4 class='allposts_header'>$month</h4>"
+                    echo "<ul>"
+                    prev_month=$month
+                fi
+                # Title
+                title=$(get_post_title "$f")
+                echo -n "<li><a href=\"$f\">$title</a> &mdash;"
+                # Date
+                date=$(LC_ALL=$date_locale date -r "$i" +"$date_format")
+                echo " $date</li>"
+            done < <(ls -t ./*.html)
+            echo "" 1>&3
+            echo "</ul>"
+            ii=$(list_page_name "$index_file" "$plang")
+            echo "<div id=\"all_posts\"><a href=\"./$ii\">$template_archive_index_page</a></div>"
+        } 3>&1 >"$contentfile"
+
+        [[ $plang == en ]] && gtitle=$global_title_en
+        [[ $plang == roman ]] && gtitle=$global_title_roman
+        [[ -z $gtitle ]] && gtitle=$global_title
+        create_html_page "$contentfile" "$lname.tmp" yes "$gtitle &mdash; $template_archive_title" "$global_author" "" "$plang"
+        mv "$lname.tmp" "$lname"
+        chmod 644 "$lname"
+        gtitle=""
+        rm "$contentfile"
     done
-
-    {
-        echo "<h3>$template_archive_title</h3>"
-        prev_month=""
-        while IFS='' read -r i; do
-            is_boilerplate_file "$i" && continue
-            is_satellite_file "$i" && continue
-            echo -n "." 1>&3
-            # Month headers
-            month=$(LC_ALL=$date_locale date -r "$i" +"$date_allposts_header")
-            if [[ $month != "$prev_month" ]]; then
-                [[ -n $prev_month ]] && echo "</ul>"  # Don't close ul before first header
-                echo "<h4 class='allposts_header'>$month</h4>"
-                echo "<ul>"
-                prev_month=$month
-            fi
-            # Title
-            title=$(get_post_title "$i")
-            echo -n "<li><a href=\"$i\">$title</a> &mdash;"
-            # Date
-            date=$(LC_ALL=$date_locale date -r "$i" +"$date_format")
-            echo " $date</li>"
-        done < <(ls -t ./*.html)
-        echo "" 1>&3
-        echo "</ul>"
-        echo "<div id=\"all_posts\"><a href=\"./$index_file\">$template_archive_index_page</a></div>"
-    } 3>&1 >"$contentfile"
-
-    create_html_page "$contentfile" "$archive_index.tmp" yes "$global_title &mdash; $template_archive_title" "$global_author"
-    mv "$archive_index.tmp" "$archive_index"
-    chmod 644 "$archive_index"
-    rm "$contentfile"
 }
 
 # Create an index page with all the tags
 all_tags() {
     echo -n "Creating an index page with all the tags "
-    contentfile=$tags_index.$RANDOM
-    while [[ -f $contentfile ]]; do
-        contentfile=$tags_index.$RANDOM
-    done
-
-    {
-        echo "<h3>$template_tags_title</h3>"
-        echo "<ul>"
-        for i in $prefix_tags*.html; do
-            [[ -f "$i" ]] || break
-            echo -n "." 1>&3
-            nposts=$(grep -c "<\!-- text begin -->" "$i")
-            tagname=${i#"$prefix_tags"}
-            tagname=${tagname%.html}
-            case $nposts in
-                1) word=$template_tags_posts_singular;;
-                2|3|4) word=$template_tags_posts_2_4;;
-                *) word=$template_tags_posts;;
-            esac
-            echo "<li><a href=\"$i\">$tagname</a> &mdash; $nposts $word</li>"
+    for plang in hi en roman; do
+        lname=$(list_page_name "$tags_index" "$plang")
+        contentfile=$lname.$RANDOM
+        while [[ -f $contentfile ]]; do
+            contentfile=$lname.$RANDOM
         done
-        echo "" 1>&3
-        echo "</ul>"
-        echo "<div id=\"all_posts\"><a href=\"./$index_file\">$template_archive_index_page</a></div>"
-    } 3>&1 > "$contentfile"
 
-    create_html_page "$contentfile" "$tags_index.tmp" yes "$global_title &mdash; $template_tags_title" "$global_author"
-    mv "$tags_index.tmp" "$tags_index"
-    chmod 644 "$tags_index"
-    rm "$contentfile"
+        {
+            echo "<h3>$template_tags_title</h3>"
+            echo "<ul>"
+            for i in $prefix_tags*.html; do
+                [[ -f "$i" ]] || break
+                is_satellite_file "$i" && continue
+                echo -n "." 1>&3
+                nposts=$(grep -c "<\!-- text begin -->" "$i")
+                tagname=${i#"$prefix_tags"}
+                tagname=${tagname%.html}
+                case $nposts in
+                    1) word=$template_tags_posts_singular;;
+                    2|3|4) word=$template_tags_posts_2_4;;
+                    *) word=$template_tags_posts;;
+                esac
+                ti=$(list_page_name "$i" "$plang")
+                echo "<li><a href=\"$ti\">$tagname</a> &mdash; $nposts $word</li>"
+            done
+            echo "" 1>&3
+            echo "</ul>"
+            ii=$(list_page_name "$index_file" "$plang")
+            echo "<div id=\"all_posts\"><a href=\"./$ii\">$template_archive_index_page</a></div>"
+        } 3>&1 > "$contentfile"
+
+        [[ $plang == en ]] && gtitle=$global_title_en
+        [[ $plang == roman ]] && gtitle=$global_title_roman
+        [[ -z $gtitle ]] && gtitle=$global_title
+        create_html_page "$contentfile" "$lname.tmp" yes "$gtitle &mdash; $template_tags_title" "$global_author" "" "$plang"
+        mv "$lname.tmp" "$lname"
+        chmod 644 "$lname"
+        gtitle=""
+        rm "$contentfile"
+    done
 }
 
 # Generate the index.html with the content of the latest posts
 rebuild_index() {
     echo -n "Rebuilding the index "
-    newindexfile=$index_file.$RANDOM
-    contentfile=$newindexfile.content
-    while [[ -f $newindexfile ]]; do 
-        newindexfile=$index_file.$RANDOM
+    for plang in hi en roman; do
+        lname=$(list_page_name "$index_file" "$plang")
+        newindexfile=$lname.$RANDOM
         contentfile=$newindexfile.content
+        while [[ -f $newindexfile ]]; do
+            newindexfile=$lname.$RANDOM
+            contentfile=$newindexfile.content
+        done
+
+        # Create the content file
+        {
+            n=0
+            while IFS='' read -r i; do
+                is_boilerplate_file "$i" && continue;
+                is_satellite_file "$i" && continue
+                if ((n >= number_of_index_articles)); then break; fi
+                f=$(post_in_lang "$i" "$plang")
+                if [[ -n $cut_do ]]; then
+                    get_html_file_content 'entry' 'entry' 'cut' <"$f" | awk "/$cut_line/ { print \"<p class=\\\"readmore\\\"><a href=\\\"$f\\\">$template_read_more</a></p>\" ; next } 1"
+                else
+                    get_html_file_content 'entry' 'entry' <"$f"
+                fi
+                echo -n "." 1>&3
+                n=$(( n + 1 ))
+            done < <(ls -t ./*.html) # sort by date, newest first
+
+            feed=$blog_feed
+            if [[ -n $global_feedburner ]]; then feed=$global_feedburner; fi
+            a=$(list_page_name "$archive_index" "$plang")
+            t=$(list_page_name "$tags_index" "$plang")
+            echo "<div id=\"all_posts\"><a href=\"$a\">$template_archive</a> &mdash; <a href=\"$t\">$template_tags_title</a> &mdash; <a href=\"$feed\">$template_subscribe</a></div>"
+        } 3>&1 >"$contentfile"
+
+        echo ""
+
+        [[ $plang == en ]] && gtitle=$global_title_en
+        [[ $plang == roman ]] && gtitle=$global_title_roman
+        [[ -z $gtitle ]] && gtitle=$global_title
+        create_html_page "$contentfile" "$newindexfile" yes "$gtitle" "$global_author" "" "$plang"
+        rm "$contentfile"
+        mv "$newindexfile" "$lname"
+        chmod 644 "$lname"
+        gtitle=""
     done
-
-    # Create the content file
-    {
-        n=0
-        while IFS='' read -r i; do
-            is_boilerplate_file "$i" && continue;
-            is_satellite_file "$i" && continue
-            if ((n >= number_of_index_articles)); then break; fi
-            if [[ -n $cut_do ]]; then
-                get_html_file_content 'entry' 'entry' 'cut' <"$i" | awk "/$cut_line/ { print \"<p class=\\\"readmore\\\"><a href=\\\"$i\\\">$template_read_more</a></p>\" ; next } 1"
-            else
-                get_html_file_content 'entry' 'entry' <"$i"
-            fi
-            echo -n "." 1>&3
-            n=$(( n + 1 ))
-        done < <(ls -t ./*.html) # sort by date, newest first
-
-        feed=$blog_feed
-        if [[ -n $global_feedburner ]]; then feed=$global_feedburner; fi
-        echo "<div id=\"all_posts\"><a href=\"$archive_index\">$template_archive</a> &mdash; <a href=\"$tags_index\">$template_tags_title</a> &mdash; <a href=\"$feed\">$template_subscribe</a></div>"
-    } 3>&1 >"$contentfile"
-
-    echo ""
-
-    create_html_page "$contentfile" "$newindexfile" yes "$global_title" "$global_author"
-    rm "$contentfile"
-    mv "$newindexfile" "$index_file"
-    chmod 644 "$index_file"
 }
 
 # Finds all tags referenced in one post.
@@ -956,36 +1006,49 @@ rebuild_tags() {
         rm ./"$prefix_tags"*.html &> /dev/null
     else
         for i in $tags; do
-            rm "./$prefix_tags$i.html" &> /dev/null
+            rm "./$prefix_tags$i"*.html &> /dev/null
         done
     fi
     # First we will process all files and create temporal tag files
-    # with just the content of the posts
+    # with just the content of the posts, one tmp file per language
     tmpfile=tmp.$RANDOM
     while [[ -f $tmpfile ]]; do tmpfile=tmp.$RANDOM; done
     while IFS='' read -r i; do
         is_boilerplate_file "$i" && continue;
         is_satellite_file "$i" && continue
         echo -n "."
-        if [[ -n $cut_do ]]; then
-            get_html_file_content 'entry' 'entry' 'cut' <"$i" | awk "/$cut_line/ { print \"<p class=\\\"readmore\\\"><a href=\\\"$i\\\">$template_read_more</a></p>\" ; next } 1"
-        else
-            get_html_file_content 'entry' 'entry' <"$i"
-        fi >"$tmpfile"
-        for tag in $(tags_in_post "$i"); do
-            if [[ -n $all_tags || " $tags " == *" $tag "* ]]; then
-                cat "$tmpfile" >> "$prefix_tags$tag".tmp.html
-            fi
+        for plang in hi en roman; do
+            f=$(post_in_lang "$i" "$plang")
+            if [[ -n $cut_do ]]; then
+                get_html_file_content 'entry' 'entry' 'cut' <"$f" | awk "/$cut_line/ { print \"<p class=\\\"readmore\\\"><a href=\\\"$f\\\">$template_read_more</a></p>\" ; next } 1"
+            else
+                get_html_file_content 'entry' 'entry' <"$f"
+            fi >"$tmpfile-$plang"
+            for tag in $(tags_in_post "$i"); do
+                if [[ -n $all_tags || " $tags " == *" $tag "* ]]; then
+                    cat "$tmpfile-$plang" >> "$prefix_tags$tag".tmp-$plang.html
+                fi
+            done
         done
     done <<< "$files"
-    rm "$tmpfile"
+    rm "$tmpfile"*
     # Now generate the tag files with headers, footers, etc
     while IFS='' read -r i; do
-        tagname=${i#./"$prefix_tags"}
-        tagname=${tagname%.tmp.html}
-        create_html_page "$i" "$prefix_tags$tagname.html" yes "$global_title &mdash; $template_tag_title \"$tagname\"" "$global_author"
+        name=${i#./"$prefix_tags"}
+        plang=hi
+        case $name in
+            *.tmp-en.html)        plang=en ;;
+            *.tmp-roman.html)     plang=roman ;;
+        esac
+        tagname=${name%.tmp-*}
+        lname=$(list_page_name "$prefix_tags$tagname.html" "$plang")
+        [[ $plang == en ]] && gtitle=$global_title_en
+        [[ $plang == roman ]] && gtitle=$global_title_roman
+        [[ -z $gtitle ]] && gtitle=$global_title
+        create_html_page "$i" "$lname" yes "$gtitle &mdash; $template_tag_title \"$tagname\"" "$global_author" "" "$plang"
         rm "$i"
-    done < <(ls -t ./"$prefix_tags"*.tmp.html 2>/dev/null)
+        gtitle=""
+    done < <(ls -t ./"$prefix_tags"*.tmp-*.html 2>/dev/null)
     echo
 }
 
@@ -1015,6 +1078,7 @@ list_tags() {
     lines=""
     for i in $prefix_tags*.html; do
         [[ -f "$i" ]] || break
+        is_satellite_file "$i" && continue
         nposts=$(grep -c "<\!-- text begin -->" "$i")
         tagname=${i#"$prefix_tags"}
         tagname=${tagname#.html}
