@@ -1,20 +1,20 @@
 // Site-wide language picker.
 //
-// Every blog page carries the same <details class="lang-nav site-nav">
-// markup in its header. This script:
+// Every page carries a <details class="lang-nav site-nav"> in its header.
+// The Hindi / romanized / English variant links are baked into the HTML by
+// bb.sh at build time, so switching language works with no JS at all. This
+// script only enhances that markup:
 //   1. reads the stored language choice (localStorage key: blog.lang)
-//   2. fills in the picker links so they point at the current page's
-//      Hindi / romanized / English variants
-//   3. remembers new choices and reflects them in the picker itself
+//   2. highlights the chosen/current language in the picker
+//   3. remembers new choices so return visits land on the same language
+//   4. auto-opens the picker on a visitor's first visit
 //
 // List pages (index.html, all_posts.html, all_tags.html, tag_*.html) are
-// built in three real language variants, so choosing a language there
-// navigates to the matching variant and the whole page changes (header,
-// footer and every listed post). On visits where the stored language
-// differs from the current list page, the matching variant is loaded.
-// Post pages only switch when the post actually has translated siblings:
-// the picker links are read from the post's own title anchor (data-hi /
-// data-rom / data-en), which bb.sh only emits when siblings exist.
+// built in three real language variants, so if the visitor has a stored
+// choice that differs from the page they're on, this script redirects to
+// the matching variant (the picker's baked links already point there).
+// Post pages only switch when the post has translated siblings; posts that
+// exist in only one language get no-op (#) links from bb.sh.
 (function () {
     'use strict';
 
@@ -66,18 +66,6 @@
         baseName.indexOf('tag_') === 0
     );
 
-    // For posts, the real variant URLs come from the post's own title
-    // anchor; bb.sh only emits them when translated siblings exist.
-    var postVars = {};
-    if (isList === false && baseName) {
-        var anchor = document.querySelector('h3 a[data-hi]');
-        if (anchor) {
-            postVars.hi = anchor.getAttribute('data-hi');
-            postVars.rom = anchor.getAttribute('data-rom');
-            postVars.en = anchor.getAttribute('data-en');
-        }
-    }
-
     // Whole-page language switch: on list pages honor the stored choice by
     // loading that variant. Guarded by hasStored so a fresh visitor isn't
     // yanked away from an explicitly requested URL (the picker auto-opens
@@ -87,29 +75,20 @@
         return;
     }
 
+    // The links already carry their real hrefs from bb.sh; add click
+    // handling so the choice is remembered and no-op (#) links dismiss the
+    // picker instead of scrolling to the top of the page.
     links.forEach(function (a) {
         var lang = a.getAttribute('data-lang');
-        var target = null;
-        if (isList) {
-            target = baseName + FILE[lang];
-        } else if (postVars[lang]) {
-            target = postVars[lang];
-        }
         var isCurrent = lang === curLang;
 
-        if (target) {
-            a.href = target;
-            a.removeAttribute('data-nolink');
-        } else {
-            a.setAttribute('data-nolink', '1');
-        }
         if (isCurrent) a.classList.add('lang-active');
 
         a.addEventListener('click', function (e) {
             try { localStorage.setItem(KEY, lang); } catch (err) {}
             stored = lang;
             reflectChoice();
-            if (!target) {
+            if (a.getAttribute('href') === '#') {
                 e.preventDefault();
                 picker.removeAttribute('open');
                 return false;

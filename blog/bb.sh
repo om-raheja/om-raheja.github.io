@@ -458,16 +458,46 @@ page_lang() {
     esac
 }
 
-# The site-wide header language picker. Identical HTML on every page; its
-# links are populated at runtime by lang/lang.js based on the current page
-# (localStorage remembers the visitor's choice across visits).
+# The site-wide header language picker. The variant URLs are baked into the
+# HTML at build time (no JS needed to switch); lang/lang.js only enhances it
+# by remembering the visitor's choice and auto-opening it on first visit.
+#
+# $1 the real page filename (e.g. index.en.html, tag_x.html, post.html)
+# $2 the page's language (hi|en|roman)
 lang_nav_picker() {
+    realname=${1#./}
+    realname=${realname%.rebuilt}
+    plang=${2:-hi}
+    base=""
+    case $realname in
+        *.en.html)        base=${realname%.en.html} ;;
+        *-romanized.html) base=${realname%-romanized.html} ;;
+        *.html)           base=${realname%.html} ;;
+    esac
+    # List pages (index, all_posts, all_tags, tag_*) always have three
+    # variants; post pages only link to siblings that actually exist.
+    islist=no
+    case $base in
+        index|all_posts|all_tags|tag_*) islist=yes ;;
+    esac
+    hi_url="$base.html"
+    if [[ $islist == yes ]]; then
+        rom_url="$base-romanized.html"
+        en_url="$base.en.html"
+    else
+        if [[ -f "$base-romanized.html" ]]; then rom_url="$base-romanized.html"; else rom_url="#"; fi
+        if [[ -f "$base.en.html" ]]; then en_url="$base.en.html"; else en_url="#"; fi
+    fi
+    active_hi=""; active_rom=""; active_en=""
+    [[ $plang == hi ]] && active_hi=' class="lang-active"'
+    [[ $plang == roman ]] && active_rom=' class="lang-active"'
+    [[ $plang == en ]] && active_en=' class="lang-active"'
     echo '<details class="lang-nav site-nav" lang="pick">'
     echo '<summary>भाषा चुनें &middot; bhasha chunen &middot; pick a language</summary>'
     echo '<div class="lang-nav-inner">'
-    echo '<a href="#" data-lang="hi">हिन्दी</a>'
-    echo '<a href="#" data-lang="rom">hindi</a>'
-    echo '<a href="#" data-lang="en">English</a>'
+    echo "<a href=\"$hi_url\" data-lang=\"hi\"$active_hi>हिन्दी</a>"
+    echo "<a href=\"$rom_url\" data-lang=\"rom\"$active_rom>hindi</a>"
+    echo "<a href=\"$en_url\" data-lang=\"en\"$active_en>English</a>"
     echo '</div></details>'
 }
 
@@ -512,6 +542,12 @@ create_html_page() {
         footer_inc=".footer.html"
     fi
 
+    # The real page filename (callers building list pages into temp files
+    # pass it as $8); used to bake the language picker's variant links.
+    pagerel=${8:-$filename}
+    pagerel=${pagerel#./}
+    pagerel=${pagerel%.rebuilt}
+
     # html, head
     {
         cat ".header.html" |
@@ -529,6 +565,7 @@ create_html_page() {
         # blog title
         echo '<div id="title">'
         cat "$title_inc"
+        lang_nav_picker "$pagerel" "$plang"
         echo '</div></div></div>' # title, header, headerholder
         echo '<div id="divbody"><div class="content">'
 
@@ -861,7 +898,7 @@ all_posts() {
         [[ $plang == en ]] && gtitle=$global_title_en
         [[ $plang == roman ]] && gtitle=$global_title_roman
         [[ -z $gtitle ]] && gtitle=$global_title
-        create_html_page "$contentfile" "$lname.tmp" yes "$gtitle &mdash; $template_archive_title" "$global_author" "" "$plang"
+        create_html_page "$contentfile" "$lname.tmp" yes "$gtitle &mdash; $template_archive_title" "$global_author" "" "$plang" "$lname"
         mv "$lname.tmp" "$lname"
         chmod 644 "$lname"
         gtitle=""
@@ -906,7 +943,7 @@ all_tags() {
         [[ $plang == en ]] && gtitle=$global_title_en
         [[ $plang == roman ]] && gtitle=$global_title_roman
         [[ -z $gtitle ]] && gtitle=$global_title
-        create_html_page "$contentfile" "$lname.tmp" yes "$gtitle &mdash; $template_tags_title" "$global_author" "" "$plang"
+        create_html_page "$contentfile" "$lname.tmp" yes "$gtitle &mdash; $template_tags_title" "$global_author" "" "$plang" "$lname"
         mv "$lname.tmp" "$lname"
         chmod 644 "$lname"
         gtitle=""
@@ -955,7 +992,7 @@ rebuild_index() {
         [[ $plang == en ]] && gtitle=$global_title_en
         [[ $plang == roman ]] && gtitle=$global_title_roman
         [[ -z $gtitle ]] && gtitle=$global_title
-        create_html_page "$contentfile" "$newindexfile" yes "$gtitle" "$global_author" "" "$plang"
+        create_html_page "$contentfile" "$newindexfile" yes "$gtitle" "$global_author" "" "$plang" "$lname"
         rm "$contentfile"
         mv "$newindexfile" "$lname"
         chmod 644 "$lname"
@@ -1160,22 +1197,20 @@ create_includes() {
     # Default (site-wide) chrome is Hindi; English and romanized variants
     # are used by the corresponding satellite pages of trilingual posts
     #
-    # The site-wide language picker (site-nav) is injected here so it shows
-    # on every page. lang/lang.js fills in the variant links at runtime.
+    # The site-wide language picker (site-nav) is injected per page by
+    # create_html_page with the variant URLs baked in, so it cannot live in
+    # this shared chrome.
     {
         echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title</a></h1>"
         echo "<div id=\"description\">$global_description</div>"
-        lang_nav_picker
     } > ".title.html"
     {
         echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title_en</a></h1>"
         echo "<div id=\"description\">$global_description_en</div>"
-        lang_nav_picker
     } > ".title-en.html"
     {
         echo "<h1 class=\"nomargin\"><a class=\"ablack\" href=\"$global_url/$index_file\">$global_title_roman</a></h1>"
         echo "<div id=\"description\">$global_description_roman</div>"
-        lang_nav_picker
     } > ".title-roman.html"
 
     if [[ -f $header_file ]]; then cp "$header_file" .header.html
