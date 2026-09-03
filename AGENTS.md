@@ -54,3 +54,4 @@ Plain HTML/CSS — no JS bundler, no package manager, no CI/CD.
 - All work in `main` branch; push directly (no PR workflow)
 - Site-wide styles in `style.css`; blog inherits it via `css_include` in `.config`
  
+ 
