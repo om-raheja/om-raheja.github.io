@@ -9,7 +9,7 @@ Plain HTML/CSS — no JS bundler, no package manager, no CI/CD.
 - Live site is **Cloudflare Pages** (project `omraheja`, account `5ff27740…` = "Marktwaincafe@outlook.com's Account"), deployed via `npm run deploy:site` (`wrangler pages deploy . --project-name=omraheja --branch=main`).
 - `functions/blog/[[path]].js` + `functions/_routes.json` put `/blog/*` behind a WorkOS login gate (sessions verified via `jose`; `ALLOWED_EMAILS`/`ADMIN_EMAILS` in `api/wrangler.toml` + `.env.work`). The homepage is public.
 - Git pushes to `main` do **not** deploy — you must run `npm run deploy:site`. GitHub Pages/`CNAME` is a legacy mirror, not what serves traffic.
-- Cloudflare api token for the site lives in `robocode/.dev.vars` (the `cfat_…` "old token" is the Marktwaincafe account token; the other is a different account). Set `CLOUDFLARE_API_TOKEN` when calling wrangler, or run `wrangler login`.
+- Cloudflare api token for the site lives in `.env.local` (`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`). Set `CLOUDFLARE_API_TOKEN` when calling wrangler, or run `wrangler login`.
 
 ## Content pipelines
 
@@ -53,3 +53,4 @@ Plain HTML/CSS — no JS bundler, no package manager, no CI/CD.
 - Content is CC0-licensed (`LICENSE`)
 - All work in `main` branch; push directly (no PR workflow)
 - Site-wide styles in `style.css`; blog inherits it via `css_include` in `.config`
+ 
