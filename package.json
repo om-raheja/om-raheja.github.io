@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "deploy:api": "wrangler deploy --config api/wrangler.toml",
-    "deploy:site": "wrangler pages deploy . --project-name=omraheja --branch=main",
+    "deploy:site": "set -a && . ./.dev.vars && set +a && wrangler pages deploy . --project-name=omraheja --branch=main",
     "dev:api": "wrangler dev --config api/wrangler.toml",
     "dev:site": "wrangler pages dev .",
     "build:landing": "./convert.sh",

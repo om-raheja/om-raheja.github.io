@@ -1,0 +1,177 @@
+/* Admin settings gear. Injected server-side only for admin sessions, so this
+   file (and the panel markup) only ever exists for admins. */
+
+:root {
+    --admin-border: #ccc;
+    --admin-border-strong: #999;
+    --admin-bg: #fafafa;
+    --admin-btn: #222;
+    --admin-btn-fg: #fff;
+    --admin-err: #b00020;
+    --admin-ok: #1c7a3d;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --admin-border: #4a4a4a;
+        --admin-border-strong: #7a7a7a;
+        --admin-bg: #1d1d1d;
+        --admin-err: #ff8080;
+        --admin-ok: #6fce8f;
+    }
+}
+
+details.admin-nav.site-nav {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 20;
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--fg);
+}
+
+/* Make room for the gear so it sits next to the language picker. */
+@media (min-width: 769px) {
+    .header details.lang-nav.site-nav {
+        right: 56px;
+    }
+}
+
+details.admin-nav.site-nav > summary {
+    list-style: none;
+    cursor: pointer;
+    border: 1px solid var(--admin-border-strong);
+    background: var(--admin-bg);
+    border-radius: 5px;
+    padding: 5px 11px;
+    font-weight: 600;
+    color: var(--fg);
+}
+
+details.admin-nav.site-nav > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.admin-nav.site-nav[open] {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    background: var(--admin-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 230px;
+    max-width: 320px;
+}
+
+details.admin-nav.site-nav[open] > summary {
+    display: none;
+}
+
+details.admin-nav.site-nav .admin-nav-inner {
+    display: block;
+}
+
+.admin-title {
+    margin: 0 0 2px;
+    font-size: 0.95em;
+}
+
+.admin-hint {
+    margin: 0 0 8px;
+    font-size: 0.75em;
+    color: var(--muted, #777);
+}
+
+.admin-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.admin-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 3px 2px;
+    font-size: 0.85em;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-list li.admin {
+    color: var(--muted, #777);
+}
+
+.admin-list li .del {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    color: var(--admin-err);
+    font-size: 1.1em;
+    padding: 0 4px;
+}
+
+.admin-list li.admin .del {
+    cursor: not-allowed;
+    opacity: 0.35;
+    color: var(--muted, #777);
+}
+
+.admin-add {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.admin-add input {
+    flex: 1;
+    min-width: 0;
+    padding: 5px 8px;
+    font-size: 0.85em;
+    border: 1px solid var(--admin-border);
+    border-radius: 4px;
+    background: var(--lang-chip-bg, #f5f5f5);
+    color: var(--fg);
+}
+
+.admin-add button {
+    border: 1px solid var(--admin-border);
+    background: var(--admin-btn);
+    color: var(--admin-btn-fg);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 0.85em;
+    cursor: pointer;
+}
+
+.admin-add button:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.admin-msg {
+    margin: 8px 0 0;
+    font-size: 0.8em;
+}
+
+.admin-msg.err {
+    color: var(--admin-err);
+}
+
+.admin-msg.ok {
+    color: var(--admin-ok);
+}
+
+@media (max-width: 768px) {
+    details.admin-nav.site-nav,
+    details.admin-nav.site-nav[open] {
+        top: auto;
+        right: 10px;
+        bottom: 10px;
+    }
+}

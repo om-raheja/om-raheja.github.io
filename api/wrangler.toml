@@ -9,3 +9,7 @@ REDIRECT_AFTER_LOGIN = "https://omraheja.me/blog/"
 SITE_URL = "https://omraheja.me"
 ALLOWED_EMAILS = "rahejaom@outlook.com,rahejaom@gmail.com"
 ADMIN_EMAILS = "rahejaom@outlook.com"
+
+[[kv_namespaces]]
+binding = "ALLOWLIST"
+id = "8ae85ff705c046ccb42206019f240501"

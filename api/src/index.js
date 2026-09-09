@@ -21,21 +21,36 @@ function cookieFrom(req) {
   return null
 }
 
-function parseBody(env) {
-  const adminList = (env.ADMIN_EMAILS || '').split(',').map((s) => s.trim()).filter(Boolean)
-  const allowedList = (env.ALLOWED_EMAILS || '').split(',').map((s) => s.trim()).filter(Boolean)
-  return { adminList, allowedList }
-}
-
-function isAllowedEmail(email, env) {
-  const { adminList, allowedList } = parseBody(env)
-  return adminList.includes(email) || allowedList.includes(email)
-}
+const ALLOWLIST_KEY = 'allowed'
 
 function roleFor(email, env) {
-  return (env.ADMIN_EMAILS || '').split(',').map((s) => s.trim()).filter(Boolean).includes(email)
-    ? 'admin'
-    : 'member'
+  const admins = (env.ADMIN_EMAILS || '').toLowerCase().split(',').map((s) => s.trim()).filter(Boolean)
+  return admins.includes((email || '').toLowerCase()) ? 'admin' : 'member'
+}
+
+async function allowedEmails(env) {
+  const admins = (env.ADMIN_EMAILS || '').toLowerCase().split(',').map((s) => s.trim()).filter(Boolean)
+  const seed = (env.ALLOWED_EMAILS || '').toLowerCase().split(',').map((s) => s.trim()).filter(Boolean)
+  let kvList = seed
+  if (env.ALLOWLIST) {
+    const kv = await env.ALLOWLIST.get(ALLOWLIST_KEY)
+    if (kv) {
+      try {
+        kvList = JSON.parse(kv)
+      } catch {
+        kvList = seed
+      }
+    } else {
+      await env.ALLOWLIST.put(ALLOWLIST_KEY, JSON.stringify(seed))
+    }
+  }
+  return new Set([...admins, ...kvList])
+}
+
+async function isAllowedEmail(email, env) {
+  if (!email) return false
+  const set = await allowedEmails(env)
+  return set.has(email.toLowerCase())
 }
 
 async function issueSession(profile, env) {
@@ -56,7 +71,7 @@ async function verifySession(req, env) {
   if (!token || !env.WORKOS_API_KEY) return null
   try {
     const { payload } = await jwtVerify(token, new TextEncoder().encode(env.WORKOS_API_KEY))
-    if (!isAllowedEmail(payload.email, env)) return null
+    if (!(await isAllowedEmail(payload.email, env))) return null
     return payload
   } catch {
     return null
@@ -189,7 +204,7 @@ export default {
       const email = (body.get('email') || '').trim().toLowerCase()
       const password = body.get('password') || ''
       if (!email || !password) return html(loginPage(redirect, 'Email and password are required.'), 400)
-      if (!isAllowedEmail(email, env)) return html(deniedPage())
+      if (!(await isAllowedEmail(email, env))) return html(deniedPage())
       let res
       if (mode === 'signup') {
         const createRes = await fetch(`${WORKOS_API}/user_management/users`, {
@@ -233,7 +248,7 @@ export default {
       const user = data.user || {}
       const email = (user.email || '').toLowerCase()
       if (!res.ok || !email) return html(loginPage(redirect, 'Sign-in failed. Please try again.'), 200)
-      if (!isAllowedEmail(email, env)) return html(deniedPage())
+      if (!(await isAllowedEmail(email, env))) return html(deniedPage())
       const cookie = await issueSession({ id: user.id, email, first_name: user.first_name, last_name: user.last_name }, env)
       return new Response(null, { status: 302, headers: { Location: redirect, 'Set-Cookie': cookie } })
     }
